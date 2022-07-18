@@ -18,15 +18,9 @@
 }
 
 .icon-current-weather {
-  //width: 100px;
 }
 
 .temperature {
-  font-weight: 600;
-  font-size: 70px;
-  width: auto;
-  letter-spacing: -5px;
-  margin: 10px 0;
 }
 
 .details {

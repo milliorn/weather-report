@@ -40,7 +40,9 @@ const CurrentWeather = ({ data, time }) => {
         />
       </div>
       <div className="bottom flex justify-between items-center">
-        <p className="temperature">{temp}°F</p>
+        <p className="temperature font-semibold	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
+          {temp}°F
+        </p>
         <div className="details">
           <div className="section-row">
             <span className="section-name">Feels like</span>
