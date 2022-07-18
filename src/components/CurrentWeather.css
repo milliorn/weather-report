@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .weather {
   width: 300px;
   border-radius: 6px;

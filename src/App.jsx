@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div
-      className="container"
+      className="max-w-full	bg-no-repeat bg-cover my-0 mx-auto"
       style={{
         backgroundImage: `url("https://source.unsplash.com/random")`,
       }}
