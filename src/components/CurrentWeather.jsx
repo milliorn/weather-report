@@ -29,8 +29,10 @@ const CurrentWeather = ({ data, time }) => {
           <p className="weather-desc leading-10 m-0 capitalize">
             {description}
           </p>
-          <div className="section-row">
-            <span className="section-row">{currentTime}</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-row flex justify-between text-xs capitalize">
+              {currentTime}
+            </span>
           </div>
         </div>
         <img
@@ -44,30 +46,30 @@ const CurrentWeather = ({ data, time }) => {
           {temp}°F
         </p>
         <div className="details w-full	pl-5">
-          <div className="section-row">
-            <span className="section-name">Feels like</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Feels like</span>
             <span className="section-result"> {heatIndex}°F</span>
           </div>
-          <div className="section-row">
-            <span className="section-name">Humidity</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Humidity</span>
             <span className="section-result"> {humidity}%</span>
           </div>
-          <div className="section-row">
-            <span className="section-name">Wind</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Wind</span>
             <span className="section-result">
               {windSpeed} mph {windDirection}
             </span>
           </div>
-          <div className="section-row">
-            <span className="section-name">Sunrise</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Sunrise</span>
             <span className="section-result">{sunrise}</span>
           </div>
-          <div className="section-row">
-            <span className="section-name">Sunset</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Sunset</span>
             <span className="section-result">{sunset}</span>
           </div>
-          <div className="section-row">
-            <span className="section-name">Visibility</span>
+          <div className="section-row flex justify-between text-xs capitalize">
+            <span className="section-name text-left	">Visibility</span>
             <span className="section-result">{visibility} miles</span>
           </div>
         </div>

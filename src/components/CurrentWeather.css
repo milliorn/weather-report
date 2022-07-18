@@ -27,15 +27,9 @@
 }
 
 .section-row {
-  display: flex;
-  justify-content: space-between;
 }
 
 .section-name {
-  text-align: left;
-  font-weight: 400;
-  font-size: 12px;
-  text-transform: capitalize;
 }
 
 .section-result {
