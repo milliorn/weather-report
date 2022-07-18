@@ -21,7 +21,7 @@ const CurrentWeather = ({ data, time }) => {
 
   return (
     <div className="weather w-80 rounded-md	text-white">
-      <div className="top">
+      <div className="top flex justify-between items-center">
         <div>
           <p className="city">{city}</p>
           <p className="weather-desc">{description}</p>
@@ -35,7 +35,7 @@ const CurrentWeather = ({ data, time }) => {
           className="icon-current-weather"
         />
       </div>
-      <div className="bottom">
+      <div className="bottom flex justify-between items-center">
         <p className="temperature">{temp}°F</p>
         <div className="details">
           <div className="section-row">
