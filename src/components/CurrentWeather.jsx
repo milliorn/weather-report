@@ -43,7 +43,7 @@ const CurrentWeather = ({ data, time }) => {
         <p className="temperature font-semibold	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
           {temp}°F
         </p>
-        <div className="details">
+        <div className="details w-full	pl-5">
           <div className="section-row">
             <span className="section-name">Feels like</span>
             <span className="section-result"> {heatIndex}°F</span>
