@@ -48,29 +48,41 @@ const CurrentWeather = ({ data, time }) => {
         <div className="details w-full	pl-5">
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Feels like</span>
-            <span className="section-result"> {heatIndex}°F</span>
+            <span className="section-result text-right font-semibold text-xs">
+              {" "}
+              {heatIndex}°F
+            </span>
           </div>
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Humidity</span>
-            <span className="section-result"> {humidity}%</span>
+            <span className="section-result text-right font-semibold text-xs">
+              {" "}
+              {humidity}%
+            </span>
           </div>
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Wind</span>
-            <span className="section-result">
+            <span className="section-result text-right font-semibold text-xs">
               {windSpeed} mph {windDirection}
             </span>
           </div>
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Sunrise</span>
-            <span className="section-result">{sunrise}</span>
+            <span className="section-result text-right font-semibold text-xs">
+              {sunrise}
+            </span>
           </div>
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Sunset</span>
-            <span className="section-result">{sunset}</span>
+            <span className="section-result text-right font-semibold text-xs">
+              {sunset}
+            </span>
           </div>
           <div className="section-row flex justify-between text-xs capitalize">
             <span className="section-name text-left	">Visibility</span>
-            <span className="section-result">{visibility} miles</span>
+            <span className="section-result text-right font-semibold text-xs">
+              {visibility} miles
+            </span>
           </div>
         </div>
       </div>
