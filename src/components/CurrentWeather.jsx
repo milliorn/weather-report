@@ -36,7 +36,7 @@ const CurrentWeather = ({ data, time }) => {
         <img
           src={imageSrc}
           alt="current-weather"
-          className="icon-current-weather"
+          className="icon-current-weather w-28	"
         />
       </div>
       <div className="bottom flex justify-between items-center">
