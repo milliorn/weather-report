@@ -12,16 +12,11 @@
 }
 
 .city {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: 1px;
 }
 
 .weather-desc {
   font-weight: 400;
-  font-size: 14px;
+  //font-size: 14px;
   line-height: 2;
   margin: 0;
   text-transform: capitalize;

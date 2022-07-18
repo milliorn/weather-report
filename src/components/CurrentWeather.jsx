@@ -23,7 +23,9 @@ const CurrentWeather = ({ data, time }) => {
     <div className="weather w-80 rounded-md	text-white">
       <div className="top flex justify-between items-center">
         <div>
-          <p className="city">{city}</p>
+          <p className="city font-semibold text-lg	m-0 tracking-widest">
+            {city}
+          </p>
           <p className="weather-desc">{description}</p>
           <div className="section-row">
             <span className="section-row">{currentTime}</span>
