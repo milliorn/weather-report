@@ -1,13 +1,11 @@
 import "./App.css";
 import Search from "./components/Search";
 import CurrentWeather from "./components/CurrentWeather";
-import {
-  TIME_API_KEY,
-  TIME_URL,
-  WEATHER_API_KEY,
-  WEATHER_API_URL,
-} from "./.env";
+import { TIME_API_KEY, WEATHER_API_KEY } from "./.env";
 import { useState } from "react";
+
+export const TIME_URL = "https://api.ipgeolocation.io/timezone?apiKey=";
+export const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -39,7 +37,7 @@ function App() {
     <div
       className="max-w-full	bg-no-repeat bg-cover my-0 mx-auto h-screen"
       style={{
-        backgroundImage: `url("https://source.unsplash.com/random")`,
+        backgroundImage: `url("https://source.unsplash.com/random/?dark")`,
       }}
     >
       <Search onSearchChange={handleOnSearchChange} />

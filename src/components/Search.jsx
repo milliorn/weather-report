@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-import { GeoApiOptions, GEO_API_URL } from "../.env";
+import { GeoApiOptions } from "../.env";
+
+export const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
