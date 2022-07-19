@@ -15,7 +15,7 @@ function App() {
     const [latitude, longitude] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=imperial`
+      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=imperial`
     );
 
     const currentTimeFetch = fetch(
@@ -26,7 +26,6 @@ function App() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const timeResponse = await response[1].json();
-
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
         setCurrentTime({ city: searchData.label, ...timeResponse });
       })
@@ -35,7 +34,7 @@ function App() {
 
   return (
     <div
-      className="max-w-full	bg-no-repeat bg-cover my-0 mx-auto h-screen"
+      className="w-full my-0 mx-auto bg-auto h-screen bg-no-repeat"
       style={{
         backgroundImage: `url("https://source.unsplash.com/random/?dark")`,
       }}
