@@ -118,7 +118,7 @@ const CurrentWeather = ({ data, time }) => {
           <div className="flex justify-between text-xs capitalize section-row">
             <span className="text-left section-name ">Visibility</span>
             <span className="text-xs font-semibold text-right section-result drop-shadow-md">
-              {visibility} miles
+              {visibility}
             </span>
           </div>
           <div className="flex justify-between text-xs capitalize section-row">
