@@ -1,13 +1,11 @@
 import "./App.css";
 import Search from "./components/Search";
 import CurrentWeather from "./components/CurrentWeather";
-import {
-  TIME_API_KEY,
-  TIME_URL,
-  WEATHER_API_KEY,
-  WEATHER_API_URL,
-} from "./.env";
+import { TIME_API_KEY, WEATHER_API_KEY } from "./.env";
 import { useState } from "react";
+
+export const TIME_URL = "https://api.ipgeolocation.io/timezone?apiKey=";
+export const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -17,7 +15,7 @@ function App() {
     const [latitude, longitude] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=imperial`
+      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=imperial`
     );
 
     const currentTimeFetch = fetch(
@@ -28,7 +26,6 @@ function App() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const timeResponse = await response[1].json();
-
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
         setCurrentTime({ city: searchData.label, ...timeResponse });
       })
@@ -37,9 +34,9 @@ function App() {
 
   return (
     <div
-      className="container"
+      className="w-full my-0 mx-auto bg-auto h-screen bg-no-repeat"
       style={{
-        backgroundImage: `url("https://source.unsplash.com/random")`,
+        backgroundImage: `url("https://source.unsplash.com/random/?dark")`,
       }}
     >
       <Search onSearchChange={handleOnSearchChange} />
