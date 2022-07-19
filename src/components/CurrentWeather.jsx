@@ -2,8 +2,6 @@ import React from "react";
 import "./CurrentWeather.css";
 
 const CurrentWeather = ({ data, time }) => {
-  const imageSrc = `icons/${data.current.weather[0].icon}.png`;
-
   console.log(data);
 
   const city = data.current.city;
@@ -13,7 +11,10 @@ const CurrentWeather = ({ data, time }) => {
   const humidity = data.current.humidity;
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
-  const visibility = getMiles(data.current.visibility).toFixed(2);
+  const visibility =
+    getMiles(data.current.visibility).toFixed(2) > 6.0
+      ? "6 Miles"
+      : getMiles(data.current.visibility).toFixed(2) + " Miles";
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
 
   const wind_gust =
@@ -30,28 +31,26 @@ const CurrentWeather = ({ data, time }) => {
   const currentTime = time.time_12.replace(/^(?:00:)?0?/, ""); // https://stackoverflow.com/a/42879207/11986604
 
   return (
-    <div className="weather sm:w-96	text-white">
-      <div className="top flex justify-between items-center">
+    <div className="text-white weather sm:w-96">
+      <div className="flex items-center justify-between top">
         <div>
-          <p className="city font-semibold drop-shadow-md text-lg	m-0 tracking-widest">
+          <p className="m-0 text-lg font-semibold tracking-widest city drop-shadow-md">
             {city}
           </p>
-          <p className="weather-desc leading-10 m-0 capitalize">
+          <p className="m-0 leading-10 capitalize weather-desc">
             {description}
           </p>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-row font-semibold flex justify-between text-xs capitalize">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="flex justify-between text-xs font-semibold capitalize section-row">
               {currentTime}
             </span>
           </div>
         </div>
-        <img
-          src={imageSrc}
-          alt="current-weather"
-          className="icon-current-weather w-28"
-        />
+        <p className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
+          {temp}°F
+        </p>
       </div>
-      <div className="bottom flex justify-between items-center">
+      <div className="flex items-center justify-between bottom">
         <div className="temperature font-semibold drop-shadow-md w-auto	tracking-tighter my-2.5	mx-0">
           <span>Low/High</span>
           <p>
@@ -60,74 +59,71 @@ const CurrentWeather = ({ data, time }) => {
           </p>
         </div>
       </div>
-      <div className="bottom flex justify-between items-center">
-        <p className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
-          {temp}°F
-        </p>
-        <div className="details w-full pl-5">
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Feels like</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+      <div className="flex items-center justify-between bottom">
+        <div className="w-full p-1 details">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Feels like</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {heatIndex}°F
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Dew Point</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Dew Point</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {dew_point}°F
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Humidity</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Humidity</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {humidity}%
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Wind</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Wind</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {windSpeed} mph {windDirection}
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Gust</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Gust</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {wind_gust} mph {windDirection}
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Sunrise</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Sunrise</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {sunrise}
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Sunset</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Sunset</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {sunset}
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">UV Index</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">UV Index</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {uvi}
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Clouds</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Clouds</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {data.current.clouds}%
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Visibility</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Visibility</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {visibility} miles
             </span>
           </div>
-          <div className="section-row flex justify-between text-xs capitalize">
-            <span className="section-name text-left	">Moon</span>
-            <span className="section-result text-right font-semibold drop-shadow-md text-xs">
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name ">Moon</span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md">
               {moonPhase}
             </span>
           </div>
