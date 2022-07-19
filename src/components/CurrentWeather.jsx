@@ -30,7 +30,7 @@ const CurrentWeather = ({ data, time }) => {
   const currentTime = time.time_12.replace(/^(?:00:)?0?/, ""); // https://stackoverflow.com/a/42879207/11986604
 
   return (
-    <div className="weather sm:w-96 rounded-md	text-white">
+    <div className="weather sm:w-96	text-white">
       <div className="top flex justify-between items-center">
         <div>
           <p className="city font-semibold drop-shadow-md text-lg	m-0 tracking-widest">
