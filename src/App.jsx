@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div
-      className="w-full my-0 mx-auto bg-auto h-screen bg-no-repeat bg-cover"
+      className="w-full h-screen mx-auto my-0 bg-black bg-center bg-cover"
       style={{
         backgroundImage: `url("https://source.unsplash.com/random/?dark")`,
       }}
