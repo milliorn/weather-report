@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import "./CurrentWeather.css";
 
@@ -30,7 +31,7 @@ const CurrentWeather = ({ data, time }) => {
   const currentTime = time.time_12.replace(/^(?:00:)?0?/, ""); // https://stackoverflow.com/a/42879207/11986604
 
   return (
-    <div className="text-white weather sm:w-96">
+    <div className="h-full text-white weather sm:w-96">
       <div className="flex items-center justify-between top">
         <div>
           <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
