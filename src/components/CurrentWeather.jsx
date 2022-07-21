@@ -58,25 +58,32 @@ const CurrentWeather = ({ data }) => {
     .split(",")
     .pop();
 
+  let timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
+
   return (
     <div className="h-full text-white weather sm:w-96">
+      <div className="flex justify-between text-xs capitalize section-row">
+        <span className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
+          {data.city}
+        </span>
+      </div>
       <div className="flex items-center justify-between top">
         <div>
           <div className="flex justify-between text-xs capitalize section-row">
-            <span className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
+            <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
               {currentTime}
-            </span>
-          </div>{" "}
-          <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
-            Time Zone: {data.timezone}
-          </p>
-          <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
-            {description}
-          </p>
+            </p>
+          </div>
         </div>
+        <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
+          {timezone}
+        </p>
       </div>
       <div className="flex items-center justify-between bottom">
         <div className="temperature font-semibold drop-shadow-md w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl md:text-2xl">
+          <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
+            {description}
+          </p>
           <span>Low/High</span>
           <p className="sm:text-2xl md:text-3xl">
             {Math.floor(data.daily[0].temp.min)}°F /{" "}
