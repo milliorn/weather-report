@@ -5,6 +5,7 @@ import "./CurrentWeather.css";
 const CurrentWeather = ({ data, time }) => {
   console.log(data);
 
+  const clouds = data.current.clouds;
   const description = data.current.weather[0].description;
   const dew_point = Math.floor(data.current.dew_point);
   const heatIndex = Math.floor(data.current.feels_like);
@@ -14,7 +15,7 @@ const CurrentWeather = ({ data, time }) => {
   const uvi = data.current.uvi;
   const visibility =
     getMiles(data.current.visibility).toFixed(2) > 6.0
-      ? "6 Miles"
+      ? "6.0 Miles"
       : getMiles(data.current.visibility).toFixed(2) + " Miles";
 
   const wind_gust =
@@ -127,7 +128,7 @@ const CurrentWeather = ({ data, time }) => {
               Clouds
             </span>
             <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {data.current.clouds}%
+              {clouds}%
             </span>
           </div>
           <div className="flex justify-between text-xs capitalize section-row">
