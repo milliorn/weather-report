@@ -1,10 +1,7 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import "./CurrentWeather.css";
 
-const CurrentWeather = ({ data, time }) => {
-  console.log(data);
-
+const CurrentWeather = ({ data }) => {
   const clouds = data.current.clouds;
   const description = data.current.weather[0].description;
   const dew_point = Math.floor(data.current.dew_point);
@@ -26,10 +23,38 @@ const CurrentWeather = ({ data, time }) => {
   const windDirection = getWindDirection(data.current.wind_deg);
   const windSpeed = Math.floor(data.current.wind_speed);
 
-  const milliseconds = 1000; // we need this to convert to milliseconds for Date.
-  const sunrise = getParsedTime(new Date(data.current.sunrise * milliseconds));
-  const sunset = getParsedTime(new Date(data.current.sunset * milliseconds));
-  const currentTime = time.time_12.replace(/^(?:00:)?0?/, ""); // https://stackoverflow.com/a/42879207/11986604
+  /**
+   * https://stackoverflow.com/a/8016205/11986604
+   */
+  const sunriseRaw = data.current.sunrise;
+  let sunriseTime = new Date(0); // The 0 there is the key, which sets the date to the epoch
+  sunriseTime.setUTCSeconds(sunriseRaw);
+  const sunrise = sunriseTime
+    .toLocaleString("en-US", {
+      timeZone: data.timezone,
+    })
+    .split(",")
+    .pop();
+
+  const sunsetRaw = data.current.sunset;
+  let sunsetTime = new Date(0);
+  sunsetTime.setUTCSeconds(sunsetRaw);
+  const sunset = sunsetTime
+    .toLocaleString("en-US", {
+      timeZone: data.timezone,
+    })
+    .split(",")
+    .pop();
+
+  const timeRaw = data.current.dt;
+  let timeDate = new Date(0);
+  timeDate.setUTCSeconds(timeRaw);
+  const currentTime = timeDate
+    .toLocaleString("en-US", {
+      timeZone: data.timezone,
+    })
+    .split(",")
+    .pop();
 
   return (
     <div className="h-full text-white weather sm:w-96">
@@ -154,8 +179,9 @@ const CurrentWeather = ({ data, time }) => {
 
   function getMoonPhase(phase) {
     let phaseType = "";
-
-    //https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
+    /**
+     * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
+     */
     if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
     else if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
     else if (phase === 0.25) phaseType = "First Quarter";
@@ -165,7 +191,6 @@ const CurrentWeather = ({ data, time }) => {
     else if (phase === 0.75) phaseType = "Last Quarter";
     else if (phase > 0.75 && phase < 1) phaseType = "Waning Crescent";
     else phaseType = "New Moon";
-
     return phaseType;
   }
 
@@ -174,17 +199,6 @@ const CurrentWeather = ({ data, time }) => {
    */
   function getMiles(meters) {
     return meters * 0.000621371192;
-  }
-
-  function getParsedTime(time) {
-    let [hours, minutes] = time.toTimeString().split(" ")[0].split(":");
-    const rawString = parseInt(hours);
-    let amPm = "AM";
-    if (rawString > 12) {
-      hours = Math.abs(12 - rawString).toString(); // make adjustment from 24 to 12 hours.
-      amPm = "PM";
-    }
-    return +hours + ":" + minutes + " " + amPm; // unary + operator to remove leading zeros.
   }
 
   /**
