@@ -4,7 +4,10 @@ import "./CurrentWeather.css";
 const CurrentWeather = ({ data }) => {
   console.log(data);
 
+  const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
+  const dailyHigh = Math.floor(data.daily[0].temp.max);
+  const dailyLow = Math.floor(data.daily[0].temp.min);
   const description = data.current.weather[0].description;
   const dew_point = Math.floor(data.current.dew_point);
   const heatIndex = Math.floor(data.current.feels_like);
@@ -12,11 +15,18 @@ const CurrentWeather = ({ data }) => {
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
+
+  /**
+   * 10km is the maximum reported distance which is why we cap miles at 6.0
+   */
   const visibility =
     getMiles(data.current.visibility).toFixed(2) > 6.0
       ? "6.0 Miles"
       : getMiles(data.current.visibility).toFixed(2) + " Miles";
 
+  /**
+   * undefined is check here because there might be a case where this goes unreported resulting in NaN.
+   */
   const wind_gust =
     Math.floor(data.current.wind_gust) < 0 ||
     data.current.wind_gust === undefined
@@ -27,9 +37,10 @@ const CurrentWeather = ({ data }) => {
 
   /**
    * https://stackoverflow.com/a/8016205/11986604
+   * split the string up so we can parse it and then pop the value we need and discard the rest.
    */
   const sunriseRaw = data.current.sunrise;
-  let sunriseTime = new Date(0); // The 0 there is the key, which sets the date to the epoch
+  let sunriseTime = new Date(0);
   sunriseTime.setUTCSeconds(sunriseRaw);
   const sunrise = sunriseTime
     .toLocaleString("en-US", {
@@ -58,36 +69,35 @@ const CurrentWeather = ({ data }) => {
     .split(",")
     .pop();
 
-  let timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
+  /**
+   * Parse string to be readable
+   */
+  const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
     <div className="h-full text-white weather sm:w-96">
-      <div className="flex justify-between text-xs capitalize section-row">
-        <span className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
-          {data.city}
-        </span>
-      </div>
+
       <div className="flex items-center justify-between top">
-        <div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
-              {currentTime}
-            </p>
-          </div>
+        <div className="flex justify-between text-xs capitalize section-row">
+          <span className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
+            {city}
+          </span>
         </div>
-        <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
-          {timezone}
-        </p>
+        <div className="flex justify-between text-xs capitalize section-row">
+          <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
+            {currentTime}
+          </p>
+        </div>
       </div>
-      <div className="flex items-center justify-between bottom">
+
+      <div className="flex items-center justify-between middle">
         <div className="temperature font-semibold drop-shadow-md w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl md:text-2xl">
           <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
             {description}
           </p>
           <span>Low/High</span>
           <p className="sm:text-2xl md:text-3xl">
-            {Math.floor(data.daily[0].temp.min)}°F /{" "}
-            {Math.floor(data.daily[0].temp.max)}°F
+            {dailyLow}°F / {dailyHigh}°F
           </p>
         </div>
         <p className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
@@ -182,6 +192,14 @@ const CurrentWeather = ({ data }) => {
             </span>
             <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
               {moonPhase}
+            </span>
+          </div>
+          <div className="flex justify-between text-xs capitalize section-row">
+            <span className="text-left section-name sm:text-lg md:text-xl">
+              Time Zone
+            </span>
+            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
+              {timezone}
             </span>
           </div>
         </div>
