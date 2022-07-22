@@ -1,5 +1,8 @@
 import React from "react";
+import { Bottom } from "./Bottom";
 import "./CurrentWeather.css";
+import { Middle } from "./Middle";
+import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
   console.log(data);
@@ -75,135 +78,29 @@ const CurrentWeather = ({ data }) => {
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
-    <div className="h-full text-white weather sm:w-96">
-
-      <div className="flex items-center justify-between top">
-        <div className="flex justify-between text-xs capitalize section-row">
-          <span className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
-            {city}
-          </span>
-        </div>
-        <div className="flex justify-between text-xs capitalize section-row">
-          <p className="flex justify-between text-lg font-semibold capitalize sm:text-2xl md:text-3xl section-row">
-            {currentTime}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between middle">
-        <div className="temperature font-semibold drop-shadow-md w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl md:text-2xl">
-          <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
-            {description}
-          </p>
-          <span>Low/High</span>
-          <p className="sm:text-2xl md:text-3xl">
-            {dailyLow}°F / {dailyHigh}°F
-          </p>
-        </div>
-        <p className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
-          {temp}°F
-        </p>
-      </div>
-      <div className="flex items-center justify-between bottom">
-        <div className="w-full p-1 details">
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Feels like
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {heatIndex}°F
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Dew Point
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {dew_point}°F
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Humidity
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {humidity}%
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Wind
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {windSpeed} mph {windDirection}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Gust
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {wind_gust} mph {windDirection}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Sunrise
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {sunrise}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Sunset
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {sunset}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              UV Index
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {uvi}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Clouds
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {clouds}%
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Visibility
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {visibility}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Moon
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {moonPhase}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs capitalize section-row">
-            <span className="text-left section-name sm:text-lg md:text-xl">
-              Time Zone
-            </span>
-            <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-              {timezone}
-            </span>
-          </div>
-        </div>
-      </div>
+    <div className="w-auto h-full text-white weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+      <Top city={city} currentTime={currentTime} />
+      <Middle
+        dailyHigh={dailyHigh}
+        dailyLow={dailyLow}
+        description={description}
+        temp={temp}
+      />
+      <Bottom
+        clouds={clouds}
+        dew_point={dew_point}
+        heatIndex={heatIndex}
+        humidity={humidity}
+        moonPhase={moonPhase}
+        sunrise={sunrise}
+        sunset={sunset}
+        timezone={timezone}
+        uvi={uvi}
+        visibility={visibility}
+        windDirection={windDirection}
+        windSpeed={windSpeed}
+        wind_gust={wind_gust}
+      />
     </div>
   );
 
