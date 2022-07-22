@@ -5,7 +5,7 @@ import { Middle } from "./Middle";
 import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
-  console.log(data);
+  //console.log(data);
 
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
