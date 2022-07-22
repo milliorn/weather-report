@@ -1,6 +1,22 @@
 import React from "react";
 
 export const Bottom = (props) => {
+  const {
+    clouds,
+    dew_point,
+    heatIndex,
+    humidity,
+    moonPhase,
+    sunrise,
+    sunset,
+    timezone,
+    uvi,
+    visibility,
+    windDirection,
+    windSpeed,
+    wind_gust,
+  } = props;
+
   return (
     <div className="flex items-center justify-between bottom">
       <div className="w-full p-1 details">
@@ -9,7 +25,7 @@ export const Bottom = (props) => {
             Feels like
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.heatIndex}°F
+            {heatIndex}°F
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -17,7 +33,7 @@ export const Bottom = (props) => {
             Dew Point
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.dew_point}°F
+            {dew_point}°F
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -25,7 +41,7 @@ export const Bottom = (props) => {
             Humidity
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.humidity}%
+            {humidity}%
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -33,7 +49,7 @@ export const Bottom = (props) => {
             Wind
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.windSpeed} mph {props.windDirection}
+            {windSpeed} mph {windDirection}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -41,7 +57,7 @@ export const Bottom = (props) => {
             Gust
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.wind_gust} mph {props.windDirection}
+            {wind_gust} mph {windDirection}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -49,7 +65,7 @@ export const Bottom = (props) => {
             Sunrise
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.sunrise}
+            {sunrise}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -57,7 +73,7 @@ export const Bottom = (props) => {
             Sunset
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.sunset}
+            {sunset}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -65,7 +81,7 @@ export const Bottom = (props) => {
             UV Index
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.uvi}
+            {uvi}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -73,7 +89,7 @@ export const Bottom = (props) => {
             Clouds
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.clouds}%
+            {clouds}%
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -81,7 +97,7 @@ export const Bottom = (props) => {
             Visibility
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.visibility}
+            {visibility}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -89,7 +105,7 @@ export const Bottom = (props) => {
             Moon
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.moonPhase}
+            {moonPhase}
           </span>
         </div>
         <div className="flex justify-between text-xs capitalize section-row">
@@ -97,7 +113,7 @@ export const Bottom = (props) => {
             Time Zone
           </span>
           <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
-            {props.timezone}
+            {timezone}
           </span>
         </div>
       </div>

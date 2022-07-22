@@ -6,7 +6,6 @@ import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
   //console.log(data);
-
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
@@ -80,12 +79,14 @@ const CurrentWeather = ({ data }) => {
   return (
     <div className="w-auto h-full text-white weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
+
       <Middle
         dailyHigh={dailyHigh}
         dailyLow={dailyLow}
         description={description}
         temp={temp}
       />
+
       <Bottom
         clouds={clouds}
         dew_point={dew_point}
