@@ -4,6 +4,7 @@ export const Middle = (props) => {
   const { dailyHigh, dailyLow, description, temp } = props;
   const fToCLow = Math.floor((dailyLow - 32) * 0.5556);
   const fToCHigh = Math.floor((dailyHigh - 32) * 0.5556);
+  const fToTemp = Math.floor((temp - 32) * 0.5556);
 
   return (
     <div className="flex items-center justify-between middle">
@@ -11,7 +12,7 @@ export const Middle = (props) => {
         <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl">
           {description}
         </p>
-        <span>Low/High</span>
+        <p className="mt-1 sm:mt-3">Low/High</p>
         <div className="sm:text-2xl md:text-3xl">
           <p>
             {fToCLow}°C / {fToCHigh}°C
@@ -21,9 +22,10 @@ export const Middle = (props) => {
           </p>
         </div>
       </div>
-      <p className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
-        {temp}°F
-      </p>
+      <div className="temperature font drop-shadow-md	text-7xl w-auto	tracking-tighter my-2.5	mx-0">
+        <p>{fToTemp}°C</p>
+        <p>{temp}°F</p>
+      </div>
     </div>
   );
 };
