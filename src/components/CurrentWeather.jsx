@@ -18,6 +18,10 @@ const CurrentWeather = ({ data }) => {
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
 
+  const currentTime = parseTime(data.current.dt, data.timezone, "en-US");
+  const sunrise = parseTime(data.current.sunrise, data.timezone, "en-US");
+  const sunset = parseTime(data.current.sunset, data.timezone, "en-US");
+
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
    */
@@ -36,40 +40,6 @@ const CurrentWeather = ({ data }) => {
       : Math.floor(data.current.wind_gust);
   const windDirection = getWindDirection(data.current.wind_deg);
   const windSpeed = Math.floor(data.current.wind_speed);
-
-  /**
-   * https://stackoverflow.com/a/8016205/11986604
-   * split the string up so we can parse it and then pop the value we need and discard the rest.
-   */
-  const sunriseRaw = data.current.sunrise;
-  let sunriseTime = new Date(0);
-  sunriseTime.setUTCSeconds(sunriseRaw);
-  const sunrise = sunriseTime
-    .toLocaleString("en-US", {
-      timeZone: data.timezone,
-    })
-    .split(",")
-    .pop();
-
-  const sunsetRaw = data.current.sunset;
-  let sunsetTime = new Date(0);
-  sunsetTime.setUTCSeconds(sunsetRaw);
-  const sunset = sunsetTime
-    .toLocaleString("en-US", {
-      timeZone: data.timezone,
-    })
-    .split(",")
-    .pop();
-
-  const timeRaw = data.current.dt;
-  let timeDate = new Date(0);
-  timeDate.setUTCSeconds(timeRaw);
-  const currentTime = timeDate
-    .toLocaleString("en-US", {
-      timeZone: data.timezone,
-    })
-    .split(",")
-    .pop();
 
   /**
    * Parse string to be readable
@@ -105,11 +75,27 @@ const CurrentWeather = ({ data }) => {
     </div>
   );
 
+  /**
+   * https://stackoverflow.com/a/8016205/11986604
+   * split the string and pop the value we need, discard the rest.
+   */
+  function parseTime(time, timeZone, locale) {
+    let dateTime = new Date(0);
+    dateTime.setUTCSeconds(time);
+    return dateTime
+      .toLocaleString("en-US", {
+        timeZone: data.timezone,
+      })
+      .split(",")
+      .pop();
+  }
+
+  /**
+   * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
+   */
   function getMoonPhase(phase) {
     let phaseType = "";
-    /**
-     * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
-     */
+
     if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
     else if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
     else if (phase === 0.25) phaseType = "First Quarter";
@@ -119,6 +105,7 @@ const CurrentWeather = ({ data }) => {
     else if (phase === 0.75) phaseType = "Last Quarter";
     else if (phase > 0.75 && phase < 1) phaseType = "Waning Crescent";
     else phaseType = "New Moon";
+
     return phaseType;
   }
 

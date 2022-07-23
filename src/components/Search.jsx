@@ -15,23 +15,24 @@ export const GeoApiOptions = {
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
-  const loadOptions = (inputValue) => {
-    return fetch(
-      `${GEO_API_URL}/cities?limit=5&offset=0&minPopulation=8000&sort=-population&namePrefix=${inputValue}`,
-      GeoApiOptions
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.country}`,
-            };
-          }),
-        };
-      })
-      .catch((err) => console.error(err));
+  const loadOptions = async (inputValue) => {
+    try {
+      const fetchResponse = await fetch(
+        `${GEO_API_URL}/cities?limit=5&offset=0&minPopulation=1&sort=-population&namePrefix=${inputValue}`,
+        GeoApiOptions
+      );
+      const response = await fetchResponse.json();
+      return {
+        options: response.data.map((city) => {
+          return {
+            value: `${city.latitude} ${city.longitude}`,
+            label: `${city.name}, ${city.country}`,
+          };
+        }),
+      };
+    } catch (err) {
+      return console.error(err);
+    }
   };
 
   const handleOnChange = (searchData) => {
@@ -41,7 +42,7 @@ const Search = ({ onSearchChange }) => {
 
   return (
     <AsyncPaginate
-      placeholder="Search for city"
+      placeholder="Click here and type city name."
       debounceTimeout={600}
       value={search}
       onChange={handleOnChange}
