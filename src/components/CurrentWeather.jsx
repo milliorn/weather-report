@@ -80,7 +80,7 @@ const CurrentWeather = ({ data }) => {
    * split the string and pop the value we need, discard the rest.
    */
   function parseTime(time, timeZone, locale) {
-    let dateTime = new Date(0);
+    const dateTime = new Date(0);
     dateTime.setUTCSeconds(time);
     return dateTime
       .toLocaleString("en-US", {
