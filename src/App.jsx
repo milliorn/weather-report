@@ -1,8 +1,7 @@
-import "./App.css";
-import Search from "./components/Search";
-import CurrentWeather from "./components/CurrentWeather";
-import { WEATHER_API_KEY } from "./.env";
 import { useState } from "react";
+import { WEATHER_API_KEY } from "./.env";
+import CurrentWeather from "./components/CurrentWeather";
+import Search from "./components/Search";
 
 export const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 

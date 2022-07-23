@@ -1,6 +1,6 @@
 import React from "react";
 import { Bottom } from "./Bottom";
-import "./CurrentWeather.css";
+import "../css/CurrentWeather.css";
 import { Middle } from "./Middle";
 import { Top } from "./Top";
 
@@ -27,8 +27,8 @@ const CurrentWeather = ({ data }) => {
    */
   const visibility =
     getMiles(data.current.visibility).toFixed(2) > 6.0
-      ? "6.0 Miles"
-      : getMiles(data.current.visibility).toFixed(2) + " Miles";
+      ? "6.0"
+      : getMiles(data.current.visibility).toFixed(2);
 
   /**
    * undefined is check here because there might be a case where this goes unreported resulting in NaN.
@@ -36,7 +36,7 @@ const CurrentWeather = ({ data }) => {
   const wind_gust =
     Math.floor(data.current.wind_gust) < 0 ||
     data.current.wind_gust === undefined
-      ? 0.0
+      ? 0
       : Math.floor(data.current.wind_gust);
   const windDirection = getWindDirection(data.current.wind_deg);
   const windSpeed = Math.floor(data.current.wind_speed);

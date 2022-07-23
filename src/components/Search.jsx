@@ -31,7 +31,7 @@ const Search = ({ onSearchChange }) => {
         }),
       };
     } catch (err) {
-      return console.error(err);
+      console.error(err);
     }
   };
 
