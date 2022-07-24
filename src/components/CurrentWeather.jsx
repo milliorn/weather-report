@@ -19,6 +19,7 @@ const CurrentWeather = ({ data }) => {
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
+  const alert = data.alerts;
 
   const locale = "en-US";
   const currentTime = parseTime(data, data.current.dt, locale);
@@ -61,6 +62,7 @@ const CurrentWeather = ({ data }) => {
       />
 
       <Bottom
+        alert={alert}
         clouds={clouds}
         dew_point={dew_point}
         heatIndex={heatIndex}

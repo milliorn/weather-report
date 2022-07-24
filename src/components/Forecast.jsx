@@ -1,13 +1,10 @@
 import React from "react";
 import {
   Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
+  AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel
 } from "react-accessible-accordion";
 import "../css/Forecast.css";
-import { toCelsius, getWindDirection } from "../helper";
+import { getWindDirection, toCelsius } from "../helper";
 
 export const Forecast = ({ data }) => {
   return (
@@ -34,19 +31,19 @@ export const Forecast = ({ data }) => {
               <div className="daily-details-grid">
                 <div className="daily-details-grid-item">
                   <label>Clouds : </label>
-                  <label>{item.clouds}%</label>
+                  <label>{getClouds(item)}%</label>
                 </div>
                 <div className="daily-details-grid-item">
                   <label>Humidity : </label>
-                  <label>{item.humidity}%</label>
+                  <label>{getHumidity(item)}%</label>
                 </div>
                 <div className="daily-details-grid-item">
                   <label>UV Index : </label>
-                  <label>{item.uvi}</label>
+                  <label>{getUV(item)}</label>
                 </div>
                 <div className="daily-details-grid-item">
                   <label>Wind : </label>
-                  <label>{getWindDirection(item.wind_deg)}</label>
+                  <label>{getDirection(item)}</label>
                 </div>
               </div>
             </AccordionItemPanel>
@@ -55,6 +52,22 @@ export const Forecast = ({ data }) => {
       </Accordion>
     </div>
   );
+
+  function getDirection(item) {
+    return getWindDirection(item.wind_deg);
+  }
+
+  function getUV(item) {
+    return item.uvi;
+  }
+
+  function getHumidity(item) {
+    return item.humidity;
+  }
+
+  function getClouds(item) {
+    return item.clouds;
+  }
 
   function dayOfWeek(item) {
     return new Date(item.dt * 1000)

@@ -3,6 +3,7 @@ import { toCelsius, toKph } from "../helper";
 
 export const Bottom = (props) => {
   const {
+    alert,
     clouds,
     dew_point,
     heatIndex,
@@ -57,10 +58,28 @@ export const Bottom = (props) => {
       );
     });
 
+  const Warnings = () => {
+    console.log(alert);
+    /**
+     * https://stackoverflow.com/a/20940191/11986604
+     */
+    if (Array.isArray(alert) && alert.length) {
+      return (
+        <div className="my-4">
+          <p>
+            Warning: {alert[0].tags[0].toUpperCase()}. {alert[0].event} Issued
+            by {alert[0].sender_name}
+          </p>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="flex items-center justify-between bottom">
       <div className="w-full p-1 details">
         <BuildSections />
+        <Warnings />
       </div>
     </div>
   );
