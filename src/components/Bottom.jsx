@@ -66,17 +66,30 @@ export const Bottom = (props) => {
    */
   const Warnings = () => {
     if (Array.isArray(alert) && alert.length) {
+      const weather = alert[0];
+      const finish = new Date(weather.end * 1000);
+
+      const begin = new Date(weather.start * 1000);
+      const dateBegin = begin.toLocaleDateString();
+      const dateEnd = finish.toLocaleDateString();
+      const event = weather.event;
+      const sender_name = weather.sender_name;
+      const tag = weather.tags[0];
+      const timeEnd = finish.toLocaleTimeString();
+      const timeStart = begin.toLocaleTimeString();
+
       return (
         <div className="my-4">
-          <div>
-            <span className="uppercase sm:text-2xl drop-shadow-md">
-              Warning: {alert[0].tags[0].toUpperCase()}
+          <div className="pb-2">
+            <span className="uppercase tase sm:text-2xldrop-shadow-md">
+              Warning: <span className="capitalize">{tag}</span>
             </span>
-            <div>
-              <p className="xl:text-lg 2xl:text-xl drop-shadow-md">
-                {alert[0].event} Issued by {alert[0].sender_name}
-              </p>
-            </div>
+          </div>
+          <div>
+            <p className="xl:text-lg 2xl:text-xl drop-shadow-md">
+              {event} Issued by {sender_name} at {timeStart} {dateBegin} until{" "}
+              {timeEnd} {dateEnd}
+            </p>
           </div>
         </div>
       );
