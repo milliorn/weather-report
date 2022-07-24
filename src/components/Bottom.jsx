@@ -1,4 +1,5 @@
 import React from "react";
+import { toCelsius } from "../helper";
 
 export const Bottom = (props) => {
   const {
@@ -16,10 +17,6 @@ export const Bottom = (props) => {
     windSpeed,
     wind_gust,
   } = props;
-
-  function toCelsius(num) {
-    return Math.floor((num - 32) * 0.5556) + "°C / ";
-  }
 
   function toKph(speed) {
     return Math.floor(speed * 1.609344) + " kph / ";

@@ -1,11 +1,13 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
-import { Bottom } from "./Bottom";
 import "../css/CurrentWeather.css";
+import { getMoonPhase, getWindDirection } from "../helper";
+import { Bottom } from "./Bottom";
+import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
 import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
-  //console.log(data);
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
@@ -72,6 +74,7 @@ const CurrentWeather = ({ data }) => {
         windSpeed={windSpeed}
         wind_gust={wind_gust}
       />
+      <Forecast data={data} />
     </div>
   );
 
@@ -91,53 +94,10 @@ const CurrentWeather = ({ data }) => {
   }
 
   /**
-   * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
-   */
-  function getMoonPhase(phase) {
-    let phaseType = "";
-
-    if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-    else if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-    else if (phase === 0.25) phaseType = "First Quarter";
-    else if (phase > 0.25 && phase < 0.5) phaseType = "Waxing Gibbous";
-    else if (phase === 0.5) phaseType = "Full Moon";
-    else if (phase > 0.5 && phase < 0.75) phaseType = "Waning Gibbous";
-    else if (phase === 0.75) phaseType = "Last Quarter";
-    else if (phase > 0.75 && phase < 1) phaseType = "Waning Crescent";
-    else phaseType = "New Moon";
-
-    return phaseType;
-  }
-
-  /**
    * https://stackoverflow.com/a/20674508/11986604
    */
   function getMiles(meters) {
     return meters * 0.000621371192;
-  }
-
-  /**
-   * https://stackoverflow.com/a/57769076/11986604
-   */
-  function getWindDirection(direction) {
-    return [
-      "N",
-      "N/NE",
-      "N/E",
-      "E/NE",
-      "E",
-      "E/SE",
-      "SE",
-      "S/SE",
-      "S",
-      "S/SW",
-      "SW",
-      "W/SW",
-      "W",
-      "W/NW",
-      "NW",
-      "N/NW",
-    ][Math.round(direction / 22.5) % 16];
   }
 };
 
