@@ -13,11 +13,3 @@
   padding: 5px 15px;
   row-gap: 0;
 }
-
-.daily-details-grid-item {
-  align-items: center;
-  display: flex;
-  height: 30px;
-  justify-content: space-between;
-}
-

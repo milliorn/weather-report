@@ -1,7 +1,10 @@
 import React from "react";
 import {
   Accordion,
-  AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel
+  AccordionItem,
+  AccordionItemButton,
+  AccordionItemHeading,
+  AccordionItemPanel,
 } from "react-accessible-accordion";
 import "../css/Forecast.css";
 import { getWindDirection, toCelsius } from "../helper";
@@ -12,13 +15,13 @@ export const Forecast = ({ data }) => {
       <Accordion allowZeroExpanded className="mt-4">
         {data.daily.map((item, idx) => (
           <AccordionItem key={idx}>
-            <AccordionItemHeading>
+            <AccordionItemHeading className="py-1">
               <AccordionItemButton>
-                <div className="flex items-center h-16 px-1 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white drop-shadow-md daily-item rounded-xl ">
-                  <span className="flex-auto ml-2 font-semibold day">
+                <div className="flex items-center h-16 px-1 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white hover:border-transparent drop-shadow-md daily-item rounded-xl ">
+                  <span className="flex-auto ml-2 font-semibold day sm:text-lg xl:text-xl 2xl:text-2xl">
                     {dayOfWeek(item)}
                   </span>
-                  <span className="min-max">
+                  <span className="min-max sm:text-lg xl:text-xl 2xl:text-2xl">
                     {toCelsius(item.temp.min)}°C | {toCelsius(item.temp.max)}°C
                     {" | "}
                     {Math.floor(item.temp.min)}°F | {Math.floor(item.temp.max)}
@@ -28,22 +31,22 @@ export const Forecast = ({ data }) => {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <div className="daily-details-grid">
-                <div className="daily-details-grid-item">
+              <div className="sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
+                <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Clouds : </label>
-                  <label>{getClouds(item)}%</label>
+                  <span>{getClouds(item)}%</span>
                 </div>
-                <div className="daily-details-grid-item">
+                <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Humidity : </label>
-                  <label>{getHumidity(item)}%</label>
+                  <span>{getHumidity(item)}%</span>
                 </div>
-                <div className="daily-details-grid-item">
+                <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>UV Index : </label>
-                  <label>{getUV(item)}</label>
+                  <span>{getUV(item)}</span>
                 </div>
-                <div className="daily-details-grid-item">
+                <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Wind : </label>
-                  <label>{getDirection(item)}</label>
+                  <span>{getDirection(item)}</span>
                 </div>
               </div>
             </AccordionItemPanel>

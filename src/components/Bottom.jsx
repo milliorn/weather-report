@@ -51,10 +51,10 @@ export const Bottom = (props) => {
           key={i}
           className="flex justify-between text-xs drop-shadow-md section-row"
         >
-          <span className="text-left capitalize section-name sm:text-lg md:text-xl drop-shadow-md">
+          <span className="text-left capitalize section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
             {e.id}
           </span>
-          <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl">
+          <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
             {e.result}
           </span>
         </div>
@@ -72,7 +72,6 @@ export const Bottom = (props) => {
       const begin = new Date(weather.start * 1000);
       const dateBegin = begin.toLocaleDateString();
       const dateEnd = finish.toLocaleDateString();
-      const event = weather.event;
       const sender_name = weather.sender_name;
       const tag = weather.tags[0];
       const timeEnd = finish.toLocaleTimeString();
@@ -81,14 +80,15 @@ export const Bottom = (props) => {
       return (
         <div className="my-4">
           <div className="pb-2">
-            <span className="uppercase tase sm:text-2xldrop-shadow-md">
+            <p className="uppercase tase sm:text-2xl drop-shadow-md">
               Warning: <span className="capitalize">{tag}</span>
-            </span>
-          </div>
-          <div>
+            </p>
+            <p className="sm:text-lg md:text-xl drop-shadow-md">
+              Issued by {sender_name} at {timeStart} {dateBegin} until {timeEnd}{" "}
+              {dateEnd}.
+            </p>
             <p className="xl:text-lg 2xl:text-xl drop-shadow-md">
-              {event} Issued by {sender_name} at {timeStart} {dateBegin} until{" "}
-              {timeEnd} {dateEnd}
+              {weather.description}
             </p>
           </div>
         </div>
