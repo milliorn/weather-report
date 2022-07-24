@@ -14,7 +14,7 @@ export const Forecast = ({ data }) => {
           <AccordionItem key={idx}>
             <AccordionItemHeading>
               <AccordionItemButton>
-                <div className="flex items-center h-16 px-1 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white daily-item rounded-xl ">
+                <div className="flex items-center h-16 px-1 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white drop-shadow-md daily-item rounded-xl ">
                   <span className="flex-auto ml-2 font-semibold day">
                     {dayOfWeek(item)}
                   </span>
