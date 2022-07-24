@@ -1,5 +1,5 @@
 import React from "react";
-import { toCelsius } from "../helper";
+import { toCelsius, toKph } from "../helper";
 
 export const Bottom = (props) => {
   const {
@@ -18,24 +18,27 @@ export const Bottom = (props) => {
     wind_gust,
   } = props;
 
-  function toKph(speed) {
-    return Math.floor(speed * 1.609344) + " kph / ";
-  }
-
-  const toKilometer = Math.floor(1.609344 * visibility) + " km / ";
-
   const data = [
-    { id: "Feels like", result: toCelsius(heatIndex) + heatIndex + "°F" },
-    { id: "Dew Point", result: toCelsius(dew_point) + dew_point + "°F" },
+    {
+      id: "Feels like",
+      result: toCelsius(heatIndex) + "°C | " + heatIndex + "°F",
+    },
+    {
+      id: "Dew Point",
+      result: toCelsius(dew_point) + "°C | " + dew_point + "°F",
+    },
     { id: "Humidity", result: humidity + "%" },
-    { id: "Wind", result: toKph(windSpeed) + windSpeed + " mph" },
+    { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
     { id: "Direction", result: windDirection },
-    { id: "Gust", result: toKph(wind_gust) + wind_gust + " mph" },
+    { id: "Gust", result: toKph(wind_gust) + " kph | " + wind_gust + " mph" },
     { id: "Sunrise", result: sunrise },
     { id: "Sunset", result: sunset },
     { id: "UV Index", result: uvi },
     { id: "Clouds", result: clouds + "%" },
-    { id: "Visibility", result: toKilometer + Math.floor(visibility) + " mi" },
+    {
+      id: "Visibility",
+      result: toKph(visibility) + " km | " + Math.floor(visibility) + " mi",
+    },
     { id: "Moon", result: moonPhase },
     { id: "Time Zone", result: timezone },
   ];

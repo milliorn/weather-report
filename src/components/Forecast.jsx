@@ -7,7 +7,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import "../css/Forecast.css";
-import { getMoonPhase, toCelsius } from "../helper";
+import { toCelsius, getWindDirection } from "../helper";
 
 export const Forecast = ({ data }) => {
   return (
@@ -22,21 +22,31 @@ export const Forecast = ({ data }) => {
                     {dayOfWeek(item)}
                   </span>
                   <span className="min-max">
-                    {Math.floor(item.temp.min - 32 * 0.5556)}°C /{" "}
-                    {Math.floor(item.temp.max - 32 * 0.5556)}°C{" | "}
-                    {Math.floor(item.temp.min)}°F / {Math.floor(item.temp.max)}
+                    {toCelsius(item.temp.min)}°C | {toCelsius(item.temp.max)}°C
+                    {" | "}
+                    {Math.floor(item.temp.min)}°F | {Math.floor(item.temp.max)}
                     °F
                   </span>
                 </div>
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <div className="text-xs daily-details-grid">
+              <div className="daily-details-grid">
                 <div className="daily-details-grid-item">
-                  <div>
-                    <label>Clouds: </label>
-                    <label>{item.clouds}%</label>
-                  </div>
+                  <label>Clouds : </label>
+                  <label>{item.clouds}%</label>
+                </div>
+                <div className="daily-details-grid-item">
+                  <label>Humidity : </label>
+                  <label>{item.humidity}%</label>
+                </div>
+                <div className="daily-details-grid-item">
+                  <label>UV Index : </label>
+                  <label>{item.uvi}</label>
+                </div>
+                <div className="daily-details-grid-item">
+                  <label>Wind : </label>
+                  <label>{getWindDirection(item.wind_deg)}</label>
                 </div>
               </div>
             </AccordionItemPanel>

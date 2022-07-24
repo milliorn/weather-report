@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import "../css/CurrentWeather.css";
-import { getMoonPhase, getWindDirection } from "../helper";
+import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { Bottom } from "./Bottom";
 import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
@@ -20,9 +20,10 @@ const CurrentWeather = ({ data }) => {
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
 
-  const currentTime = parseTime(data.current.dt, data.timezone, "en-US");
-  const sunrise = parseTime(data.current.sunrise, data.timezone, "en-US");
-  const sunset = parseTime(data.current.sunset, data.timezone, "en-US");
+  const locale = "en-US";
+  const currentTime = parseTime(data, data.current.dt, locale);
+  const sunrise = parseTime(data, data.current.sunrise, locale);
+  const sunset = parseTime(data, data.current.sunset, locale);
 
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
@@ -77,28 +78,6 @@ const CurrentWeather = ({ data }) => {
       <Forecast data={data} />
     </div>
   );
-
-  /**
-   * https://stackoverflow.com/a/8016205/11986604
-   * split the string and pop the value we need, discard the rest.
-   */
-  function parseTime(time, timeZone, locale) {
-    const dateTime = new Date(0);
-    dateTime.setUTCSeconds(time);
-    return dateTime
-      .toLocaleString("en-US", {
-        timeZone: data.timezone,
-      })
-      .split(",")
-      .pop();
-  }
-
-  /**
-   * https://stackoverflow.com/a/20674508/11986604
-   */
-  function getMiles(meters) {
-    return meters * 0.000621371192;
-  }
 };
 
 export default CurrentWeather;

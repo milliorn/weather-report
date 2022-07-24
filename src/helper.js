@@ -18,7 +18,7 @@ export function getMoonPhase(phase) {
 }
 
 export function toCelsius(num) {
-  return Math.floor((num - 32) * 0.5556) + "°C / ";
+  return Math.floor((num - 32) * 0.5556);
 }
 
 /**
@@ -43,4 +43,30 @@ export function getWindDirection(direction) {
     "NW",
     "N/NW",
   ][Math.round(direction / 22.5) % 16];
+}
+
+export function toKph(speed) {
+  return Math.floor(speed * 1.609344);
+}
+
+/**
+ * https://stackoverflow.com/a/8016205/11986604
+ * split the string and pop the value we need, discard the rest.
+ */
+export function parseTime(data, time, locale) {
+  const dateTime = new Date(0);
+  dateTime.setUTCSeconds(time);
+  return dateTime
+    .toLocaleString(locale, {
+      timeZone: data.timezone,
+    })
+    .split(",")
+    .pop();
+}
+
+/**
+ * https://stackoverflow.com/a/20674508/11986604
+ */
+export function getMiles(meters) {
+  return meters * 0.000621371192;
 }
