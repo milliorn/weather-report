@@ -13,8 +13,6 @@ function App() {
     const currentWeatherFetch = fetch(
       `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial`
     );
-
-    
   };
 
   return (
