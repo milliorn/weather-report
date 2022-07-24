@@ -14,12 +14,7 @@ function App() {
       `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial`
     );
 
-    Promise.all([currentWeatherFetch])
-      .then(async (response) => {
-        const weatherResponse = await response[0].json();
-        setCurrentWeather({ city: searchData.label, ...weatherResponse });
-      })
-      .catch(console.warn);
+    
   };
 
   return (
