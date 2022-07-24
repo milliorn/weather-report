@@ -20,7 +20,7 @@ function App() {
         const weatherResponse = await response[0].json();
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
       })
-      .catch(console.log);
+      .catch(console.warn);
   };
 
   return (

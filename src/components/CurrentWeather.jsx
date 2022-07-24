@@ -1,11 +1,13 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
-import { Bottom } from "./Bottom";
 import "../css/CurrentWeather.css";
+import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
+import { Bottom } from "./Bottom";
+import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
 import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
-  //console.log(data);
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
@@ -17,10 +19,12 @@ const CurrentWeather = ({ data }) => {
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
+  const alert = data.alerts;
 
-  const currentTime = parseTime(data.current.dt, data.timezone, "en-US");
-  const sunrise = parseTime(data.current.sunrise, data.timezone, "en-US");
-  const sunset = parseTime(data.current.sunset, data.timezone, "en-US");
+  const locale = "en-US";
+  const currentTime = parseTime(data, data.current.dt, locale);
+  const sunrise = parseTime(data, data.current.sunrise, locale);
+  const sunset = parseTime(data, data.current.sunset, locale);
 
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
@@ -47,7 +51,7 @@ const CurrentWeather = ({ data }) => {
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
-    <div className="w-auto h-full text-white weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+    <div className="w-auto h-full text-white drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
 
       <Middle
@@ -58,6 +62,7 @@ const CurrentWeather = ({ data }) => {
       />
 
       <Bottom
+        alert={alert}
         clouds={clouds}
         dew_point={dew_point}
         heatIndex={heatIndex}
@@ -72,73 +77,9 @@ const CurrentWeather = ({ data }) => {
         windSpeed={windSpeed}
         wind_gust={wind_gust}
       />
+      <Forecast data={data} />
     </div>
   );
-
-  /**
-   * https://stackoverflow.com/a/8016205/11986604
-   * split the string and pop the value we need, discard the rest.
-   */
-  function parseTime(time, timeZone, locale) {
-    const dateTime = new Date(0);
-    dateTime.setUTCSeconds(time);
-    return dateTime
-      .toLocaleString("en-US", {
-        timeZone: data.timezone,
-      })
-      .split(",")
-      .pop();
-  }
-
-  /**
-   * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
-   */
-  function getMoonPhase(phase) {
-    let phaseType = "";
-
-    if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-    else if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-    else if (phase === 0.25) phaseType = "First Quarter";
-    else if (phase > 0.25 && phase < 0.5) phaseType = "Waxing Gibbous";
-    else if (phase === 0.5) phaseType = "Full Moon";
-    else if (phase > 0.5 && phase < 0.75) phaseType = "Waning Gibbous";
-    else if (phase === 0.75) phaseType = "Last Quarter";
-    else if (phase > 0.75 && phase < 1) phaseType = "Waning Crescent";
-    else phaseType = "New Moon";
-
-    return phaseType;
-  }
-
-  /**
-   * https://stackoverflow.com/a/20674508/11986604
-   */
-  function getMiles(meters) {
-    return meters * 0.000621371192;
-  }
-
-  /**
-   * https://stackoverflow.com/a/57769076/11986604
-   */
-  function getWindDirection(direction) {
-    return [
-      "N",
-      "N/NE",
-      "N/E",
-      "E/NE",
-      "E",
-      "E/SE",
-      "SE",
-      "S/SE",
-      "S",
-      "S/SW",
-      "SW",
-      "W/SW",
-      "W",
-      "W/NW",
-      "NW",
-      "N/NW",
-    ][Math.round(direction / 22.5) % 16];
-  }
 };
 
 export default CurrentWeather;
