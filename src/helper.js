@@ -5,7 +5,6 @@ export function getMoonPhase(phase) {
   let phaseType = "";
 
   if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-  else if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
   else if (phase === 0.25) phaseType = "First Quarter";
   else if (phase > 0.25 && phase < 0.5) phaseType = "Waxing Gibbous";
   else if (phase === 0.5) phaseType = "Full Moon";
