@@ -1,5 +1,3 @@
-import "../css/Forecast.css";
-
 import React from "react";
 import {
   Accordion,
@@ -36,7 +34,7 @@ export const Forecast = ({ data }) => {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <div className="sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
+              <div className="grid flex-auto py-1.5 px-4 gap-y-0 gap-x-5 sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Clouds : </label>
                   <span>{item.clouds}%</span>
