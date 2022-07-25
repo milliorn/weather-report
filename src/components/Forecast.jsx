@@ -6,7 +6,7 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-import { getWindDirection, toCelsius, dayOfWeek } from "../helper";
+import { dayOfWeek, getWindDirection, toCelsius } from "../helper";
 
 export const Forecast = ({ data }) => {
   return (
