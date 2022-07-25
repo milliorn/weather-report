@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
-import "../css/CurrentWeather.css";
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { Bottom } from "./Bottom";
 import { Forecast } from "./Forecast";
@@ -56,7 +54,7 @@ const CurrentWeather = ({ data }) => {
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
-    <div className="w-auto h-full text-white drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+    <div className="w-auto h-full px-4 pt-0 pb-4 mt-4 mb-auto ml-0 mr-auto text-white drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
 
       <Middle
