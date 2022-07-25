@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel
+  AccordionItemPanel,
 } from "react-accessible-accordion";
 import { getWindDirection, toCelsius } from "../helper";
 
