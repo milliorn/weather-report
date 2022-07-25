@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# React Current Weather App
+
+[![DeepSource](https://deepsource.io/gh/milliorn/Current-Weather.svg/?label=active+issues&show_trend=true&token=RAp_SAPLKibndtEtNkOJyhDt)](https://deepsource.io/gh/milliorn/Current-Weather/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/milliorn/Current-Weather.svg/?label=resolved+issues&show_trend=true&token=RAp_SAPLKibndtEtNkOJyhDt)](https://deepsource.io/gh/milliorn/Current-Weather/?ref=repository-badge)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
