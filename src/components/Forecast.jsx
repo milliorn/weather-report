@@ -39,19 +39,19 @@ export const Forecast = ({ data }) => {
               <div className="sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Clouds : </label>
-                  <span>{getClouds(item)}%</span>
+                  <span>{item.clouds}%</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Humidity : </label>
-                  <span>{getHumidity(item)}%</span>
+                  <span>{item.humidity}%</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>UV Index : </label>
-                  <span>{getUV(item)}</span>
+                  <span>{item.uvi}</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
                   <label>Wind : </label>
-                  <span>{getDirection(item)}</span>
+                  <span>{getWindDirection(item.wind_deg)}</span>
                 </div>
               </div>
             </AccordionItemPanel>
@@ -60,22 +60,6 @@ export const Forecast = ({ data }) => {
       </Accordion>
     </div>
   );
-
-  function getDirection(item) {
-    return getWindDirection(item.wind_deg);
-  }
-
-  function getUV(item) {
-    return item.uvi;
-  }
-
-  function getHumidity(item) {
-    return item.humidity;
-  }
-
-  function getClouds(item) {
-    return item.clouds;
-  }
 
   function dayOfWeek(item) {
     return new Date(item.dt * 1000)
