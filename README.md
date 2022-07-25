@@ -42,3 +42,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+### `npm run predeploy`
+
+Under the hood, the predeploy script will build a distributable version of the React app and store it in a folder named build.
+
+### `npm run deploy`
+
+This script will push the contents of the `build` folder to a new commit on the gh-pages branch of the GitHub repository, creating that branch if it doesn't already exist.
