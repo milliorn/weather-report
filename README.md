@@ -1,8 +1,10 @@
 # React Current Weather App
 
-[![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
 [![DeepSource](https://deepsource.io/gh/milliorn/Current-Weather.svg/?label=active+issues&show_trend=true&token=RAp_SAPLKibndtEtNkOJyhDt)](https://deepsource.io/gh/milliorn/Current-Weather/?ref=repository-badge)
-[![DeepSource](https://deepsource.io/gh/milliorn/Current-Weather.svg/?label=resolved+issues&show_trend=true&token=RAp_SAPLKibndtEtNkOJyhDt)](https://deepsource.io/gh/milliorn/Current-Weather/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/milliorn/Current-Weather.svg/?label=resolved+issues&show_trend=true&token=RAp_SAPLKibndtEtNkOJyhDt)](https://deepsource.io/gh/milliorn/Current-Weather/?ref=repository-badge)[![CodeQL](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml)
+[![DevSkim](https://github.com/milliorn/Current-Weather/actions/workflows/devskim.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/devskim.yml)
+[![OSSAR](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml)
+[![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
 
 ## Getting Started with Create React App
 
