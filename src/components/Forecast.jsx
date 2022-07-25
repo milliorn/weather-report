@@ -1,3 +1,5 @@
+import "../css/Forecast.css";
+
 import React from "react";
 import {
   Accordion,
@@ -6,7 +8,6 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-import "../css/Forecast.css";
 import { getWindDirection, toCelsius } from "../helper";
 
 export const Forecast = ({ data }) => {
