@@ -36,10 +36,16 @@ const CurrentWeather = ({ data }) => {
 
   /**
    * undefined is check here because there might be a case where this goes unreported resulting in NaN.
+   *
+   * Because undefined can be overwritten or shadowed,
+   * reading undefined can give an unexpected value.
+   * (This is not the case for null, which is a keyword that always produces the same value.)
+   * To guard against this, you can avoid all uses of undefined.
+   * This ensures that undefined will always hold its original, expected value.
    */
   const wind_gust =
     Math.floor(data.current.wind_gust) < 0 ||
-    data.current.wind_gust === undefined
+    typeof data.current.wind_gust === "undefined"
       ? 0
       : Math.floor(data.current.wind_gust);
   const windDirection = getWindDirection(data.current.wind_deg);
