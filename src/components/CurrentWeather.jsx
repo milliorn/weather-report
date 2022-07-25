@@ -36,7 +36,6 @@ const CurrentWeather = ({ data }) => {
 
   /**
    * undefined is check here because there might be a case where this goes unreported resulting in NaN.
-   *
    * Because undefined can be overwritten or shadowed,
    * reading undefined can give an unexpected value.
    * (This is not the case for null, which is a keyword that always produces the same value.)
