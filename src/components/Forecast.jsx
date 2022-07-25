@@ -36,19 +36,19 @@ export const Forecast = ({ data }) => {
             <AccordionItemPanel>
               <div className="grid flex-auto py-1.5 px-4 gap-y-0 gap-x-5 sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
-                  <label>Clouds : </label>
+                  <span>Clouds : </span>
                   <span>{item.clouds}%</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
-                  <label>Humidity : </label>
+                  <span>Humidity : </span>
                   <span>{item.humidity}%</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
-                  <label>UV Index : </label>
+                  <span>UV Index : </span>
                   <span>{item.uvi}</span>
                 </div>
                 <div className="flex items-center justify-between h-8 daily-details-grid-item ">
-                  <label>Wind : </label>
+                  <span>Wind : </span>
                   <span>{getWindDirection(item.wind_deg)}</span>
                 </div>
               </div>
