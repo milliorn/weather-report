@@ -69,3 +69,12 @@ export function parseTime(data, time, locale) {
 export function getMiles(meters) {
   return meters * 0.000621371192;
 }
+
+export function dayOfWeek(item) {
+  return new Date(item.dt * 1000)
+    .toString()
+    .split(" ")
+    .slice(0, 3)
+    .join(" ")
+    .trim();
+}
