@@ -8,7 +8,7 @@
 
 ## Getting Started
 
-This project was bootstrapped with [React](https://github.com/facebook/create-react-app) and [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app).
+This project was bootstrapped with [React](https://github.com/facebook/create-react-app) and [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app). It is powered by [OpenWeather](https://openweathermap.org/), [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities/) and [Unsplash](https://unsplash.com/)
 
 ## Available Scripts
 
@@ -48,4 +48,4 @@ Under the hood, the predeploy script will build a distributable version of the R
 
 ### `npm run deploy`
 
-This script will push the contents of the `build` folder to a new commit on the gh-pages branch of the GitHub repository, creating that branch if it doesn't already exist. For more information see the section about [GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages) for more information.
+This script will push the contents of the `build` folder to a new commit on the gh-pages branch of the GitHub repository, creating that branch if it doesn't already exist. For more information see the section about [GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages).
