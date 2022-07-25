@@ -13,7 +13,7 @@ export const Forecast = ({ data }) => {
     <div className="mt-4">
       <Accordion allowZeroExpanded>
         {data.daily.map((item, idx) => (
-          <AccordionItem key={idx}>
+          <AccordionItem key={`${idx}_${item}`}>
             <AccordionItemHeading>
               <AccordionItemButton>
                 <div className="py-1">
