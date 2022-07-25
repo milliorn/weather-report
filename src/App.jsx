@@ -1,6 +1,6 @@
-import { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
+import { useState } from "react";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
