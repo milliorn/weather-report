@@ -70,6 +70,11 @@ export function getMiles(meters) {
   return meters * 0.000621371192;
 }
 
+/**
+ * get day of week based on epoch
+ * @param {*} item
+ * @returns
+ */
 export function dayOfWeek(item) {
   return new Date(item.dt * 1000)
     .toString()
