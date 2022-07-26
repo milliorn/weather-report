@@ -6,6 +6,7 @@
 [![njsscan sarif](https://github.com/milliorn/Current-Weather/actions/workflows/njsscan.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/njsscan.yml)
 [![OSSAR](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml)
 [![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
+[![pmd](https://github.com/milliorn/Current-Weather/actions/workflows/pmd.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pmd.yml)
 
 ## Getting Started
 
