@@ -22,11 +22,13 @@ function App() {
       .catch(console.warn);
   };
 
+  const imageUrl = `url("https://source.unsplash.com/random/?weather")`;
+
   return (
     <div
       className="min-h-screen mx-auto my-0 bg-cover"
       style={{
-        backgroundImage: `url("https://source.unsplash.com/random/?dark")`,
+        backgroundImage: imageUrl,
       }}
     >
       <Search onSearchChange={handleOnSearchChange} />

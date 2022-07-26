@@ -76,8 +76,8 @@ export const Forecast = (props) => {
           key={e + " " + i}
           className="flex items-center justify-between h-8 capitalize daily-details-grid-item"
         >
-          <span className="drop-shadow-md">{e.id}</span>
-          <span className="text-neutral-300 drop-shadow-md">{e.result}</span>
+          <span className="text-neutral-100 drop-shadow-md">{e.id}</span>
+          <span className="drop-shadow-md">{e.result}</span>
         </div>
       );
     });

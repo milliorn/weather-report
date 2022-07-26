@@ -58,7 +58,7 @@ const CurrentWeather = ({ data }) => {
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
-    <div className="w-auto h-full text-white drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
 
       <Middle

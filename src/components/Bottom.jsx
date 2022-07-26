@@ -58,12 +58,12 @@ export const Bottom = (props) => {
       return (
         <div
           key={i}
-          className="flex justify-between text-xs drop-shadow-md section-row"
+          className="flex justify-between text-sm drop-shadow-md section-row"
         >
-          <span className="text-left capitalize text-neutral-300 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
+          <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
             {e.id}
           </span>
-          <span className="text-xs font-semibold text-right text-neutral-300 section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
+          <span className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
             {e.result}
           </span>
         </div>
