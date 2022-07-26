@@ -9,7 +9,6 @@ import {
 import {
   dayOfWeek,
   getMoonPhase,
-  getWindDirection,
   mmToInches,
   parseTime,
   toCelsius,
@@ -18,7 +17,6 @@ import {
 
 export const Forecast = (props) => {
   const { data, timezone } = props;
-
   const BuildPanel = (data) => {
     const clouds = data.item.clouds + "%";
     const description = data.item.weather[0].description;
@@ -27,12 +25,11 @@ export const Forecast = (props) => {
     const sunrise = parseTime(data, data.item.sunrise, "en-US", timezone);
     const sunset = parseTime(data, data.item.sunset, "en-US", timezone);
     const uvi = data.item.uvi;
-    const winDirection = getWindDirection(data.item.wind_deg);
-
+    const rain = data.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
     const dewPoint =
       toCelsius(data.item.dew_point) + "°C | " + data.item.dew_point + "°F";
 
-    const rain =
+    const precipitation =
       data.item.rain < 0 || typeof data.item.rain === "undefined"
         ? "0.00"
         : data.item.rain +
@@ -52,11 +49,12 @@ export const Forecast = (props) => {
       { id: "Clouds", result: clouds },
       { id: "Humidity", result: humidity },
       { id: "Rain", result: rain },
+      { id: "Precipitation", result: precipitation },
+
       { id: "UV Index", result: uvi },
       { id: "Moon", result: moon },
       { id: "Wind", result: windSpeed },
       { id: "Gust", result: windGust },
-      { id: "Direction", result: winDirection },
       { id: "Sunrise", result: sunrise },
       { id: "Sunset", result: sunset },
     ];
