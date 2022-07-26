@@ -15,33 +15,44 @@ import {
   toKph,
 } from "../helper";
 
+/**
+ * This pagination builds the panels below the bottom element
+ * @param {*} props
+ * @returns
+ */
 export const Forecast = (props) => {
   const { data, timezone } = props;
-  const BuildPanel = (data) => {
-    const clouds = data.item.clouds + "%";
-    const description = data.item.weather[0].description;
-    const humidity = data.item.humidity + "%";
-    const moon = getMoonPhase(data.item.moon_phase);
-    const sunrise = parseTime(data, data.item.sunrise, "en-US", timezone);
-    const sunset = parseTime(data, data.item.sunset, "en-US", timezone);
-    const uvi = data.item.uvi;
-    const rain = data.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
+
+  /**
+   * This builds the panel by mapping over the data and pushing its value into elements
+   * @param {*} value
+   * @returns
+   */
+  const BuildPanel = (value) => {
+    const clouds = value.item.clouds + "%";
+    const description = value.item.weather[0].description;
+    const humidity = value.item.humidity + "%";
+    const moon = getMoonPhase(value.item.moon_phase);
+    const sunrise = parseTime(value, value.item.sunrise, "en-US", timezone);
+    const sunset = parseTime(value, value.item.sunset, "en-US", timezone);
+    const uvi = value.item.uvi;
+    const rain = value.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
     const dewPoint =
-      toCelsius(data.item.dew_point) + "°C | " + data.item.dew_point + "°F";
+      toCelsius(value.item.dew_point) + "°C | " + value.item.dew_point + "°F";
 
     const precipitation =
-      data.item.rain < 0 || typeof data.item.rain === "undefined"
+      value.item.rain < 0 || typeof value.item.rain === "undefined"
         ? "0.00"
-        : data.item.rain +
+        : value.item.rain +
           "mm | " +
-          mmToInches(data.item.rain).toFixed(2) +
+          mmToInches(value.item.rain).toFixed(2) +
           "in";
 
     const windSpeed =
-      toKph(data.item.wind_speed) + " kph | " + data.item.wind_speed + " mph";
+      toKph(value.item.wind_speed) + " kph | " + value.item.wind_speed + " mph";
 
     const windGust =
-      toKph(data.item.wind_gust) + " kph | " + data.item.wind_gust + " mph";
+      toKph(value.item.wind_gust) + " kph | " + value.item.wind_gust + " mph";
 
     const collection = [
       { id: "Forecast", result: description },
@@ -62,7 +73,7 @@ export const Forecast = (props) => {
     return collection.map((e, i) => {
       return (
         <div
-          key={i}
+          key={e + " " + i}
           className="flex items-center justify-between h-8 capitalize daily-details-grid-item"
         >
           <span className="drop-shadow-md">{e.id}</span>
@@ -98,7 +109,7 @@ export const Forecast = (props) => {
             </AccordionItemHeading>
             <AccordionItemPanel>
               <div className="grid grid-cols-1 sm:grid-cols-2 flex-auto py-1.5 px-4 gap-y-0 gap-x-5 sm:text-lg md:text-xl 2xl:text-2xl daily-details-grid">
-                <BuildPanel item={item} idx={idx} />
+                <BuildPanel item={item} />
               </div>
             </AccordionItemPanel>
           </AccordionItem>
