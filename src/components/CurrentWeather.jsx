@@ -26,21 +26,21 @@ const CurrentWeather = ({ data }) => {
     data,
     data.current.dt,
     locale,
-    data.current.timezone
+    data.timezone
   );
 
   const sunrise = parseTime(
     data,
     data.current.sunrise,
     locale,
-    data.current.timezone
+    data.timezone
   );
 
   const sunset = parseTime(
     data,
     data.current.sunset,
     locale,
-    data.currenttimezone
+    data.timezone
   );
 
   /**
