@@ -44,6 +44,11 @@ export function getWindDirection(direction) {
   ][Math.round(direction / 22.5) % 16];
 }
 
+/**
+ * Convert data to kilometers per hour
+ * @param {*} speed
+ * @returns
+ */
 export function toKph(speed) {
   return Math.floor(speed * 1.609344);
 }
@@ -84,6 +89,11 @@ export function dayOfWeek(item) {
     .trim();
 }
 
+/**
+ * Convert data to inches
+ * @param {*} data
+ * @returns
+ */
 export function mmToInches(data) {
   return data / 25.4;
 }

@@ -49,6 +49,10 @@ export const Bottom = (props) => {
     { id: "Longitude", result: lon },
   ];
 
+  /**
+   * This builds the bottom element by mapping out values above
+   * @returns
+   */
   const BuildBottom = () =>
     data.map((e, i) => {
       return (

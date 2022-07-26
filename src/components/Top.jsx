@@ -3,6 +3,9 @@ import React from "react";
 export const Top = (props) => {
   const data = [props.city, props.currentTime];
 
+  /**
+   * Build the top section of the page
+   */
   const BuildTop = () =>
     data.map((e, i) => {
       return (

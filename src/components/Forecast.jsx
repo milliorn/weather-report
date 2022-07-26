@@ -15,8 +15,19 @@ import {
   toKph,
 } from "../helper";
 
+/**
+ * This pagination builds the panels below the bottom element
+ * @param {*} props
+ * @returns
+ */
 export const Forecast = (props) => {
   const { data, timezone } = props;
+
+  /**
+   * This builds the panel by mapping over the data and pushing its value into elements
+   * @param {*} data
+   * @returns
+   */
   const BuildPanel = (data) => {
     const clouds = data.item.clouds + "%";
     const description = data.item.weather[0].description;
