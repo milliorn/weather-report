@@ -9,6 +9,8 @@ export const Bottom = (props) => {
     dew_point,
     heatIndex,
     humidity,
+    lat,
+    lon,
     moonPhase,
     sunrise,
     sunset,
@@ -43,6 +45,8 @@ export const Bottom = (props) => {
     },
     { id: "Moon", result: moonPhase },
     { id: "Time Zone", result: timezone },
+    { id: "Latitude", result: lat },
+    { id: "Longitude", result: lon },
   ];
 
   const BuildBottom = () =>

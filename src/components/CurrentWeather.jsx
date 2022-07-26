@@ -22,26 +22,11 @@ const CurrentWeather = ({ data }) => {
   const uvi = data.current.uvi;
 
   const locale = "en-US";
-  const currentTime = parseTime(
-    data,
-    data.current.dt,
-    locale,
-    data.timezone
-  );
+  const currentTime = parseTime(data, data.current.dt, locale, data.timezone);
 
-  const sunrise = parseTime(
-    data,
-    data.current.sunrise,
-    locale,
-    data.timezone
-  );
+  const sunrise = parseTime(data, data.current.sunrise, locale, data.timezone);
 
-  const sunset = parseTime(
-    data,
-    data.current.sunset,
-    locale,
-    data.timezone
-  );
+  const sunset = parseTime(data, data.current.sunset, locale, data.timezone);
 
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
@@ -89,6 +74,8 @@ const CurrentWeather = ({ data }) => {
         dew_point={dew_point}
         heatIndex={heatIndex}
         humidity={humidity}
+        lat={data.lat}
+        lon={data.lon}
         moonPhase={moonPhase}
         sunrise={sunrise}
         sunset={sunset}
