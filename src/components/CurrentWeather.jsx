@@ -8,6 +8,7 @@ import { Middle } from "./Middle";
 import { Top } from "./Top";
 
 const CurrentWeather = ({ data }) => {
+  const alert = data.alerts;
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
@@ -19,12 +20,28 @@ const CurrentWeather = ({ data }) => {
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
   const temp = Math.floor(data.current.temp);
   const uvi = data.current.uvi;
-  const alert = data.alerts;
 
   const locale = "en-US";
-  const currentTime = parseTime(data, data.current.dt, locale);
-  const sunrise = parseTime(data, data.current.sunrise, locale);
-  const sunset = parseTime(data, data.current.sunset, locale);
+  const currentTime = parseTime(
+    data,
+    data.current.dt,
+    locale,
+    data.current.timezone
+  );
+
+  const sunrise = parseTime(
+    data,
+    data.current.sunrise,
+    locale,
+    data.current.timezone
+  );
+
+  const sunset = parseTime(
+    data,
+    data.current.sunset,
+    locale,
+    data.currenttimezone
+  );
 
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
@@ -82,7 +99,7 @@ const CurrentWeather = ({ data }) => {
         windSpeed={windSpeed}
         wind_gust={wind_gust}
       />
-      <Forecast data={data} />
+      <Forecast data={data} timezone={data.timezone} />
     </div>
   );
 };

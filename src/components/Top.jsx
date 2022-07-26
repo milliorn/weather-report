@@ -1,13 +1,15 @@
 import React from "react";
 
 export const Top = (props) => {
-  const { city, currentTime } = props;
-  const data = [city, currentTime];
+  const data = [props.city, props.currentTime];
 
-  const BuildSections = () =>
-    data.map((e) => {
+  const BuildTop = () =>
+    data.map((e, i) => {
       return (
-        <div className="flex justify-between text-xs capitalize section-row drop-shadow-md">
+        <div
+          key={i}
+          className="flex justify-between text-xs capitalize section-row drop-shadow-md"
+        >
           <span className="flex justify-between text-lg font-semibold capitalize drop-shadow-md sm:text-2xl md:text-3xl section-row">
             {e}
           </span>
@@ -17,7 +19,7 @@ export const Top = (props) => {
 
   return (
     <div className="flex items-center justify-between top">
-      <BuildSections />
+      <BuildTop />
     </div>
   );
 };

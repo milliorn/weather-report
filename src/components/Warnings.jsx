@@ -18,19 +18,17 @@ export const Warnings = (props) => {
     const timeStart = begin.toLocaleTimeString();
 
     return (
-      <div className="my-4">
-        <div className="pb-2">
-          <p className="uppercase tase sm:text-2xl drop-shadow-md">
-            Warning: <span className="capitalize">{tag}</span>
-          </p>
-          <p className="sm:text-lg md:text-xl drop-shadow-md">
-            Issued by {sender_name} at {timeStart} {dateBegin} until {timeEnd}{" "}
-            {dateEnd}.
-          </p>
-          <p className="xl:text-lg 2xl:text-xl drop-shadow-md">
-            {weather.description}
-          </p>
-        </div>
+      <div className="py-4">
+        <p className="pb-3 uppercase sm:pb-4 tase sm:text-2xl drop-shadow-md">
+          Warning: <span className="p-1 capitalize">{tag}</span>
+        </p>
+        <p className="pb-3 sm:pb-4 sm:text-lg md:text-xl drop-shadow-md">
+          Issued by {sender_name} at {timeStart} {dateBegin} until {timeEnd}
+          {dateEnd}.
+        </p>
+        <p className="pb-3 xl:text-lg sm:pb-4 2xl:text-xl drop-shadow-md">
+          {weather.description}
+        </p>
       </div>
     );
   }

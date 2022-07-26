@@ -52,12 +52,12 @@ export function toKph(speed) {
  * https://stackoverflow.com/a/8016205/11986604
  * split the string and pop the value we need, discard the rest.
  */
-export function parseTime(data, time, locale) {
+export function parseTime(data, time, locale, timezone) {
   const dateTime = new Date(0);
   dateTime.setUTCSeconds(time);
   return dateTime
     .toLocaleString(locale, {
-      timeZone: data.timezone,
+      timeZone: timezone,
     })
     .split(",")
     .pop();
@@ -82,4 +82,8 @@ export function dayOfWeek(item) {
     .slice(0, 3)
     .join(" ")
     .trim();
+}
+
+export function mmToInches(data) {
+  return data / 25.4;
 }

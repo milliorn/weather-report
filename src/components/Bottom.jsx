@@ -45,17 +45,17 @@ export const Bottom = (props) => {
     { id: "Time Zone", result: timezone },
   ];
 
-  const BuildSections = () =>
+  const BuildBottom = () =>
     data.map((e, i) => {
       return (
         <div
           key={i}
           className="flex justify-between text-xs drop-shadow-md section-row"
         >
-          <span className="text-left capitalize section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
+          <span className="text-left capitalize text-neutral-300 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
             {e.id}
           </span>
-          <span className="text-xs font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
+          <span className="text-xs font-semibold text-right text-neutral-300 section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
             {e.result}
           </span>
         </div>
@@ -65,7 +65,7 @@ export const Bottom = (props) => {
   return (
     <div className="flex items-center justify-between bottom">
       <div className="w-full p-1 details">
-        <BuildSections />
+        <BuildBottom />
         <Warnings alert={alert} />
       </div>
     </div>

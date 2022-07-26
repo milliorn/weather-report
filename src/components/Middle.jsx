@@ -10,10 +10,10 @@ export const Middle = (props) => {
   return (
     <div className="flex items-center justify-between middle">
       <div className="temperature drop-shadow-md font-semibold drop-shadow-md w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl drop-shadow-md md:text-2xl">
-        <p className="m-0 leading-10 capitalize weather-desc sm:text-xl md:text-2xl drop-shadow-md">
+        <p className="m-0 leading-10 capitalize text-neutral-300 weather-desc sm:text-xl md:text-2xl drop-shadow-md">
           {description}
         </p>
-        <p className="my-1 sm:mt-3">Low | High</p>
+        <p className="my-1 sm:mt-3 text-neutral-300">Low | High</p>
         <div className="sm:text-2xl md:text-3xl drop-shadow-md">
           <p>
             {fToCLow}°C | {fToCHigh}°C
@@ -23,7 +23,7 @@ export const Middle = (props) => {
           </p>
         </div>
       </div>
-      <div className="temperature font drop-shadow-md	text-6xl sm:text-7xl w-auto	tracking-tighter my-2.5	mx-0 drop-shadow-md">
+      <div className="temperature drop-shadow-md	text-6xl sm:text-7xl w-auto	tracking-tighter my-2.5	mx-0 drop-shadow-md">
         <p>{fToTemp}°C</p>
         <p>{temp}°F</p>
       </div>
