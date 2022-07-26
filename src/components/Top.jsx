@@ -1,8 +1,8 @@
 import React from "react";
 
 export const Top = (props) => {
-  const data = [props.city, props.currentTime];
-
+  const { city, currentTime } = props;
+  const data = [city, currentTime];
   /**
    * Build the top section of the page
    */
