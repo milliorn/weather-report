@@ -2,7 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://milliorn.github.io/Current-Weather",
+  "homepage": "https://milliorn.github.io/Current-Weather",
   "dependencies": {
     "react": "18.2.0",
     "react-accessible-accordion": "5.0.0",
