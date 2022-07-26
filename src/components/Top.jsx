@@ -10,7 +10,7 @@ export const Top = (props) => {
     data.map((e, i) => {
       return (
         <div
-          key={i}
+          key={i + "_" + e}
           className="flex justify-between text-xs capitalize section-row drop-shadow-md"
         >
           <span className="flex justify-between text-lg font-semibold capitalize drop-shadow-md sm:text-2xl md:text-3xl section-row">

@@ -73,7 +73,7 @@ export const Forecast = (props) => {
     return collection.map((e, i) => {
       return (
         <div
-          key={i}
+          key={e + " " + i}
           className="flex items-center justify-between h-8 capitalize daily-details-grid-item"
         >
           <span className="drop-shadow-md">{e.id}</span>
