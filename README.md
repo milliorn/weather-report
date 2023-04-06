@@ -3,11 +3,8 @@
 [![CodeQL](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml)
 [![Lint Code Base](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml)
-[![DevSkim](https://github.com/milliorn/Current-Weather/actions/workflows/devskim.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/devskim.yml)
-[![njsscan sarif](https://github.com/milliorn/Current-Weather/actions/workflows/njsscan.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/njsscan.yml)
 [![OSSAR](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml)
 [![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
-[![pmd](https://github.com/milliorn/Current-Weather/actions/workflows/pmd.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pmd.yml)
 
 ## Getting Started
 
