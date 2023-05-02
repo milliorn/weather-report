@@ -1,9 +1,7 @@
 # React Current Weather App
 
-[![CodeQL](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml)
 [![Lint Code Base](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml)
-[![OSSAR](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/ossar.yml)
 [![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
 
 ## Getting Started
