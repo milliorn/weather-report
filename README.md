@@ -1,7 +1,5 @@
 # Current Weather App
 
-[![Dependency Review](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/dependency-review.yml)
-[![Lint Code Base](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/super-linter.yml)
 [![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
 
 This repository contains a web application that displays the current weather information for a given location. Users can search for a city or town and retrieve the current weather conditions, including temperature, humidity, wind speed, and weather description.
