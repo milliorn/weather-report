@@ -3,20 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://milliorn.github.io/current-weather",
-  "dependencies": {
-    "react": "18.2.0",
-    "react-accessible-accordion": "5.0.0",
-    "react-dom": "18.2.0",
-    "react-scripts": "5.0.1",
-    "react-select-async-paginate": "0.7.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,6 +20,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-accessible-accordion": "5.0.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "react-select-async-paginate": "0.7.3"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
