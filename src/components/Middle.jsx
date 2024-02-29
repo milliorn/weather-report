@@ -1,6 +1,15 @@
 import React from "react";
 import { toCelsius } from "../helper";
 
+/**
+ * Renders the middle section of the weather component.
+ * @param {Object} props - The component props.
+ * @param {number} props.dailyHigh - The daily high temperature in Fahrenheit.
+ * @param {number} props.dailyLow - The daily low temperature in Fahrenheit.
+ * @param {string} props.description - The weather description.
+ * @param {number} props.temp - The current temperature in Fahrenheit.
+ * @returns {JSX.Element} The rendered middle section.
+ */
 export const Middle = (props) => {
   const { dailyHigh, dailyLow, description, temp } = props;
   const fToCLow = toCelsius(dailyLow);
