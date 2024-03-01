@@ -2,6 +2,13 @@ import React from "react";
 /**
  * https://stackoverflow.com/a/20940191/11986604
  */
+/**
+ * Renders a warning component based on the provided alert data.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.alert - The alert data.
+ * @returns {JSX.Element|null} The rendered warning component or null if no alert data is provided.
+ */
 export const Warnings = (props) => {
   const { alert } = props;
 
