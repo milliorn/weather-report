@@ -17,24 +17,28 @@ import {
 
 /**
  * This pagination builds the panels below the bottom element
- * @param {*} props
- * @returns
+ * Renders the Forecast component.
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.data - The weather data.
+ * @param {string} props.timezone - The timezone.
+ * @returns {JSX.Element} The Forecast component.
  */
 export const Forecast = (props) => {
   const { data, timezone } = props;
 
   /**
-   * This builds the panel by mapping over the data and pushing its value into elements
-   * @param {*} value
-   * @returns
+   * This builds the panel with weather information by mapping over the data and pushing its value into elements
+   * @param {Object} value - The weather data object.
+   * @returns {JSX.Element[]} An array of JSX elements representing the weather panel.
    */
   const BuildPanel = (value) => {
     const clouds = value.item.clouds + "%";
     const description = value.item.weather[0].description;
     const humidity = value.item.humidity + "%";
     const moon = getMoonPhase(value.item.moon_phase);
-    const sunrise = parseTime(value, value.item.sunrise, "en-US", timezone);
-    const sunset = parseTime(value, value.item.sunset, "en-US", timezone);
+    const sunrise = parseTime(value.item.sunrise, "en-US", timezone);
+    const sunset = parseTime(value.item.sunset, "en-US", timezone);
     const uvi = value.item.uvi;
     const rain = value.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
     const dewPoint =

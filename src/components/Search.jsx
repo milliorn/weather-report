@@ -11,6 +11,14 @@ export const GeoApiOptions = {
   },
 };
 
+/**
+ * Search component for searching cities.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSearchChange - The callback function to be called when the search value changes.
+ * @returns {JSX.Element} The Search component.
+ */
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 

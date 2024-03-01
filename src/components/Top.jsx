@@ -1,10 +1,22 @@
 import React from "react";
 
+/**
+ * Renders the top section of the page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.city - The city name.
+ * @param {string} props.currentTime - The current time.
+ * @returns {JSX.Element} The rendered top section.
+ */
 export const Top = (props) => {
   const { city, currentTime } = props;
   const data = [city, currentTime];
+
   /**
-   * Build the top section of the page
+   * Build the top section of the page.
+   *
+   * @returns {JSX.Element[]} An array of JSX elements representing the top section.
    */
   const BuildTop = () =>
     data.map((e, i) => {

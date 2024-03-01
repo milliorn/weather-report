@@ -7,6 +7,13 @@ import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
 import { Top } from "./Top";
 
+/**
+ * Renders the current weather information.
+ *
+ * @component
+ * @param {Object} data - The weather data object.
+ * @returns {JSX.Element} The CurrentWeather component.
+ */
 const CurrentWeather = ({ data }) => {
   const alert = data.alerts;
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
@@ -22,14 +29,14 @@ const CurrentWeather = ({ data }) => {
   const uvi = data.current.uvi;
 
   const locale = "en-US";
-  const currentTime = parseTime(data, data.current.dt, locale, data.timezone);
-
-  const sunrise = parseTime(data, data.current.sunrise, locale, data.timezone);
-
-  const sunset = parseTime(data, data.current.sunset, locale, data.timezone);
+  const currentTime = parseTime(data.current.dt, locale, data.timezone);
+  const sunrise = parseTime(data.current.sunrise, locale, data.timezone);
+  const sunset = parseTime(data.current.sunset, locale, data.timezone);
 
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
+   * Represents the visibility of the current weather.
+   * @type {string}
    */
   const visibility =
     getMiles(data.current.visibility).toFixed(2) > 6.0
@@ -49,6 +56,7 @@ const CurrentWeather = ({ data }) => {
     typeof data.current.wind_gust === "undefined"
       ? 0
       : Math.floor(data.current.wind_gust);
+
   const windDirection = getWindDirection(data.current.wind_deg);
   const windSpeed = Math.floor(data.current.wind_speed);
 

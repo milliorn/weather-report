@@ -2,6 +2,10 @@ import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
 import { useState } from "react";
 
+/**
+ * The main component of the application.
+ * Renders the search bar and the current weather component.
+ */
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
 
