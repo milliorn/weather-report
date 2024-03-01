@@ -1,6 +1,11 @@
 /**
  * https://www.visualcrossing.com/resources/documentation/weather-api/how-to-include-sunrise-sunset-and-moon-phase-data-into-your-api-requests/
  */
+/**
+ * Returns the moon phase based on the given phase value.
+ * @param {number} phase - The phase value of the moon (between 0 and 1).
+ * @returns {string} - The moon phase type.
+ */
 export function getMoonPhase(phase) {
   let phaseType = "";
 
@@ -16,12 +21,21 @@ export function getMoonPhase(phase) {
   return phaseType;
 }
 
+/**
+ * Converts a temperature from Fahrenheit to Celsius.
+ *
+ * @param {number} num - The temperature in Fahrenheit.
+ * @returns {number} The temperature in Celsius.
+ */
 export function toCelsius(num) {
   return Math.floor((num - 32) * 0.5556);
 }
 
 /**
  * https://stackoverflow.com/a/57769076/11986604
+ * Returns the wind direction based on the given angle.
+ * @param {number} direction - The wind direction angle in degrees.
+ * @returns {string} - The wind direction as a string.
  */
 export function getWindDirection(direction) {
   return [
@@ -41,13 +55,14 @@ export function getWindDirection(direction) {
     "W/NW",
     "NW",
     "N/NW",
-  ][Math.round(direction / 22.5) % 16];
+  ][ Math.round(direction / 22.5) % 16 ];
 }
 
 /**
- * Convert data to kilometers per hour
- * @param {*} speed
- * @returns
+ * Converts speed from miles per hour to kilometers per hour.
+ *
+ * @param {number} speed - The speed in miles per hour.
+ * @returns {number} The speed in kilometers per hour.
  */
 export function toKph(speed) {
   return Math.floor(speed * 1.609344);
@@ -56,6 +71,12 @@ export function toKph(speed) {
 /**
  * https://stackoverflow.com/a/8016205/11986604
  * split the string and pop the value we need, discard the rest.
+ * Parses the given time value and returns a formatted date string based on the provided locale and timezone.
+ *
+ * @param {number} time - The time value to parse (in seconds).
+ * @param {string} locale - The locale to use for formatting the date string.
+ * @param {string} timezone - The timezone to use for formatting the date string.
+ * @returns {string} The formatted date string.
  */
 export function parseTime(time, locale, timezone) {
   const dateTime = new Date(0);
@@ -70,15 +91,20 @@ export function parseTime(time, locale, timezone) {
 
 /**
  * https://stackoverflow.com/a/20674508/11986604
+ * Converts meters to miles.
+ *
+ * @param {number} meters - The distance in meters.
+ * @returns {number} The distance in miles.
  */
 export function getMiles(meters) {
   return meters * 0.000621371192;
 }
 
 /**
- * get day of week based on epoch
- * @param {*} item
- * @returns
+ * Returns the day of the week for a given item.
+ *
+ * @param {Object} item - The item object containing the dt property.
+ * @returns {string} The day of the week.
  */
 export function dayOfWeek(item) {
   return new Date(item.dt * 1000)
@@ -90,9 +116,10 @@ export function dayOfWeek(item) {
 }
 
 /**
- * Convert data to inches
- * @param {*} data
- * @returns
+ * Converts millimeters to inches.
+ *
+ * @param {number} data - The value in millimeters to be converted.
+ * @returns {number} The converted value in inches.
  */
 export function mmToInches(data) {
   return data / 25.4;
