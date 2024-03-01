@@ -57,7 +57,7 @@ export function toKph(speed) {
  * https://stackoverflow.com/a/8016205/11986604
  * split the string and pop the value we need, discard the rest.
  */
-export function parseTime(data, time, locale, timezone) {
+export function parseTime(time, locale, timezone) {
   const dateTime = new Date(0);
   dateTime.setUTCSeconds(time);
   return dateTime

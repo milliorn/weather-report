@@ -37,8 +37,8 @@ export const Forecast = (props) => {
     const description = value.item.weather[0].description;
     const humidity = value.item.humidity + "%";
     const moon = getMoonPhase(value.item.moon_phase);
-    const sunrise = parseTime(value, value.item.sunrise, "en-US", timezone);
-    const sunset = parseTime(value, value.item.sunset, "en-US", timezone);
+    const sunrise = parseTime(value.item.sunrise, "en-US", timezone);
+    const sunset = parseTime(value.item.sunset, "en-US", timezone);
     const uvi = value.item.uvi;
     const rain = value.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
     const dewPoint =
