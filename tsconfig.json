@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true, // Parse in strict mode and emit "use strict" for each source file
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true, // Interpret optional property types as written, rather than adding 'undefined'
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement
+    "noImplicitAny": true, // Ensure all expressions have a type
+    "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
+    "noImplicitReturns": true, // Report error when not all code paths in function return a value
+    "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
+    "noUncheckedIndexedAccess": true, // Include 'undefined' in the type of a property access if the index signature is undefined
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true, // Enables all strict type-checking options
+    "strictBindCallApply": true, // Ensure that the arguments for bind, call, and apply methods match the original function
+    "strictFunctionTypes": true, // Ensure function parameter types are correct
+    "strictNullChecks": true, // When type checking, take into account 'null' and 'undefined'
+    "strictPropertyInitialization": true, // Ensure non-undefined class properties are initialized in the constructor
+    "useUnknownInCatchVariables": true, // Type catch clause variables as 'unknown' instead of 'any'
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
