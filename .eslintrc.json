@@ -1,3 +1,75 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended", // Built-in recommended rules
+    "plugin:@typescript-eslint/recommended", // Recommended rules from the TypeScript ESLint plugin
+    "plugin:react/recommended", // Recommended React rules
+    "plugin:react-hooks/recommended" // Recommended hooks rules
+  ],
+  "rules": {
+    // Custom rules to enforce strict coding standards
+    "eqeqeq": [
+      "error",
+      "always"
+    ], // Enforce strict equality
+    "curly": [
+      "error",
+      "all"
+    ], // Require curly braces for all control statements
+    "complexity": [
+      "error",
+      10
+    ], // Limit cyclomatic complexity
+    "consistent-return": "error", // Require consistent return statements
+    "max-depth": [
+      "error",
+      4
+    ], // Limit the maximum depth of blocks
+    "max-lines": [
+      "error",
+      300
+    ], // Limit the maximum number of lines per file
+    "max-params": [
+      "error",
+      3
+    ], // Limit the maximum number of parameters
+    "max-statements": [
+      "error",
+      10
+    ], // Limit the maximum number of statements
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
+    ], // No unused variables
+    "no-use-before-define": "error", // Disallow the use of variables before they are defined
+    "@typescript-eslint/explicit-module-boundary-types": "error", // Require explicit return and argument types in functions
+    "react/jsx-props-no-spreading": "error", // Disallow JSX props spreading
+    "react/prop-types": "off", // Disable prop-types rule (if using TypeScript for type checking)
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ] // TypeScript specific rule for unused variables
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021, // Specify ECMAScript version
+    "sourceType": "module", // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Enable JSX
+    }
+  },
+  "parser": "@typescript-eslint/parser", // Use the TypeScript parser
+  "plugins": [
+    "@typescript-eslint", // TypeScript plugin
+    "react" // React plugin
+  ],
+  "settings": {
+    "react": {
+      "version": "detect" // Automatically detect the React version
+    }
+  }
 }
