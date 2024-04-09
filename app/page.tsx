@@ -1,9 +1,38 @@
-export default function Home() {
+import CurrentWeather from "./components/CurrentWeather";
+import Search from "./components/Search";
+import { useState } from "react";
+
+export default function Home(): JSX.Element {
+  const [currentWeather, setCurrentWeather] = useState(null);
+
+  const handleOnSearchChange = (searchData) => {
+    const [latitude, longitude] = searchData.value.split(" ");
+
+    const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
+
+    const currentWeatherFetch = fetch(
+      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial`
+    );
+
+    Promise.all([currentWeatherFetch])
+      .then(async (response) => {
+        const weatherResponse = await response[0].json();
+        setCurrentWeather({ city: searchData.label, ...weatherResponse });
+      })
+      .catch(console.warn);
+  };
+
+  const imageUrl = `url("https://source.unsplash.com/random/?weather")`;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold text-center">
-        Welcome to <span className="text-blue-600">Tailwind CSS</span>
-      </h1>
-    </main>
+    <div
+      className="min-h-screen mx-auto my-0 bg-cover"
+      style={{
+        backgroundImage: imageUrl,
+      }}
+    >
+      <Search onSearchChange={handleOnSearchChange} />
+      {currentWeather && <CurrentWeather data={currentWeather} />}
+    </div>
   );
 }

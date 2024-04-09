@@ -1,75 +1,67 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended", // Built-in recommended rules
-    "plugin:@typescript-eslint/recommended", // Recommended rules from the TypeScript ESLint plugin
-    "plugin:react/recommended", // Recommended React rules
-    "plugin:react-hooks/recommended" // Recommended hooks rules
-  ],
+  "extends": "next/core-web-vitals",
   "rules": {
-    // Custom rules to enforce strict coding standards
     "eqeqeq": [
       "error",
       "always"
-    ], // Enforce strict equality
+    ],
     "curly": [
       "error",
       "all"
-    ], // Require curly braces for all control statements
+    ],
     "complexity": [
       "error",
-      10
-    ], // Limit cyclomatic complexity
-    "consistent-return": "error", // Require consistent return statements
+      12 // default is 20
+    ],
+    "consistent-return": "error",
     "max-depth": [
       "error",
-      4
-    ], // Limit the maximum depth of blocks
+      3
+    ],
     "max-lines": [
       "error",
-      300
-    ], // Limit the maximum number of lines per file
+      250 // default is 300
+    ],
     "max-params": [
       "error",
-      3
-    ], // Limit the maximum number of parameters
-    "max-statements": [
-      "error",
-      10
-    ], // Limit the maximum number of statements
-    "no-unused-vars": [
+      3 // default is 3
+    ],
+    "no-console": "error",
+    "no-magic-numbers": [
       "error",
       {
-        "args": "all",
-        "argsIgnorePattern": "^_"
+        "ignore": [
+          -1,
+          0,
+          1
+        ]
       }
-    ], // No unused variables
-    "no-use-before-define": "error", // Disallow the use of variables before they are defined
-    "@typescript-eslint/explicit-module-boundary-types": "error", // Require explicit return and argument types in functions
-    "react/jsx-props-no-spreading": "error", // Disallow JSX props spreading
-    "react/prop-types": "off", // Disable prop-types rule (if using TypeScript for type checking)
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ] // TypeScript specific rule for unused variables
+    ],
+    "@next/next/google-font-display": "error",
+    "@next/next/google-font-preconnect": "error",
+    "@next/next/inline-script-id": "error",
+    "@next/next/next-script-for-ga": "error",
+    "@next/next/no-assign-module-variable": "error",
+    "@next/next/no-async-client-component": "error",
+    "@next/next/no-before-interactive-script-outside-document": "error",
+    "@next/next/no-css-tags": "error",
+    "@next/next/no-document-import-in-page": "error",
+    "@next/next/no-duplicate-head": "error",
+    "@next/next/no-head-element": "error",
+    "@next/next/no-head-import-in-document": "error",
+    "@next/next/no-html-link-for-pages": "error",
+    "@next/next/no-img-element": "error",
+    "@next/next/no-page-custom-font": "error",
+    "@next/next/no-script-component-in-head": "error",
+    "@next/next/no-styled-jsx-in-document": "error",
+    "@next/next/no-sync-scripts": "error",
+    "@next/next/no-title-in-document-head": "error",
+    "@next/next/no-typos": "error",
+    "@next/next/no-unwanted-polyfillio": "error"
   },
-  "parserOptions": {
-    "ecmaVersion": 2021, // Specify ECMAScript version
-    "sourceType": "module", // Allows for the use of imports
-    "ecmaFeatures": {
-      "jsx": true // Enable JSX
-    }
-  },
-  "parser": "@typescript-eslint/parser", // Use the TypeScript parser
-  "plugins": [
-    "@typescript-eslint", // TypeScript plugin
-    "react" // React plugin
-  ],
   "settings": {
     "react": {
-      "version": "detect" // Automatically detect the React version
+      "version": "detect"
     }
   }
 }
