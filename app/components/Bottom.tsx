@@ -1,4 +1,4 @@
-import { toCelsius, toKph } from "../helper";
+import { toCelsius, toKph } from "../utils/weatherUtils";
 import { Warnings } from "./Warnings";
 
 type BottomProps = {

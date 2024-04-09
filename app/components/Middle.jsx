@@ -1,4 +1,4 @@
-import { toCelsius } from "../helper";
+import { toCelsius } from "../utils/weatherUtils";
 
 /**
  * Renders the middle section of the weather component.

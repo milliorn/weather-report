@@ -1,6 +1,6 @@
 import "../css/CurrentWeather.css";
 
-import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
+import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../utils/weatherUtils";
 import { Bottom } from "./Bottom";
 import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";

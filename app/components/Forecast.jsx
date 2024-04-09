@@ -13,7 +13,7 @@ import {
   parseTime,
   toCelsius,
   toKph,
-} from "../helper";
+} from "../utils/weatherUtils";
 
 /**
  * This pagination builds the panels below the bottom element
