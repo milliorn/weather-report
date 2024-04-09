@@ -110,25 +110,11 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
     { id: "Longitude", result: data.lon.toString() },
   ];
 
-  const renderBottomSection = () =>
-    bottomData.map((e, i) => (
-      <div
-        key={i}
-        className="flex justify-between text-sm drop-shadow-md section-row"
-      >
-        <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
-          {e.id}
-        </span>
-        <span className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
-          {e.result}
-        </span>
-      </div>
-    ));
-
   return (
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
       <div className="flex items-center justify-between middle">
+        {/* Middle section content */}
         <div className="temperature font-semibold w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl drop-shadow-md md:text-2xl">
           <p className="m-0 leading-10 capitalize text-neutral-100 weather-desc sm:text-xl md:text-2xl drop-shadow-md">
             {description}
@@ -150,7 +136,20 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
       </div>
       <div className="flex items-center justify-between bottom">
         <div className="w-full p-1 details">
-          {renderBottomSection()}
+          {/* Bottom section content */}
+          {bottomData.map((e, i) => (
+            <div
+              key={i}
+              className="flex justify-between text-sm drop-shadow-md section-row"
+            >
+              <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
+                {e.id}
+              </span>
+              <span className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
+                {e.result}
+              </span>
+            </div>
+          ))}
           <Warnings alert={alert} />
         </div>
       </div>
