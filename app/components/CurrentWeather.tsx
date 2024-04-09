@@ -8,7 +8,6 @@ import {
   toKph,
 } from "../utils/weatherUtils";
 import { Forecast } from "./Forecast";
-import { Top } from "./Top";
 
 type CurrentWeatherProps = {
   data: {
@@ -117,7 +116,13 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
 
   return (
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
-      <Top city={city} currentTime={currentTime} />
+      <div className="flex items-center justify-between top">
+        <div className="flex justify-between text-xs capitalize section-row drop-shadow-md">
+          <span className="flex justify-between text-lg font-semibold capitalize drop-shadow-md sm:text-2xl md:text-3xl section-row">
+            {city} | {currentTime}
+          </span>
+        </div>
+      </div>
       <div className="flex items-center justify-between middle">
         <div className="temperature font-semibold w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl drop-shadow-md md:text-2xl">
           <p className="m-0 leading-10 capitalize text-neutral-100 weather-desc sm:text-xl md:text-2xl drop-shadow-md">
