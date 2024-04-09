@@ -8,7 +8,6 @@ import {
   toKph,
 } from "../utils/weatherUtils";
 import { Forecast } from "./Forecast";
-import { Middle } from "./Middle";
 import { Top } from "./Top";
 import { Warnings } from "./Warnings";
 
@@ -63,10 +62,8 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const locale = "en-US";
   const currentTime =
     parseTime(data.current.dt, locale, data.timezone) || "N/A";
-
   const sunrise = parseTime(data.current.sunrise, locale, data.timezone);
   const sunset = parseTime(data.current.sunset, locale, data.timezone);
-
   const visibilityValue = getMiles(data.current.visibility);
   const visibilityString =
     visibilityValue > 6.0 ? "6.0" : visibilityValue.toFixed(2);
@@ -80,6 +77,10 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const windDirection = getWindDirection(data.current.wind_deg);
   const windSpeed = Math.floor(data.current.wind_speed);
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
+
+  const fToCLow = toCelsius(dailyLow);
+  const fToCHigh = toCelsius(dailyHigh);
+  const fToTemp = toCelsius(temp);
 
   // Merging Bottom component logic here
   const bottomData = [
@@ -127,12 +128,26 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   return (
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
-      <Middle
-        dailyHigh={dailyHigh}
-        dailyLow={dailyLow}
-        description={description}
-        temp={temp}
-      />
+      <div className="flex items-center justify-between middle">
+        <div className="temperature font-semibold w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl drop-shadow-md md:text-2xl">
+          <p className="m-0 leading-10 capitalize text-neutral-100 weather-desc sm:text-xl md:text-2xl drop-shadow-md">
+            {description}
+          </p>
+          <p className="my-1 sm:mt-3 text-neutral-100">Low | High</p>
+          <div className="sm:text-2xl md:text-3xl drop-shadow-md">
+            <p>
+              {fToCLow}°C | {fToCHigh}°C
+            </p>
+            <p>
+              {dailyLow}°F | {dailyHigh}°F
+            </p>
+          </div>
+        </div>
+        <div className="temperature	text-6xl sm:text-7xl w-auto	tracking-tighter my-2.5	mx-0 drop-shadow-md">
+          <p>{fToTemp}°C</p>
+          <p>{temp}°F</p>
+        </div>
+      </div>
       <div className="flex items-center justify-between bottom">
         <div className="w-full p-1 details">
           {renderBottomSection()}
