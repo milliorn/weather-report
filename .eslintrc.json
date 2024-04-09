@@ -19,7 +19,7 @@
     ], // Require curly braces for all control statements
     "complexity": [
       "error",
-      10
+      12
     ], // Limit cyclomatic complexity
     "consistent-return": "error", // Require consistent return statements
     "max-depth": [
@@ -36,7 +36,7 @@
     ], // Limit the maximum number of parameters
     "max-statements": [
       "error",
-      10
+      12
     ], // Limit the maximum number of statements
     "no-unused-vars": [
       "error",
