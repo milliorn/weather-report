@@ -1,16 +1,16 @@
 import "../css/CurrentWeather.css";
 import {
-  toCelsius,
-  toKph,
   getMiles,
   getMoonPhase,
   getWindDirection,
   parseTime,
+  toCelsius,
+  toKph,
 } from "../utils/weatherUtils";
-import { Warnings } from "./Warnings";
 import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
 import { Top } from "./Top";
+import { Warnings } from "./Warnings";
 
 type CurrentWeatherProps = {
   data: {
