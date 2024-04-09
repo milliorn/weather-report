@@ -1,6 +1,5 @@
 import "../css/CurrentWeather.css";
 
-import React from "react";
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { Bottom } from "./Bottom";
 import { Forecast } from "./Forecast";
