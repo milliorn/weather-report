@@ -4,7 +4,8 @@
     "eslint:recommended", // Built-in recommended rules
     "plugin:@typescript-eslint/recommended", // Recommended rules from the TypeScript ESLint plugin
     "plugin:react/recommended", // Recommended React rules
-    "plugin:react-hooks/recommended" // Recommended hooks rules
+    "plugin:react-hooks/recommended", // Recommended hooks rules
+    "plugin:react/jsx-runtime" // Recommended rules for JSX runtime
   ],
   "rules": {
     // Custom rules to enforce strict coding standards
