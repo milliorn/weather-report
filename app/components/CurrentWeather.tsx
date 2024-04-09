@@ -9,11 +9,16 @@ import {
 } from "../utils/weatherUtils";
 import { Forecast } from "./Forecast";
 import { Top } from "./Top";
-import { Warnings } from "./Warnings";
 
 type CurrentWeatherProps = {
   data: {
-    alerts: never[];
+    alerts: {
+      end: number;
+      start: number;
+      tags: string[];
+      sender_name: string;
+      description: string;
+    }[];
     city: string;
     current: {
       clouds: number;
@@ -114,7 +119,6 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
       <Top city={city} currentTime={currentTime} />
       <div className="flex items-center justify-between middle">
-        {/* Middle section content */}
         <div className="temperature font-semibold w-auto	tracking-tighter my-2.5	mx-0 sm:text-xl drop-shadow-md md:text-2xl">
           <p className="m-0 leading-10 capitalize text-neutral-100 weather-desc sm:text-xl md:text-2xl drop-shadow-md">
             {description}
@@ -136,7 +140,6 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
       </div>
       <div className="flex items-center justify-between bottom">
         <div className="w-full p-1 details">
-          {/* Bottom section content */}
           {bottomData.map((e, i) => (
             <div
               key={i}
@@ -150,7 +153,31 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
               </span>
             </div>
           ))}
-          <Warnings alert={alert} />
+          {Array.isArray(alert) && alert.length > 0 && (
+            <div className="py-4">
+              {alert.map((weather, index) => {
+                const finish = new Date(weather.end * 1000);
+                const begin = new Date(weather.start * 1000);
+                return (
+                  <div key={index}>
+                    <p className="pb-3 uppercase sm:pb-4 tase sm:text-2xl drop-shadow-md">
+                      Warning:{" "}
+                      <span className="p-1 capitalize">{weather.tags[0]}</span>
+                    </p>
+                    <p className="pb-3 sm:pb-4 sm:text-lg md:text-xl drop-shadow-md">
+                      Issued by {weather.sender_name} at{" "}
+                      {begin.toLocaleTimeString()} {begin.toLocaleDateString()}{" "}
+                      until {finish.toLocaleTimeString()}{" "}
+                      {finish.toLocaleDateString()}.
+                    </p>
+                    <p className="pb-3 xl:text-lg sm:pb-4 2xl:text-xl drop-shadow-md">
+                      {weather.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
       <Forecast data={data} timezone={data.timezone} />
