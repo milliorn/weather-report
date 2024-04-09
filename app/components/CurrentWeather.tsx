@@ -64,10 +64,13 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const uvi = data.current.uvi;
 
   const locale = "en-US";
+
   const currentTime =
     parseTime(data.current.dt, locale, data.timezone) || "N/A";
+
   const sunrise = parseTime(data.current.sunrise, locale, data.timezone);
   const sunset = parseTime(data.current.sunset, locale, data.timezone);
+
   const visibilityValue = getMiles(data.current.visibility);
   const visibilityString =
     visibilityValue > 6.0 ? "6.0" : visibilityValue.toFixed(2);
