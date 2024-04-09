@@ -1,0 +1,147 @@
+import "../css/CurrentWeather.css";
+import {
+  toCelsius,
+  toKph,
+  getMiles,
+  getMoonPhase,
+  getWindDirection,
+  parseTime,
+} from "../utils/weatherUtils";
+import { Warnings } from "./Warnings";
+import { Forecast } from "./Forecast";
+import { Middle } from "./Middle";
+import { Top } from "./Top";
+
+type CurrentWeatherProps = {
+  data: {
+    alerts: never[];
+    city: string;
+    current: {
+      clouds: number;
+      weather: [{ description: string }];
+      dew_point: number;
+      feels_like: number;
+      humidity: number;
+      temp: number;
+      uvi: number;
+      visibility: number;
+      wind_gust: number;
+      wind_deg: number;
+      wind_speed: number;
+      dt: number;
+      sunrise: number;
+      sunset: number;
+    };
+    daily: [{ temp: { max: number; min: number }; moon_phase: number }];
+    lat: number;
+    lon: number;
+    timezone: string;
+  };
+};
+
+/**
+ * Renders the current weather information.
+ *
+ * @component
+ * @param {Object} data - The weather data object.
+ * @returns {JSX.Element} The CurrentWeather component.
+ */
+const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
+  const alert = data.alerts;
+  const city = data.city.substr(0, data.city.indexOf(","));
+  const clouds = data.current.clouds;
+  const dailyHigh = Math.floor(data.daily[0].temp.max);
+  const dailyLow = Math.floor(data.daily[0].temp.min);
+  const description = data.current.weather[0].description;
+  const dew_point = Math.floor(data.current.dew_point);
+  const heatIndex = Math.floor(data.current.feels_like);
+  const humidity = data.current.humidity;
+  const moonPhase = getMoonPhase(data.daily[0].moon_phase);
+  const temp = Math.floor(data.current.temp);
+  const uvi = data.current.uvi;
+
+  const locale = "en-US";
+  const currentTime =
+    parseTime(data.current.dt, locale, data.timezone) || "N/A";
+
+  const sunrise = parseTime(data.current.sunrise, locale, data.timezone);
+  const sunset = parseTime(data.current.sunset, locale, data.timezone);
+
+  const visibilityValue = getMiles(data.current.visibility);
+  const visibilityString =
+    visibilityValue > 6.0 ? "6.0" : visibilityValue.toFixed(2);
+  const visibilityNumber = parseFloat(visibilityString);
+
+  const wind_gust =
+    Math.floor(data.current.wind_gust) < 0 ||
+    typeof data.current.wind_gust === "undefined"
+      ? 0
+      : Math.floor(data.current.wind_gust);
+  const windDirection = getWindDirection(data.current.wind_deg);
+  const windSpeed = Math.floor(data.current.wind_speed);
+  const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
+
+  // Merging Bottom component logic here
+  const bottomData = [
+    {
+      id: "Feels like",
+      result: `${toCelsius(heatIndex)}°C | ${heatIndex}°F`,
+    },
+    {
+      id: "Dew Point",
+      result: `${toCelsius(dew_point)}°C | ${dew_point}°F`,
+    },
+    { id: "Humidity", result: `${humidity}%` },
+    { id: "Wind", result: `${toKph(windSpeed)} kph | ${windSpeed} mph` },
+    { id: "Direction", result: windDirection },
+    { id: "Gust", result: `${toKph(wind_gust)} kph | ${wind_gust} mph` },
+    { id: "Sunrise", result: sunrise },
+    { id: "Sunset", result: sunset },
+    { id: "UV Index", result: uvi.toString() },
+    { id: "Clouds", result: `${clouds}%` },
+    {
+      id: "Visibility",
+      result: `${toKph(visibilityNumber)} km | ${visibilityString} mi`,
+    },
+    { id: "Moon", result: moonPhase },
+    { id: "Time Zone", result: timezone },
+    { id: "Latitude", result: data.lat.toString() },
+    { id: "Longitude", result: data.lon.toString() },
+  ];
+
+  const renderBottomSection = () =>
+    bottomData.map((e, i) => (
+      <div
+        key={i}
+        className="flex justify-between text-sm drop-shadow-md section-row"
+      >
+        <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
+          {e.id}
+        </span>
+        <span className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
+          {e.result}
+        </span>
+      </div>
+    ));
+
+  return (
+    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+      <Top city={city} currentTime={currentTime} />
+      <Middle
+        dailyHigh={dailyHigh}
+        dailyLow={dailyLow}
+        description={description}
+        temp={temp}
+      />
+      <div className="flex items-center justify-between bottom">
+        <div className="w-full p-1 details">
+          {renderBottomSection()}
+          <Warnings alert={alert} />
+        </div>
+      </div>
+      <Forecast data={data} timezone={data.timezone} />
+    </div>
+  );
+};
+
+export default CurrentWeather;

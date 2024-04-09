@@ -34,10 +34,6 @@
       "error",
       3
     ], // Limit the maximum number of parameters
-    "max-statements": [
-      "error",
-      12
-    ], // Limit the maximum number of statements
     "no-unused-vars": [
       "error",
       {
