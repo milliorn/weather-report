@@ -50,6 +50,11 @@ type CurrentWeatherProps = {
  * @returns {JSX.Element} The CurrentWeather component.
  */
 const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
+  // Define constants for magic numbers
+  const VISIBILITY_THRESHOLD = 6.0;
+  const DECIMAL_PLACES = 2; // If necessary
+  const MILLISECONDS_PER_SECOND = 1000;
+
   const alert = data.alerts;
   const city = data.city.substr(0, data.city.indexOf(","));
   const clouds = data.current.clouds;
@@ -73,7 +78,9 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
 
   const visibilityValue = getMiles(data.current.visibility);
   const visibilityString =
-    visibilityValue > 6.0 ? "6.0" : visibilityValue.toFixed(2);
+    visibilityValue > VISIBILITY_THRESHOLD
+      ? "6.0"
+      : visibilityValue.toFixed(DECIMAL_PLACES);
   const visibilityNumber = parseFloat(visibilityString);
 
   const wind_gust =
@@ -164,8 +171,8 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
           {Array.isArray(alert) && alert.length > 0 && (
             <div className="py-4">
               {alert.map((weather, index) => {
-                const finish = new Date(weather.end * 1000);
-                const begin = new Date(weather.start * 1000);
+                const finish = new Date(weather.end * MILLISECONDS_PER_SECOND);
+                const begin = new Date(weather.start * MILLISECONDS_PER_SECOND);
                 return (
                   <div key={index}>
                     <p className="pb-3 uppercase sm:pb-4 tase sm:text-2xl drop-shadow-md">

@@ -58,6 +58,9 @@ export const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
    * @returns {JSX.Element[]} An array of JSX elements representing the weather panel.
    */
   const BuildPanel = (value: PanelValue): JSX.Element[] => {
+    const MAGIC_NUMBER_100 = 100;
+    const MAGIC_NUMBER_2 = 2;
+
     const clouds = value.item.clouds + "%";
     const description = value.item.weather[0]?.description;
     const humidity = value.item.humidity + "%";
@@ -65,12 +68,14 @@ export const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
     const sunrise = parseTime(value.item.sunrise, "en-US", timezone);
     const sunset = parseTime(value.item.sunset, "en-US", timezone);
     const uvi = value.item.uvi;
-    const rain = value.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
+    const rain = value.item.pop * MAGIC_NUMBER_100 + "%";
     const dewPoint =
       toCelsius(value.item.dew_point) + "°C | " + value.item.dew_point + "°F";
 
     const precipitation = value.item.rain
-      ? `${value.item.rain}mm | ${mmToInches(value.item.rain).toFixed(2)}in`
+      ? `${value.item.rain}mm | ${mmToInches(value.item.rain).toFixed(
+          MAGIC_NUMBER_2
+        )}in`
       : "0.00mm | 0.00in";
 
     const windSpeed =
