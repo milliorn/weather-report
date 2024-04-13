@@ -1,5 +1,5 @@
-import React from "react";
 import { toCelsius, toKph } from "../helper";
+import { BottomProps, WeatherDetail } from "../models/props";
 import { Warnings } from "./Warnings";
 
 /**
@@ -23,7 +23,7 @@ import { Warnings } from "./Warnings";
  * @param {number} props.wind_gust - The wind gust speed.
  * @returns {JSX.Element} The rendered bottom component.
  */
-export const Bottom = (props) => {
+export const Bottom = (props: BottomProps) => {
   const {
     alert,
     clouds,
@@ -46,9 +46,9 @@ export const Bottom = (props) => {
   /**
    * Data array containing weather information.
    *
-   * @type {Array<Object>}
+   * @type {WeatherDetail[]}
    */
-  const data = [
+  const data: WeatherDetail[] = [
     {
       id: "Feels like",
       result: toCelsius(heatIndex) + "°C | " + heatIndex + "°F",
