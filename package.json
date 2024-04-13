@@ -1,45 +1,26 @@
 {
-  "name": "weather-app",
+  "name": "current-weather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://milliorn.github.io/current-weather",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-accessible-accordion": "5.0.0",
-    "react-dom": "18.2.0",
-    "react-scripts": "5.0.1",
-    "react-select-async-paginate": "0.7.4"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "autoprefixer": "10.4.19",
-    "gh-pages": "6.1.1",
-    "postcss": "8.4.38",
-    "tailwindcss": "3.4.3"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.1"
   }
 }
