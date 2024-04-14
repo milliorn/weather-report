@@ -23,7 +23,7 @@ import { Warnings } from "./Warnings";
  * @param {number} props.wind_gust - The wind gust speed.
  * @returns {JSX.Element} The rendered bottom component.
  */
-export const Bottom = (props: BottomProps) => {
+export const Bottom = (props: BottomProps): JSX.Element => {
   const {
     alert,
     clouds,
