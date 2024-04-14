@@ -84,6 +84,18 @@ type GeoApiOptionsType = {
   };
 }
 
+type WarningsProps = {
+  alert: Alert[];
+}
+
+type Alert = {
+  description: string;
+  end: number;
+  sender_name: string;
+  start: number;
+  tags: string[];
+}
+
 export type {
   BottomProps,
   WeatherDetail,
@@ -95,4 +107,6 @@ export type {
   SearchData,
   LoadOptionsResponse,
   GeoApiOptionsType,
+  WarningsProps,
+  Alert
 }
