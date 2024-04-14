@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
@@ -22,7 +24,7 @@ export default function Home() {
     const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
     fetch(
-      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial`
+      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=imperial`
     )
       .then((response) => {
         if (!response.ok) {

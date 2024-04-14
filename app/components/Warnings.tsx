@@ -1,3 +1,5 @@
+"use client";
+
 import { WarningsProps } from "../models/props";
 
 /**

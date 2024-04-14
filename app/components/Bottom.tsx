@@ -1,3 +1,5 @@
+"use client";
+
 import { toCelsius, toKph } from "../helper";
 import { BottomProps, WeatherDetail } from "../models/props";
 import { Warnings } from "./Warnings";

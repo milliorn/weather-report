@@ -1,3 +1,5 @@
+"use client";
+
 import "../css/CurrentWeather.css";
 
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";

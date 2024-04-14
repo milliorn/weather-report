@@ -1,3 +1,5 @@
+"use client";
+
 import { toCelsius } from "../helper";
 
 /**

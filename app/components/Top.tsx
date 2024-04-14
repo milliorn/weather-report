@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Renders the top section of the page.
  *

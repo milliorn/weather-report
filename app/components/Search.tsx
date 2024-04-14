@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ActionMeta, GroupBase, SingleValue } from "react-select";
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
@@ -12,7 +14,7 @@ const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 const GeoApiOptions: GeoApiOptionsType = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_KEY || "", // Default to an empty string if undefined
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "", // Default to an empty string if undefined
     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
   },
 };
@@ -43,7 +45,7 @@ const Search = ({
       };
     } catch (err) {
       console.error(err);
-      return { options: [] }; // Ensure you return a consistent type
+      return { options: [] };
     }
   };
 
