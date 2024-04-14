@@ -1,50 +1,58 @@
 import { useState } from "react";
-import { AsyncPaginate } from "react-select-async-paginate";
+import { ActionMeta, GroupBase, SingleValue } from "react-select";
+import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
+import {
+  FetchResponseData,
+  GeoApiOptionsType,
+  SearchData,
+} from "../models/props";
 
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 
-export const GeoApiOptions = {
+const GeoApiOptions: GeoApiOptionsType = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_KEY,
+    "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_KEY || "", // Default to an empty string if undefined
     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
   },
 };
 
-/**
- * Search component for searching cities.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {Function} props.onSearchChange - The callback function to be called when the search value changes.
- * @returns {JSX.Element} The Search component.
- */
-const Search = ({ onSearchChange }) => {
-  const [search, setSearch] = useState(null);
+const Search = ({
+  onSearchChange,
+}: {
+  onSearchChange: (searchData: SearchData | null) => void;
+}): JSX.Element => {
+  const [search, setSearch] = useState<SearchData | null>(null);
 
-  const loadOptions = async (inputValue) => {
+  const loadOptions: LoadOptions<
+    SearchData,
+    GroupBase<SearchData>,
+    string
+  > = async (inputValue) => {
     try {
       const fetchResponse = await fetch(
         `${GEO_API_URL}/cities?offset=0&minPopulation=1&sort=-population&namePrefix=${inputValue}`,
         GeoApiOptions
       );
-      const response = await fetchResponse.json();
+      const response: FetchResponseData = await fetchResponse.json();
       return {
-        options: response.data.map((city) => {
-          return {
-            value: `${city.latitude} ${city.longitude}`,
-            label: `${city.name}, ${city.country}`,
-          };
-        }),
+        options: response.data.map((city) => ({
+          value: `${city.latitude} ${city.longitude}`,
+          label: `${city.name}, ${city.country}`,
+        })),
       };
     } catch (err) {
       console.error(err);
+      return { options: [] }; // Ensure you return a consistent type
     }
   };
 
-  const handleOnChange = (searchData) => {
-    setSearch(searchData);
-    onSearchChange(searchData);
+  const handleOnChange = (
+    newValue: SingleValue<SearchData>,
+    actionMeta: ActionMeta<SearchData>
+  ) => {
+    setSearch(newValue);
+    onSearchChange(newValue);
   };
 
   return (

@@ -53,10 +53,46 @@ type BuildPanelProps = {
   item: WeatherItem;
 }
 
+type CityOptions = {
+  value: string;
+  label: string;
+}
+
+type FetchResponseData = {
+  data: {
+    name: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+  }[];
+}
+
+type SearchData = {
+  value: string;
+  label: string;
+}
+
+type LoadOptionsResponse = {
+  options: CityOptions[];
+}
+
+type GeoApiOptionsType = {
+  method: string;
+  headers: {
+    "X-RapidAPI-Host": string;
+    "X-RapidAPI-Key": string;
+  };
+}
+
 export type {
   BottomProps,
   WeatherDetail,
   WeatherItem,
   ForecastProps,
-  BuildPanelProps
+  BuildPanelProps,
+  CityOptions,
+  FetchResponseData,
+  SearchData,
+  LoadOptionsResponse,
+  GeoApiOptionsType,
 }
