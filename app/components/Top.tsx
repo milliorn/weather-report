@@ -1,5 +1,3 @@
-import React from "react";
-
 /**
  * Renders the top section of the page.
  *
@@ -9,7 +7,10 @@ import React from "react";
  * @param {string} props.currentTime - The current time.
  * @returns {JSX.Element} The rendered top section.
  */
-export const Top = (props) => {
+export const Top = (props: {
+  city: string;
+  currentTime: string;
+}): JSX.Element => {
   const { city, currentTime } = props;
   const data = [city, currentTime];
 
@@ -18,7 +19,7 @@ export const Top = (props) => {
    *
    * @returns {JSX.Element[]} An array of JSX elements representing the top section.
    */
-  const BuildTop = () =>
+  const BuildTop = (): JSX.Element[] =>
     data.map((e, i) => {
       return (
         <div
