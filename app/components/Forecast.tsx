@@ -14,6 +14,7 @@ import {
   toCelsius,
   toKph,
 } from "../helper";
+import { BuildPanelProps, ForecastProps } from "../models/props";
 
 /**
  * This pagination builds the panels below the bottom element
@@ -24,7 +25,7 @@ import {
  * @param {string} props.timezone - The timezone.
  * @returns {JSX.Element} The Forecast component.
  */
-export const Forecast = (props) => {
+export const Forecast = (props: ForecastProps): JSX.Element => {
   const { data, timezone } = props;
 
   /**
@@ -32,7 +33,7 @@ export const Forecast = (props) => {
    * @param {Object} value - The weather data object.
    * @returns {JSX.Element[]} An array of JSX elements representing the weather panel.
    */
-  const BuildPanel = (value) => {
+  const BuildPanel = (value: BuildPanelProps): JSX.Element[] => {
     const clouds = value.item.clouds + "%";
     const description = value.item.weather[0].description;
     const humidity = value.item.humidity + "%";
@@ -45,7 +46,7 @@ export const Forecast = (props) => {
       toCelsius(value.item.dew_point) + "°C | " + value.item.dew_point + "°F";
 
     const precipitation =
-      value.item.rain < 0 || typeof value.item.rain === "undefined"
+      value.item.rain! < 0 || typeof value.item.rain === "undefined"
         ? "0.00"
         : value.item.rain +
           "mm | " +

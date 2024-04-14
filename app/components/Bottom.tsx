@@ -80,7 +80,7 @@ export const Bottom = (props: BottomProps): JSX.Element => {
    *
    * @returns {JSX.Element[]} An array of JSX elements representing the bottom section.
    */
-  const BuildBottom = () =>
+  const BuildBottom = (): JSX.Element[] =>
     data.map((e, i) => {
       return (
         <div
