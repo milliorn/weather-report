@@ -1,4 +1,3 @@
-import React from "react";
 import { toCelsius } from "../helper";
 
 /**
@@ -10,7 +9,12 @@ import { toCelsius } from "../helper";
  * @param {number} props.temp - The current temperature in Fahrenheit.
  * @returns {JSX.Element} The rendered middle section.
  */
-export const Middle = (props) => {
+export const Middle = (props: {
+  dailyHigh: number;
+  dailyLow: number;
+  description: string;
+  temp: number;
+}): JSX.Element => {
   const { dailyHigh, dailyLow, description, temp } = props;
   const fToCLow = toCelsius(dailyLow);
   const fToCHigh = toCelsius(dailyHigh);
