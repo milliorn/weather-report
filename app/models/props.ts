@@ -96,6 +96,35 @@ type Alert = {
   tags: string[];
 }
 
+type WeatherData = {
+  alerts: Alert[];
+  city: string;
+  current: {
+    clouds: number;
+    weather: { description: string }[];
+    dew_point: number;
+    feels_like: number;
+    humidity: number;
+    temp: number;
+    uvi: number;
+    visibility: number;
+    wind_gust?: number;
+    wind_deg: number;
+    wind_speed: number;
+    sunrise: number;
+    sunset: number;
+    dt: number;
+  };
+  daily: WeatherItem[];
+  timezone: string;
+  lat: number;
+  lon: number;
+}
+
+type CurrentWeatherProps = {
+  data: WeatherData;
+}
+
 export type {
   BottomProps,
   WeatherDetail,
@@ -108,5 +137,7 @@ export type {
   LoadOptionsResponse,
   GeoApiOptionsType,
   WarningsProps,
-  Alert
+  Alert,
+  WeatherData,
+  CurrentWeatherProps
 }

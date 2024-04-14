@@ -1,7 +1,7 @@
 import "../css/CurrentWeather.css";
 
-import React from "react";
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
+import { CurrentWeatherProps } from "../models/props";
 import { Bottom } from "./Bottom";
 import { Forecast } from "./Forecast";
 import { Middle } from "./Middle";
@@ -14,7 +14,7 @@ import { Top } from "./Top";
  * @param {Object} data - The weather data object.
  * @returns {JSX.Element} The CurrentWeather component.
  */
-const CurrentWeather = ({ data }) => {
+const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const alert = data.alerts;
   const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
@@ -36,12 +36,9 @@ const CurrentWeather = ({ data }) => {
   /**
    * 10km is the maximum reported distance which is why we cap miles at 6.0
    * Represents the visibility of the current weather.
-   * @type {string}
    */
-  const visibility =
-    getMiles(data.current.visibility).toFixed(2) > 6.0
-      ? "6.0"
-      : getMiles(data.current.visibility).toFixed(2);
+  const visibilityMiles = getMiles(data.current.visibility);
+  const visibility = visibilityMiles > 6.0 ? 6.0 : visibilityMiles;
 
   /**
    * undefined is check here because there might be a case where this goes unreported resulting in NaN.
@@ -52,8 +49,7 @@ const CurrentWeather = ({ data }) => {
    * This ensures that undefined will always hold its original, expected value.
    */
   const wind_gust =
-    Math.floor(data.current.wind_gust) < 0 ||
-    typeof data.current.wind_gust === "undefined"
+    typeof data.current.wind_gust === "undefined" || data.current.wind_gust < 0
       ? 0
       : Math.floor(data.current.wind_gust);
 
