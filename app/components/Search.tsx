@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
