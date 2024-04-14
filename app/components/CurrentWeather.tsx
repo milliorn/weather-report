@@ -16,7 +16,7 @@ import { Top } from "./Top";
  */
 const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const alert = data.alerts;
-  const city = data.city.substr(0, data.city.indexOf(",")); // Parse city name and omit the rest.
+  const city = data.city.substring(0, data.city.indexOf(",")); // Parse city name and omit the rest.
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
   const dailyLow = Math.floor(data.daily[0].temp.min);
