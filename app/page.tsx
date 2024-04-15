@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen mx-auto my-0 bg-cover"
+      className="min-h-screen mx-auto my-0 bg-cover text-black"
       style={{ backgroundImage: imageUrl }}
     >
       <Search onSearchChange={handleOnSearchChange} />
