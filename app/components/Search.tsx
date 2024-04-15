@@ -36,16 +36,33 @@ const Search = ({
         `${GEO_API_URL}/cities?offset=0&minPopulation=1&sort=-population&namePrefix=${inputValue}`,
         GeoApiOptions
       );
+
+      if (!fetchResponse.ok) {
+        throw new Error(`HTTP error! status: ${fetchResponse.status}`);
+      }
+
       const response: FetchResponseData = await fetchResponse.json();
+
+      // console.log(response); // Log to see what the response actually contains
+      if (!response.data || !Array.isArray(response.data)) {
+        console.error("Data is not in expected format:", response);
+        return { options: [] };
+      }
+
+      console.log(response); // Log to see what the response actually contains
+
       return {
-        options: response.data.map((city) => ({
-          value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name}, ${city.country}`,
-        })),
+        options:
+          response.data && Array.isArray(response.data)
+            ? response.data.map((city) => ({
+                value: `${city.latitude} ${city.longitude}`,
+                label: `${city.name}, ${city.country}`,
+              }))
+            : [],
       };
     } catch (err) {
       console.error(err);
-      return { options: [] };
+      return { options: [] }; // Ensure you return a consistent type
     }
   };
 
