@@ -1,6 +1,6 @@
 "use client";
 
-import "../css/CurrentWeather.css";
+import "../css/current-weather.css";
 
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { CurrentWeatherProps } from "../models/props";
