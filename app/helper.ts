@@ -9,18 +9,16 @@
  * getMoonPhase(0.9); // "Waning Crescent"
  * getMoonPhase(0); // "New Moon"
  */
-export function getMoonPhase(phase: number): string {
-  let phaseType = "";
-  if (phase > 0 && phase < 0.25) phaseType = "Waxing Crescent";
-  else if (phase === 0.25) phaseType = "First Quarter";
-  else if (phase > 0.25 && phase < 0.5) phaseType = "Waxing Gibbous";
-  else if (phase === 0.5) phaseType = "Full Moon";
-  else if (phase > 0.5 && phase < 0.75) phaseType = "Waning Gibbous";
-  else if (phase === 0.75) phaseType = "Last Quarter";
-  else if (phase > 0.75 && phase < 1) phaseType = "Waning Crescent";
-  else phaseType = "New Moon";
-  return phaseType;
-}
+const getMoonPhase = (phase: number): string => {
+  if (phase > 0 && phase < 0.25) return "Waxing Crescent";
+  else if (phase === 0.25) return "First Quarter";
+  else if (phase > 0.25 && phase < 0.5) return "Waxing Gibbous";
+  else if (phase === 0.5) return "Full Moon";
+  else if (phase > 0.5 && phase < 0.75) return "Waning Gibbous";
+  else if (phase === 0.75) return "Last Quarter";
+  else if (phase > 0.75 && phase < 1) return "Waning Crescent";
+  else return "New Moon";
+};
 
 /**
  * Converts a temperature from Fahrenheit to Celsius.
@@ -31,9 +29,7 @@ export function getMoonPhase(phase: number): string {
  * toCelsius(212); // 100
  * toCelsius(98.6); // 37
  */
-export function toCelsius(num: number): number {
-  return Math.floor((num - 32) * 0.5556);
-}
+const toCelsius = (num: number): number => Math.floor((num - 32) * 0.5556);
 
 /**
  * Returns the wind direction based on the given angle.
@@ -50,9 +46,8 @@ export function toCelsius(num: number): number {
  * getWindDirection(315); // "NW"
  * getWindDirection(360); // "N"
  */
-export function getWindDirection(direction: number): string {
-  return [ "N", "N/NE", "N/E", "E/NE", "E", "E/SE", "SE", "S/SE", "S", "S/SW", "SW", "W/SW", "W", "W/NW", "NW", "N/NW" ][ Math.round(direction / 22.5) % 16 ];
-}
+const getWindDirection = (direction: number): string =>
+  [ "N", "N/NE", "N/E", "E/NE", "E", "E/SE", "SE", "S/SE", "S", "S/SW", "SW", "W/SW", "W", "W/NW", "NW", "N/NW" ][ Math.round(direction / 22.5) % 16 ];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.
@@ -64,9 +59,7 @@ export function getWindDirection(direction: number): string {
  * toKph(45); // 72
  * toKph(100); // 160
  */
-export function toKph(speed: number): number {
-  return Math.floor(speed * 1.609344);
-}
+const toKph = (speed: number): number => Math.floor(speed * 1.609344);
 
 /**
  * Parses the given time value and returns a formatted date string based on the provided locale and timezone.
@@ -77,11 +70,11 @@ export function toKph(speed: number): number {
  * @example
  * parseTime(1620000000, "en-US", "America/New_York"); // "5/3/2021, 12:00:00 AM"
  */
-export function parseTime(time: number, locale: string, timezone: string): string {
+const parseTime = (time: number, locale: string, timezone: string): string => {
   const dateTime = new Date(0);
   dateTime.setUTCSeconds(time);
   return dateTime.toLocaleString(locale, { timeZone: timezone }).split(",").pop() as string;
-}
+};
 
 /**
  * Converts meters to miles.
@@ -92,9 +85,7 @@ export function parseTime(time: number, locale: string, timezone: string): strin
  * getMiles(8046.72); // 5
  * getMiles(32186.9); // 20
  */
-export function getMiles(meters: number): number {
-  return meters * 0.000621371192;
-}
+const getMiles = (meters: number): number => meters * 0.000621371192;
 
 /**
  * Returns the day of the week for a given item.
@@ -109,9 +100,8 @@ export function getMiles(meters: number): number {
  * dayOfWeek({ dt: 1620432000 }); // "Sat"
  * dayOfWeek({ dt: 1620518400 }); // "Sun"
  */
-export function dayOfWeek(item: { dt: number }): string {
-  return new Date(item.dt * 1000).toString().split(" ").slice(0, 3).join(" ").trim();
-}
+const dayOfWeek = (item: { dt: number }): string =>
+  new Date(item.dt * 1000).toString().split(" ").slice(0, 3).join(" ").trim();
 
 /**
  * Converts millimeters to inches.
@@ -123,6 +113,6 @@ export function dayOfWeek(item: { dt: number }): string {
  * mmToInches(76.2); // 3
  * mmToInches(101.6); // 4
  */
-export function mmToInches(data: number): number {
-  return data / 25.4;
-}
+const mmToInches = (data: number): number => data / 25.4;
+
+export { getMoonPhase, toCelsius, getWindDirection, toKph, parseTime, getMiles, dayOfWeek, mmToInches };
