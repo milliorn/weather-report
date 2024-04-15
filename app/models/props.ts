@@ -122,7 +122,7 @@ type WeatherData = {
 }
 
 type CurrentWeatherProps = {
-  data: CurrentWeatherData;  // Ensure this matches your state type if updated
+  data: CurrentWeatherData;
 }
 
 type CurrentWeatherData = {
@@ -148,8 +148,12 @@ type CurrentWeatherData = {
   lat: number;
   lon: number;
   timezone: string;
-};
+}
 
+type TopProps = {
+  city: string;
+  currentTime: string;
+}
 
 export type {
   Alert,
@@ -163,6 +167,7 @@ export type {
   GeoApiOptionsType,
   LoadOptionsResponse,
   SearchData,
+  TopProps,
   WarningsProps,
   WeatherData,
   WeatherDetail,
