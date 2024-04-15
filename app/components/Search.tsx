@@ -1,74 +1,71 @@
-"use client";
-
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
-import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
+import {
+  AsyncPaginate,
+  LoadOptions,
+  Response,
+} from "react-select-async-paginate";
 import {
   FetchResponseData,
   GeoApiOptionsType,
   SearchData,
+  SearchProps,
 } from "../models/props";
 
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 
-const GeoApiOptions: GeoApiOptionsType = {
+const geoApiOptions: GeoApiOptionsType = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "", // Default to an empty string if undefined
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "",
     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
   },
 };
 
-const Search = ({
-  onSearchChange,
-}: {
-  onSearchChange: (searchData: SearchData | null) => void;
-}): JSX.Element => {
+type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>; // Add 'any' if additional data type is not specified
+
+/**
+ * Search component for searching cities.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSearchChange - The function to be called when the search value changes.
+ * @returns {JSX.Element} The Search component.
+ */
+const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<SearchData | null>(null);
 
   const loadOptions: LoadOptions<
     SearchData,
     GroupBase<SearchData>,
     string
-  > = async (inputValue) => {
+  > = async (inputValue: string): Promise<LoadOptionsResponse> => {
     try {
-      const fetchResponse = await fetch(
-        `${GEO_API_URL}/cities?offset=0&minPopulation=1&sort=-population&namePrefix=${inputValue}`,
-        GeoApiOptions
+      const response = await fetch(
+        `${GEO_API_URL}/cities?minPopulation=1000&sort=-population&namePrefix=${inputValue}`,
+        geoApiOptions
       );
+      const responseData: FetchResponseData = await response.json();
 
-      if (!fetchResponse.ok) {
-        throw new Error(`HTTP error! status: ${fetchResponse.status}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const response: FetchResponseData = await fetchResponse.json();
-
-      // console.log(response); // Log to see what the response actually contains
-      if (!response.data || !Array.isArray(response.data)) {
-        console.error("Data is not in expected format:", response);
-        return { options: [] };
-      }
-
-      console.log(response); // Log to see what the response actually contains
 
       return {
-        options:
-          response.data && Array.isArray(response.data)
-            ? response.data.map((city) => ({
-                value: `${city.latitude} ${city.longitude}`,
-                label: `${city.name}, ${city.country}`,
-              }))
-            : [],
+        options: responseData.data.map((city) => ({
+          value: `${city.latitude} ${city.longitude}`,
+          label: `${city.name}, ${city.country}`,
+        })),
       };
-    } catch (err) {
-      console.error(err);
-      return { options: [] }; // Ensure you return a consistent type
+    } catch (error) {
+      console.error("Failed to load options:", error);
+      return { options: [] };
     }
   };
 
   const handleOnChange = (newValue: SingleValue<SearchData>) => {
     setSearch(newValue);
-    onSearchChange(newValue);
+    if (newValue) onSearchChange(newValue);
   };
 
   return (

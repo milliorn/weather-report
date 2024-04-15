@@ -72,10 +72,6 @@ type SearchData = {
   label: string;
 }
 
-type LoadOptionsResponse = {
-  options: CityOptions[];
-}
-
 type GeoApiOptionsType = {
   method: string;
   headers: {
@@ -155,6 +151,10 @@ type TopProps = {
   currentTime: string;
 }
 
+type SearchProps = {
+  onSearchChange: (searchData: SearchData | null) => void;
+}
+
 export type {
   Alert,
   BottomProps,
@@ -165,8 +165,8 @@ export type {
   FetchResponseData,
   ForecastProps,
   GeoApiOptionsType,
-  LoadOptionsResponse,
   SearchData,
+  SearchProps,
   TopProps,
   WarningsProps,
   WeatherData,
