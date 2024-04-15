@@ -8,6 +8,7 @@ import {
 import {
   FetchResponseData,
   GeoApiOptionsType,
+  LoadOptionsResponse,
   SearchData,
   SearchProps,
 } from "../models/props";
@@ -21,8 +22,6 @@ const geoApiOptions: GeoApiOptionsType = {
     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
   },
 };
-
-type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>; // Add 'any' if additional data type is not specified
 
 /**
  * Search component for searching cities.

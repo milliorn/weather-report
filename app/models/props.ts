@@ -1,3 +1,8 @@
+"use client";
+
+import { GroupBase } from "react-select";
+import { Response } from "react-select-async-paginate";
+
 type BottomProps = {
   alert: any[];
   clouds: number;
@@ -155,6 +160,15 @@ type SearchProps = {
   onSearchChange: (searchData: SearchData | null) => void;
 }
 
+type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>; // Add 'any' if additional data type is not specified
+
+type MiddleProps = {
+  dailyHigh: number;
+  dailyLow: number;
+  description: string;
+  temp: number;
+};
+
 export type {
   Alert,
   BottomProps,
@@ -165,6 +179,8 @@ export type {
   FetchResponseData,
   ForecastProps,
   GeoApiOptionsType,
+  LoadOptionsResponse,
+  MiddleProps,
   SearchData,
   SearchProps,
   TopProps,
@@ -172,4 +188,4 @@ export type {
   WeatherData,
   WeatherDetail,
   WeatherItem,
-}
+};

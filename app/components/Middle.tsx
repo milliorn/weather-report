@@ -1,25 +1,22 @@
 "use client";
 
 import { toCelsius } from "../helper";
+import { MiddleProps } from "../models/props";
 
 /**
  * Renders the middle section of the weather component.
- * @param {Object} props - The component props.
- * @param {number} props.dailyHigh - The daily high temperature in Fahrenheit.
- * @param {number} props.dailyLow - The daily low temperature in Fahrenheit.
- * @param {string} props.description - The weather description.
- * @param {number} props.temp - The current temperature in Fahrenheit.
+ *
+ * @param {MiddleProps} props - The component props.
  * @returns {JSX.Element} The rendered middle section.
  */
-export const Middle = (props: {
-  dailyHigh: number;
-  dailyLow: number;
-  description: string;
-  temp: number;
-}): JSX.Element => {
-  const { dailyHigh, dailyLow, description, temp } = props;
-  const fToCLow = toCelsius(dailyLow);
+export const Middle = ({
+  dailyHigh,
+  dailyLow,
+  description,
+  temp,
+}: MiddleProps): JSX.Element => {
   const fToCHigh = toCelsius(dailyHigh);
+  const fToCLow = toCelsius(dailyLow);
   const fToTemp = toCelsius(temp);
 
   return (
