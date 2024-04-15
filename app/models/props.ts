@@ -122,22 +122,49 @@ type WeatherData = {
 }
 
 type CurrentWeatherProps = {
-  data: WeatherData;
+  data: CurrentWeatherData;  // Ensure this matches your state type if updated
 }
 
+type CurrentWeatherData = {
+  alerts: Alert[];
+  city: string;
+  current: {
+    clouds: number;
+    weather: { description: string }[];
+    dew_point: number;
+    feels_like: number;
+    humidity: number;
+    temp: number;
+    uvi: number;
+    visibility: number;
+    wind_gust?: number;
+    wind_deg: number;
+    wind_speed: number;
+    sunrise: number;
+    sunset: number;
+    dt: number;
+  };
+  daily: WeatherItem[];
+  lat: number;
+  lon: number;
+  timezone: string;
+};
+
+
 export type {
+  Alert,
   BottomProps,
-  WeatherDetail,
-  WeatherItem,
-  ForecastProps,
   BuildPanelProps,
   CityOptions,
+  CurrentWeatherData,
+  CurrentWeatherProps,
   FetchResponseData,
-  SearchData,
-  LoadOptionsResponse,
+  ForecastProps,
   GeoApiOptionsType,
+  LoadOptionsResponse,
+  SearchData,
   WarningsProps,
-  Alert,
   WeatherData,
-  CurrentWeatherProps
+  WeatherDetail,
+  WeatherItem,
 }

@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
-import { SearchData } from "./models/props";
+import { CurrentWeatherData, SearchData } from "./models/props";
 
 export default function Home() {
-  const [currentWeather, setCurrentWeather] = useState<any>(null);
+  const [currentWeather, setCurrentWeather] =
+    useState<CurrentWeatherData | null>(null);
 
   /**
    * Handles the change event of the search input.
@@ -33,7 +34,11 @@ export default function Home() {
         return response.json();
       })
       .then((weatherResponse) => {
-        setCurrentWeather({ city: searchData.label, ...weatherResponse });
+        setCurrentWeather({
+          city: searchData.label,
+          alerts: weatherResponse.alerts || [],
+          ...weatherResponse,
+        });
       })
       .catch((error) => {
         console.warn("Failed to fetch weather data:", error);
