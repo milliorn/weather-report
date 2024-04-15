@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ActionMeta, GroupBase, SingleValue } from "react-select";
+import { GroupBase, SingleValue } from "react-select";
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
 import {
   FetchResponseData,
@@ -49,10 +49,7 @@ const Search = ({
     }
   };
 
-  const handleOnChange = (
-    newValue: SingleValue<SearchData>,
-    actionMeta: ActionMeta<SearchData>
-  ) => {
+  const handleOnChange = (newValue: SingleValue<SearchData>) => {
     setSearch(newValue);
     onSearchChange(newValue);
   };
@@ -60,12 +57,16 @@ const Search = ({
   return (
     <label>
       <AsyncPaginate
-        id="searchbar"
-        placeholder="Click here and type city name."
+        /* fix for Warning: Prop `id` did not match. Server: "react-select-6-live-region" Client: "react-select-2-live-region"
+      https://github.com/JedWatson/react-select/issues/5459#issuecomment-1312245530
+      */
         debounceTimeout={600}
-        value={search}
-        onChange={handleOnChange}
+        id="searchbar"
+        instanceId={"searchbar"}
         loadOptions={loadOptions}
+        onChange={handleOnChange}
+        placeholder="Click here and type city name."
+        value={search}
       />
     </label>
   );
