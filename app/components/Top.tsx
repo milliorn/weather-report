@@ -11,7 +11,8 @@ import { TopProps } from "../models/componentProps";
  * @param {string} props.currentTime - The current time.
  * @returns {JSX.Element} The rendered top section.
  */
-const Top = ({ city, currentTime }: TopProps): JSX.Element => {
+const Top = (props: TopProps): JSX.Element => {
+  const { city, currentTime } = props;
   const data = [city, currentTime];
 
   return (
