@@ -1,9 +1,10 @@
+"use client";
+
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
 import {
   AsyncPaginate,
-  LoadOptions,
-  Response,
+  LoadOptions
 } from "react-select-async-paginate";
 import {
   FetchResponseData,

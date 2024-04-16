@@ -9,7 +9,7 @@ import { MiddleProps } from "../models/props";
  * @param {MiddleProps} props - The component props.
  * @returns {JSX.Element} The rendered middle section.
  */
-export const Middle = ({
+const Middle = ({
   dailyHigh,
   dailyLow,
   description,
@@ -42,3 +42,5 @@ export const Middle = ({
     </div>
   );
 };
+
+export default Middle;

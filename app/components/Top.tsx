@@ -11,7 +11,7 @@ import { TopProps } from "../models/props";
  * @param {string} props.currentTime - The current time.
  * @returns {JSX.Element} The rendered top section.
  */
-export const Top = ({ city, currentTime }: TopProps): JSX.Element => {
+const Top = ({ city, currentTime }: TopProps): JSX.Element => {
   const data = [city, currentTime];
 
   return (
@@ -29,3 +29,5 @@ export const Top = ({ city, currentTime }: TopProps): JSX.Element => {
     </div>
   );
 };
+
+export default Top;

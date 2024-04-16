@@ -1,10 +1,11 @@
 "use client";
+
 import {
-  toCelsius,
-  toKph,
+  getMoonPhase,
   mmToInches,
   parseTime,
-  getMoonPhase,
+  toCelsius,
+  toKph,
 } from "../helper";
 import { BuildPanelProps } from "../models/props";
 
@@ -13,7 +14,7 @@ import { BuildPanelProps } from "../models/props";
  * @param {Object} value - The weather data object.
  * @returns {JSX.Element[]} An array of JSX elements representing the weather panel.
  */
-export const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
+const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
   const { timezone } = value;
 
   const clouds = value.item.clouds + "%";
@@ -71,3 +72,5 @@ export const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
     );
   });
 };
+
+export default DailyWeatherPanel;

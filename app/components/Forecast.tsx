@@ -8,15 +8,10 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import {
-  dayOfWeek,
-  getMoonPhase,
-  mmToInches,
-  parseTime,
-  toCelsius,
-  toKph,
+  dayOfWeek, toCelsius
 } from "../helper";
-import { BuildPanelProps, ForecastProps } from "../models/props";
-import { DailyWeatherPanel } from "./DailyWeatherPanel";
+import { ForecastProps } from "../models/props";
+import DailyWeatherPanel from "./DailyWeatherPanel";
 
 /**
  * This pagination builds the panels below the bottom element

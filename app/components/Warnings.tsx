@@ -14,7 +14,7 @@ import { WarningsProps } from "../models/props";
  * @param {Array} props.alert - The alert data.
  * @returns {JSX.Element|null} The rendered warning component or null if no alert data is provided.
  */
-export const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
+const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
   if (!alert || !alert.length) return null;
 
   if (Array.isArray(alert) && alert.length > 0) {
@@ -42,3 +42,5 @@ export const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
   }
   return null;
 };
+
+export default Warnings;

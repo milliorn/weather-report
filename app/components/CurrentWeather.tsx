@@ -4,10 +4,10 @@ import "../css/current-weather.css";
 
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { CurrentWeatherProps } from "../models/props";
-import { Bottom } from "./Bottom";
+import Bottom from "./Bottom";
 import { Forecast } from "./Forecast";
-import { Middle } from "./Middle";
-import { Top } from "./Top";
+import Middle from "./Middle";
+import Top from "./Top";
 
 /**
  * Renders the current weather information.

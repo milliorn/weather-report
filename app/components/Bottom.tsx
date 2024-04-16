@@ -2,7 +2,7 @@
 
 import { toCelsius, toKph } from "../helper";
 import { BottomProps, WeatherDetail } from "../models/props";
-import { Warnings } from "./Warnings";
+import Warnings from "./Warnings";
 
 /**
  * Renders the bottom component that displays weather details.
@@ -25,7 +25,7 @@ import { Warnings } from "./Warnings";
  * @param {number} props.wind_gust - The wind gust speed.
  * @returns {JSX.Element} The rendered bottom component.
  */
-export const Bottom = (props: BottomProps): JSX.Element => {
+const Bottom = (props: BottomProps): JSX.Element => {
   const {
     alert,
     clouds,
@@ -103,3 +103,5 @@ export const Bottom = (props: BottomProps): JSX.Element => {
     </div>
   );
 };
+
+export default Bottom;
