@@ -9,12 +9,9 @@ import { MiddleProps } from "../models/componentProps";
  * @param {MiddleProps} props - The component props.
  * @returns {JSX.Element} The rendered middle section.
  */
-const Middle = ({
-  dailyHigh,
-  dailyLow,
-  description,
-  temp,
-}: MiddleProps): JSX.Element => {
+const Middle = (props: MiddleProps): JSX.Element => {
+  const { dailyHigh, dailyLow, description, temp } = props;
+
   const fToCHigh = toCelsius(dailyHigh);
   const fToCLow = toCelsius(dailyLow);
   const fToTemp = toCelsius(temp);
