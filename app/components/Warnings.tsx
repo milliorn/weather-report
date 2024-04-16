@@ -38,7 +38,7 @@ const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
 
         return (
           <div key={index} className="alert-message">
-            <p className="pb-3 uppercase text-2xl">
+            <p className="py-4 uppercase text-2xl">
               Warning: <span className="capitalize">{weather.tags[0]}</span>
             </p>
             <p className="text-lg">
@@ -46,7 +46,7 @@ const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
               {format(startDate, "PPP")} until {format(endDate, "p")} on{" "}
               {format(endDate, "PPP")}.
             </p>
-            <p>{weather.description}</p>
+            <p className="my-4">{weather.description}</p>
           </div>
         );
       })}
