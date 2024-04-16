@@ -15,32 +15,43 @@ import { WarningsProps } from "../models/componentProps";
  * @returns {JSX.Element|null} The rendered warning component or null if no alert data is provided.
  */
 const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
-  if (!alert || !alert.length) return null;
+  if (!alert || alert.length === 0) return null;
 
-  if (Array.isArray(alert) && alert.length > 0) {
-    return (
-      <div className="py-4">
-        {alert.map((weather, index) => (
+  // Create a map to deduplicate alerts based on a unique identifier
+  const uniqueAlertMap = new Map();
+
+  alert.forEach((a) => {
+    const key = `${a.sender_name}_${a.start}_${a.end}_${a.tags.join("_")}`; // Create a unique key based on the sender name, start, end, and tags
+    if (!uniqueAlertMap.has(key)) {
+      // If the alert is not already in the map, add it
+      uniqueAlertMap.set(key, a); // Add the alert to the map
+    }
+  });
+
+  const uniqueAlerts = Array.from(uniqueAlertMap.values()); // Get the unique alerts from the map
+
+  return (
+    <div className="py-4">
+      {uniqueAlerts.map((weather, index) => {
+        const startDate = new Date(weather.start * 1000);
+        const endDate = new Date(weather.end * 1000);
+
+        return (
           <div key={index} className="alert-message">
-            <p className="pb-3 uppercase sm:pb-4 text-2xl drop-shadow-md">
-              Warning: <span className="p-1 capitalize">{weather.tags[0]}</span>
+            <p className="pb-3 uppercase text-2xl">
+              Warning: <span className="capitalize">{weather.tags[0]}</span>
             </p>
-            <p className="pb-3 sm:pb-4 text-lg md:text-xl drop-shadow-md">
-              Issued by {weather.sender_name} at{" "}
-              {format(new Date(weather.start * 1000), "p")} on{" "}
-              {format(new Date(weather.start * 1000), "PPP")} until{" "}
-              {format(new Date(weather.end * 1000), "p")} on{" "}
-              {format(new Date(weather.end * 1000), "PPP")}.
+            <p className="text-lg">
+              Issued by {weather.sender_name} at {format(startDate, "p")} on{" "}
+              {format(startDate, "PPP")} until {format(endDate, "p")} on{" "}
+              {format(endDate, "PPP")}.
             </p>
-            <p className="pb-3 text-lg sm:pb-4 2xl:text-xl drop-shadow-md">
-              {weather.description}
-            </p>
+            <p>{weather.description}</p>
           </div>
-        ))}
-      </div>
-    );
-  }
-  return null;
+        );
+      })}
+    </div>
+  );
 };
 
 export default Warnings;
