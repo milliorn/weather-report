@@ -7,22 +7,22 @@ import Warnings from "./Warnings";
 /**
  * Renders the bottom component that displays weather details.
  * @param {Object} props - The component props.
- * @param {string} props.alert - The weather alert.
  * @param {number} props.clouds - The cloudiness percentage.
  * @param {number} props.dew_point - The dew point temperature.
  * @param {number} props.heatIndex - The heat index temperature.
  * @param {number} props.humidity - The humidity percentage.
  * @param {number} props.lat - The latitude.
  * @param {number} props.lon - The longitude.
+ * @param {number} props.uvi - The UV index.
+ * @param {number} props.visibility - The visibility distance.
+ * @param {number} props.windSpeed - The wind speed.
+ * @param {number} props.wind_gust - The wind gust speed.
+ * @param {string} props.alert - The weather alert.
  * @param {string} props.moonPhase - The moon phase.
  * @param {string} props.sunrise - The sunrise time.
  * @param {string} props.sunset - The sunset time.
  * @param {string} props.timezone - The timezone.
- * @param {number} props.uvi - The UV index.
- * @param {number} props.visibility - The visibility distance.
  * @param {string} props.windDirection - The wind direction.
- * @param {number} props.windSpeed - The wind speed.
- * @param {number} props.wind_gust - The wind gust speed.
  * @returns {JSX.Element} The rendered bottom component.
  */
 const Bottom = (props: BottomProps): JSX.Element => {
