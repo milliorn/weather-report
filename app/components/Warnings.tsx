@@ -1,7 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
-import { WarningsProps } from "../models/props";
+import { WarningsProps } from "../models/componentProps";
 
 /**
  * https://stackoverflow.com/a/20940191/11986604

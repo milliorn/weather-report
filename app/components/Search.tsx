@@ -2,17 +2,14 @@
 
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
-import {
-  AsyncPaginate,
-  LoadOptions
-} from "react-select-async-paginate";
+import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
 import {
   FetchResponseData,
   GeoApiOptionsType,
   LoadOptionsResponse,
   SearchData,
-  SearchProps,
-} from "../models/props";
+} from "../models/apiTypes";
+import { SearchProps } from "../models/componentProps";
 
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 

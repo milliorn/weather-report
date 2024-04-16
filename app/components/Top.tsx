@@ -1,6 +1,6 @@
 "use client";
 
-import { TopProps } from "../models/props";
+import { TopProps } from "../models/componentProps";
 
 /**
  * Renders the top section of the page.

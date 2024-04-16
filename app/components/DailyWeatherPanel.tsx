@@ -7,7 +7,7 @@ import {
   toCelsius,
   toKph,
 } from "../helper";
-import { BuildPanelProps } from "../models/props";
+import { BuildPanelProps } from "../models/componentProps";
 
 /**
  * This builds the panel with weather information by mapping over the data and pushing its value into elements

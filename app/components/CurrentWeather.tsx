@@ -3,7 +3,7 @@
 import "../css/current-weather.css";
 
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
-import { CurrentWeatherProps } from "../models/props";
+import { CurrentWeatherProps } from "../models/componentProps";
 import Bottom from "./Bottom";
 import Forecast from "./Forecast";
 import Middle from "./Middle";

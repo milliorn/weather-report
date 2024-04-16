@@ -8,7 +8,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import { dayOfWeek, toCelsius } from "../helper";
-import { ForecastProps } from "../models/props";
+import { ForecastProps } from "../models/componentProps";
 import DailyWeatherPanel from "./DailyWeatherPanel";
 
 /**

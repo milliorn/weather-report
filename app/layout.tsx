@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@/app/css/globals.css";
+import type { Metadata } from "next";
 
+/**
+ * Represents the metadata for a weather report application.
+ */
 export const metadata: Metadata = {
   authors: [{ name: "Scott Milliorn", url: "https://milliorn.xyz/" }],
   description:
@@ -26,6 +28,12 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Root layout component.
+ *
+ * @param children - The content to be rendered inside the layout.
+ * @returns The rendered layout.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

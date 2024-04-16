@@ -1,7 +1,8 @@
 "use client";
 
 import { toCelsius, toKph } from "../helper";
-import { BottomProps, WeatherDetail } from "../models/props";
+import { BottomProps } from "../models/componentProps";
+import { WeatherDetail } from "../models/weatherTypes";
 import Warnings from "./Warnings";
 
 /**

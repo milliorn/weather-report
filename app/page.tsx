@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
-import { CurrentWeatherData, SearchData } from "./models/props";
+import { SearchData } from "./models/apiTypes";
+import { CurrentWeatherData } from "./models/componentProps";
 
 export default function Home() {
   const [currentWeather, setCurrentWeather] =
