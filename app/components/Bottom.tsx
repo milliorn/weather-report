@@ -77,32 +77,27 @@ export const Bottom = (props: BottomProps): JSX.Element => {
     { id: "Longitude", result: lon },
   ];
 
-  /**
-   * Renders the bottom section of the component.
-   *
-   * @returns {JSX.Element[]} An array of JSX elements representing the bottom section.
-   */
-  const BuildBottom = (): JSX.Element[] =>
-    data.map((e, i) => {
-      return (
-        <div
-          key={i}
-          className="flex justify-between text-sm drop-shadow-md section-row"
-        >
-          <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
-            {e.id}
-          </span>
-          <span className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl">
-            {e.result}
-          </span>
-        </div>
-      );
-    });
-
   return (
     <div className="flex items-center justify-between bottom">
       <div className="w-full p-1 details">
-        <BuildBottom />
+        {data.map((e, i) => {
+          return (
+            <div
+              key={i}
+              className="flex justify-between text-sm drop-shadow-md section-row"
+            >
+              <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
+                {e.id}
+              </span>
+              <span
+                className="font-semibold text-right section-result drop-shadow-md sm:text-xl md:text-2xl 2xl:text-2xl"
+                aria-label={`Weather detail for ${e.id}: ${e.result}`}
+              >
+                {e.result}
+              </span>
+            </div>
+          );
+        })}
         <Warnings alert={alert} />
       </div>
     </div>
