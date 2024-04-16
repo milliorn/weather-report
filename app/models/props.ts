@@ -56,6 +56,7 @@ type ForecastProps = {
 
 type BuildPanelProps = {
   item: WeatherItem;
+  timezone: string;
 }
 
 type CityOptions = {
