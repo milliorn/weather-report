@@ -7,9 +7,7 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-import {
-  dayOfWeek, toCelsius
-} from "../helper";
+import { dayOfWeek, toCelsius } from "../helper";
 import { ForecastProps } from "../models/props";
 import DailyWeatherPanel from "./DailyWeatherPanel";
 
@@ -22,7 +20,7 @@ import DailyWeatherPanel from "./DailyWeatherPanel";
  * @param {string} props.timezone - The timezone.
  * @returns {JSX.Element} The Forecast component.
  */
-export const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
+const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
   return (
     <div className="mt-4">
       <Accordion allowZeroExpanded>
@@ -58,3 +56,5 @@ export const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
     </div>
   );
 };
+
+export default Forecast;

@@ -5,7 +5,7 @@ import "../css/current-weather.css";
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
 import { CurrentWeatherProps } from "../models/props";
 import Bottom from "./Bottom";
-import { Forecast } from "./Forecast";
+import Forecast from "./Forecast";
 import Middle from "./Middle";
 import Top from "./Top";
 
@@ -64,7 +64,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
 
   return (
-    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12">
+    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 backdrop-filter backdrop-blur-sm bg-opacity-50">
       <Top city={city} currentTime={currentTime} />
 
       <Middle
