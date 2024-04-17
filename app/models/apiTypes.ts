@@ -4,8 +4,8 @@ import { GroupBase } from "react-select";
 import { Response } from "react-select-async-paginate";
 
 type CityOptions = {
-  value: string;
   label: string;
+  value: string;
 }
 
 /**
@@ -21,8 +21,8 @@ type FetchResponseData = {
 }
 
 type SearchData = {
-  value: string;
   label: string;
+  value: string;
 }
 
 type GeoApiOptionsType = {

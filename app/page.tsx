@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
+import { IMAGE_URL, WEATHER_API_URL } from "./config";
 import { SearchData } from "./models/apiTypes";
 import { CurrentWeatherData } from "./models/componentProps";
 
@@ -23,7 +24,6 @@ export default function Home() {
     }
 
     const [latitude, longitude] = searchData.value.split(" ");
-    const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
     fetch(
       `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=imperial`
@@ -47,12 +47,10 @@ export default function Home() {
       });
   };
 
-  const imageUrl = `url("https://source.unsplash.com/random/?weather")`;
-
   return (
     <div
       className="min-h-screen mx-auto my-0 bg-cover text-black"
-      style={{ backgroundImage: imageUrl }}
+      style={{ backgroundImage: IMAGE_URL }}
     >
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}

@@ -3,23 +3,13 @@
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
+import { GEO_API_OPTIONS, GEO_API_URL } from "../config";
 import {
   FetchResponseData,
-  GeoApiOptionsType,
   LoadOptionsResponse,
-  SearchData,
+  SearchData
 } from "../models/apiTypes";
 import { SearchProps } from "../models/componentProps";
-
-const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
-
-const geoApiOptions: GeoApiOptionsType = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "",
-    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-  },
-};
 
 /**
  * Search component for searching cities.
@@ -40,7 +30,7 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
     try {
       const response = await fetch(
         `${GEO_API_URL}/cities?minPopulation=1000&sort=-population&namePrefix=${inputValue}`,
-        geoApiOptions
+        GEO_API_OPTIONS
       );
       const responseData: FetchResponseData = await response.json();
 
