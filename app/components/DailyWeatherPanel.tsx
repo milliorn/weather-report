@@ -5,7 +5,7 @@ import {
   mmToInches,
   parseTime,
   toCelsius,
-  toKph,
+  toKph
 } from "../helper";
 import { BuildPanelProps } from "../models/componentProps";
 
@@ -20,7 +20,7 @@ const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
   const clouds = value.item.clouds + "%";
   const description = value.item.weather[0].description;
   const humidity = value.item.humidity + "%";
-  const rain = value.item.pop * 100 + "%"; //Rain is given to us from 0-1, 1 meaning 100%
+  const rain = value.item.pop * 100 + "%"; // Rain is given to us from 0-1, 1 meaning 100%
   const uvi = value.item.uvi;
 
   const moon = getMoonPhase(value.item.moon_phase);
@@ -57,7 +57,7 @@ const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
     { id: "Wind", result: windSpeed },
     { id: "Gust", result: windGust },
     { id: "Sunrise", result: sunrise },
-    { id: "Sunset", result: sunset },
+    { id: "Sunset", result: sunset }
   ];
 
   return collection.map((e, i) => {

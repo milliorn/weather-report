@@ -15,7 +15,9 @@ import { WarningsProps } from "../models/componentProps";
  * @returns {JSX.Element|null} The rendered warning component or null if no alert data is provided.
  */
 const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
-  if (!alert || alert.length === 0) return null;
+  if (!alert || alert.length === 0) {
+    return null;
+  }
 
   // Create a map to deduplicate alerts based on a unique identifier
   const uniqueAlertMap = new Map();

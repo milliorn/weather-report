@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   formatDetection: {
     email: false,
     address: false,
-    telephone: false,
+    telephone: false
   },
   robots: {
     index: true,
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: true,
-    },
-  },
+      noimageindex: true
+    }
+  }
 };
 
 /**
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
  * @returns The rendered layout.
  */
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

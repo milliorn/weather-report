@@ -43,7 +43,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
     visibility,
     windDirection,
     windSpeed,
-    wind_gust,
+    wind_gust
   } = props;
 
   /**
@@ -54,11 +54,11 @@ const Bottom = (props: BottomProps): JSX.Element => {
   const data: WeatherDetail[] = [
     {
       id: "Feels like",
-      result: toCelsius(heatIndex) + "°C | " + heatIndex + "°F",
+      result: toCelsius(heatIndex) + "°C | " + heatIndex + "°F"
     },
     {
       id: "Dew Point",
-      result: toCelsius(dew_point) + "°C | " + dew_point + "°F",
+      result: toCelsius(dew_point) + "°C | " + dew_point + "°F"
     },
     { id: "Humidity", result: humidity + "%" },
     { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
@@ -70,12 +70,12 @@ const Bottom = (props: BottomProps): JSX.Element => {
     { id: "Clouds", result: clouds + "%" },
     {
       id: "Visibility",
-      result: toKph(visibility) + " km | " + Math.floor(visibility) + " mi",
+      result: toKph(visibility) + " km | " + Math.floor(visibility) + " mi"
     },
     { id: "Moon", result: moonPhase },
     { id: "Time Zone", result: timezone },
     { id: "Latitude", result: lat },
-    { id: "Longitude", result: lon },
+    { id: "Longitude", result: lon }
   ];
 
   return (

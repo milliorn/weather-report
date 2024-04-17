@@ -10,8 +10,8 @@ const GEO_API_OPTIONS: GeoApiOptionsType = {
   method: "GET",
   headers: {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "",
-    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-  },
+    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
+  }
 };
 
 export { WEATHER_API_URL, IMAGE_URL, GEO_API_URL, GEO_API_OPTIONS };

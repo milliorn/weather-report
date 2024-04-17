@@ -10,14 +10,23 @@
  * getMoonPhase(0); // "New Moon"
  */
 const getMoonPhase = (phase: number): string => {
-  if (phase > 0 && phase < 0.25) return "Waxing Crescent";
-  else if (phase === 0.25) return "First Quarter";
-  else if (phase > 0.25 && phase < 0.5) return "Waxing Gibbous";
-  else if (phase === 0.5) return "Full Moon";
-  else if (phase > 0.5 && phase < 0.75) return "Waning Gibbous";
-  else if (phase === 0.75) return "Last Quarter";
-  else if (phase > 0.75 && phase < 1) return "Waning Crescent";
-  else return "New Moon";
+  if (phase > 0 && phase < 0.25) {
+    return "Waxing Crescent";
+  } else if (phase === 0.25) {
+    return "First Quarter";
+  } else if (phase > 0.25 && phase < 0.5) {
+    return "Waxing Gibbous";
+  } else if (phase === 0.5) {
+    return "Full Moon";
+  } else if (phase > 0.5 && phase < 0.75) {
+    return "Waning Gibbous";
+  } else if (phase === 0.75) {
+    return "Last Quarter";
+  } else if (phase > 0.75 && phase < 1) {
+    return "Waning Crescent";
+  } else {
+    return "New Moon";
+  }
 };
 
 /**
@@ -73,7 +82,9 @@ const toKph = (speed: number): number => Math.floor(speed * 1.609344);
 const parseTime = (time: number, locale: string, timezone: string): string => {
   const dateTime = new Date(0);
   dateTime.setUTCSeconds(time);
-  return dateTime.toLocaleString(locale, { timeZone: timezone }).split(",").pop() as string;
+
+  return dateTime.toLocaleString(locale, { timeZone: timezone }).split(",")
+    .pop() as string;
 };
 
 /**
@@ -101,7 +112,11 @@ const getMiles = (meters: number): number => meters * 0.000621371192;
  * dayOfWeek({ dt: 1620518400 }); // "Sun"
  */
 const dayOfWeek = (item: { dt: number }): string =>
-  new Date(item.dt * 1000).toString().split(" ").slice(0, 3).join(" ").trim();
+  new Date(item.dt * 1000).toString()
+    .split(" ")
+    .slice(0, 3)
+    .join(" ")
+    .trim();
 
 /**
  * Converts millimeters to inches.

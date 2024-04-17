@@ -59,5 +59,4 @@ type WeatherData = {
   timezone: string;
 }
 
-
 export type { Alert, WeatherData, WeatherDetail, WeatherItem };

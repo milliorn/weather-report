@@ -38,7 +38,7 @@ export default function Home() {
         setCurrentWeather({
           city: searchData.label,
           alerts: weatherResponse.alerts || [],
-          ...weatherResponse,
+          ...weatherResponse
         });
       })
       .catch((error) => {

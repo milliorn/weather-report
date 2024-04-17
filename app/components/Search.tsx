@@ -41,8 +41,8 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
       return {
         options: responseData.data.map((city) => ({
           value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name}, ${city.country}`,
-        })),
+          label: `${city.name}, ${city.country}`
+        }))
       };
     } catch (error) {
       console.error("Failed to load options:", error);
@@ -52,7 +52,9 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
 
   const handleOnChange = (newValue: SingleValue<SearchData>) => {
     setSearch(newValue);
-    if (newValue) onSearchChange(newValue);
+    if (newValue) {
+      onSearchChange(newValue);
+    }
   };
 
   return (
