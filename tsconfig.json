@@ -1,26 +1,51 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "target": "es2020", // Set ECMAScript target version for JS features
+    "module": "esnext", // Use latest module standards
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // Specify libraries to be included in the compilation
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "skipLibCheck": false, // Do not skip type checking of declaration files
+    "strict": true, // Enable all strict type-checking options
+    "noImplicitAny": true, // Ensure no expressions and declarations with an implied 'any' type
+    "strictNullChecks": true, // When type checking, take into account 'null' and 'undefined'
+    "strictFunctionTypes": true, // Ensure function parameter types are correctly checked
+    "strictBindCallApply": true, // Ensure that the arguments for 'bind', 'call', and 'apply' methods match the original functions
+    "strictPropertyInitialization": true, // Ensure class properties are declared or definitely assigned in the constructor
+    "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
+    "alwaysStrict": true, // Parse all code in strict mode and emit "use strict" for each source file
+    "noEmit": true, // Do not emit outputs (handy when using alongside Babel or when only type-checking is needed)
+    "esModuleInterop": true, // Enables ES6 module compatibility with CommonJS modules
+    "moduleResolution": "node", // Choose the module resolution strategy: 'node' for Node.js, or 'classic'
+    "resolveJsonModule": true, // Allow importing .json files
+    "isolatedModules": true, // Ensure each file can be safely transpiled without relying on other imports
+    "jsx": "preserve", // Preserves all JSX code for further compilation by Babel
+    "incremental": true, // Enable incremental compilation by saving information about the project graph from the last compilation
     "plugins": [
+      {
+        "name": "typescript-tslint-plugin" // Enable TSLint for TypeScript files within the editor
+      },
       {
         "name": "next"
       }
     ],
+    "baseUrl": "./", // Set base directory to resolve non-relative module names
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ] // Map paths for imports
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ] // Exclude node_modules from the compilation process
 }
