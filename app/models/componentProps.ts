@@ -1,3 +1,5 @@
+"use client";
+
 import { SearchData } from "./apiTypes";
 import { Alert, WeatherItem } from "./weatherTypes";
 

@@ -1,3 +1,5 @@
+"use client";
+
 type Alert = {
   description: string;
   end: number;
