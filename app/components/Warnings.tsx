@@ -2,6 +2,7 @@
 
 import { format } from "date-fns";
 import { WarningsProps } from "../models/componentProps";
+import { MILLISECONDS_PER_SECOND } from "../config";
 
 /**
  * https://stackoverflow.com/a/20940191/11986604
@@ -23,20 +24,21 @@ const Warnings = ({ alert }: WarningsProps): JSX.Element | null => {
   const uniqueAlertMap = new Map();
 
   alert.forEach((a) => {
-    const key = `${a.sender_name}_${a.start}_${a.end}_${a.tags.join("_")}`; // Create a unique key based on the sender name, start, end, and tags
+     // Create a unique key based on the sender name, start, end, and tags
+    const key = `${a.sender_name}_${a.start}_${a.end}_${a.tags.join("_")}`;
     if (!uniqueAlertMap.has(key)) {
       // If the alert is not already in the map, add it
-      uniqueAlertMap.set(key, a); // Add the alert to the map
+      uniqueAlertMap.set(key, a);
     }
   });
 
-  const uniqueAlerts = Array.from(uniqueAlertMap.values()); // Get the unique alerts from the map
+  const uniqueAlerts = Array.from(uniqueAlertMap.values());
 
   return (
     <div className="py-4">
       {uniqueAlerts.map((weather, index) => {
-        const startDate = new Date(weather.start * 1000);
-        const endDate = new Date(weather.end * 1000);
+        const startDate = new Date(weather.start * MILLISECONDS_PER_SECOND);
+        const endDate = new Date(weather.end * MILLISECONDS_PER_SECOND);
 
         return (
           <div key={index} className="alert-message">
