@@ -1,7 +1,7 @@
 "use client";
 
-import { formatDate, processAlerts } from "../utils/weatherUtils";
 import { WarningsProps } from "../models/componentProps";
+import { formatDate, processAlerts } from "../utils/weatherUtils";
 
 /**
  * https://stackoverflow.com/a/20940191/11986604

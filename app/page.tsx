@@ -3,9 +3,9 @@
 import { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
-import { IMAGE_URL, WEATHER_API_URL } from "./utils/config";
 import { SearchData } from "./models/apiTypes";
 import { CurrentWeatherData } from "./models/componentProps";
+import { IMAGE_URL, WEATHER_API_URL } from "./utils/config";
 
 export default function Home() {
   const [currentWeather, setCurrentWeather] =

@@ -1,7 +1,7 @@
 "use client";
 
-import { toCelsius } from "../utils/weatherUtils";
 import { MiddleProps } from "../models/componentProps";
+import { toCelsius } from "../utils/weatherUtils";
 
 /**
  * Renders the middle section of the weather component.

@@ -92,7 +92,7 @@ const getWindDirection = (direction: number): string =>
     "W/NW",
     "NW",
     "N/NW"
-  ][ Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS ];
+  ][Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.
@@ -151,7 +151,8 @@ const getMiles = (meters: number): number => meters * MILES_CONVERSION_FACTOR;
  * dayOfWeek({ dt: 1620518400 }); // "Sun"
  */
 const dayOfWeek = (item: { dt: number }): string =>
-  new Date(item.dt * POPULATION_THRESHOLD).toString()
+  new Date(item.dt * POPULATION_THRESHOLD)
+    .toString()
     .split(" ")
     .slice(0, SLICE_END_INDEX)
     .join(" ")

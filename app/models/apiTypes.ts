@@ -6,7 +6,7 @@ import { Response } from "react-select-async-paginate";
 type CityOptions = {
   label: string;
   value: string;
-}
+};
 
 /**
  * Represents the response data structure returned by the fetch API.
@@ -18,12 +18,12 @@ type FetchResponseData = {
     longitude: number;
     name: string;
   }[];
-}
+};
 
 type SearchData = {
   label: string;
   value: string;
-}
+};
 
 type GeoApiOptionsType = {
   method: string;
@@ -31,7 +31,7 @@ type GeoApiOptionsType = {
     "X-RapidAPI-Host": string;
     "X-RapidAPI-Key": string;
   };
-}
+};
 
 // Add 'any' if additional data type is not specified
 type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>;
@@ -43,4 +43,3 @@ export type {
   LoadOptionsResponse,
   SearchData
 };
-

@@ -4,7 +4,7 @@ type Alert = {
   sender_name: string;
   start: number;
   tags: string[];
-}
+};
 
 type WeatherItem = {
   clouds: number;
@@ -24,7 +24,7 @@ type WeatherItem = {
     max: number;
   };
   dt: number;
-}
+};
 
 type WeatherDetail = {
   id: string;
@@ -57,6 +57,6 @@ type WeatherData = {
   lat: number;
   lon: number;
   timezone: string;
-}
+};
 
 export type { Alert, WeatherData, WeatherDetail, WeatherItem };
