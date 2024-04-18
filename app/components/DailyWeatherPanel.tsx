@@ -1,13 +1,13 @@
 "use client";
 
-import { PERCENT_MULTIPLIER, RAIN_PRECISION } from "../config";
+import { PERCENT_MULTIPLIER, RAIN_PRECISION } from "../utils/config";
 import {
   getMoonPhase,
   mmToInches,
   parseTime,
   toCelsius,
   toKph
-} from "../helper";
+} from "../utils/weatherUtils";
 import { BuildPanelProps } from "../models/componentProps";
 
 /**

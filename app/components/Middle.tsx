@@ -1,6 +1,6 @@
 "use client";
 
-import { toCelsius } from "../helper";
+import { toCelsius } from "../utils/weatherUtils";
 import { MiddleProps } from "../models/componentProps";
 
 /**

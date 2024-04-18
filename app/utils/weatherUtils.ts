@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+import { Alert } from "../models/weatherTypes";
 import {
   DIRECTION_SEGMENTS,
   FAHRENHEIT_BASE,
@@ -5,6 +7,7 @@ import {
   HALF_PHASE,
   KPH_CONVERSION_FACTOR,
   MILES_CONVERSION_FACTOR,
+  MILLISECONDS_PER_SECOND,
   MM_TO_INCHES,
   POPULATION_THRESHOLD,
   QUARTER_PHASE,
@@ -166,13 +169,56 @@ const dayOfWeek = (item: { dt: number }): string =>
  */
 const mmToInches = (data: number): number => data / MM_TO_INCHES;
 
+/**
+ * Generates a unique key for an alert.
+ *
+ * @param alert - The alert object.
+ * @returns The generated key.
+ */
+const generateAlertKey = (alert: Alert): string => {
+  return `${alert.sender_name}_${alert.start}_${alert.end}_${alert.tags.join(
+    "_"
+  )}`;
+};
+
+/**
+ * Processes an array of alerts and returns an array of unique alerts.
+ *
+ * @param alerts - The array of alerts to process.
+ * @returns An array of unique alerts.
+ */
+const processAlerts = (alerts: Alert[]): Alert[] => {
+  const uniqueAlertMap = new Map<string, Alert>();
+
+  alerts.forEach((alert) => {
+    const key = generateAlertKey(alert);
+    if (!uniqueAlertMap.has(key)) {
+      uniqueAlertMap.set(key, alert);
+    }
+  });
+
+  return Array.from(uniqueAlertMap.values());
+};
+
+/**
+ * Formats a timestamp into a string representation.
+ * @param timestamp - The timestamp to format.
+ * @returns The formatted string representation of the timestamp.
+ */
+const formatDate = (timestamp: number) => {
+  return format(new Date(timestamp * MILLISECONDS_PER_SECOND), "p 'on' PPP");
+};
+
 export {
-  getMoonPhase,
-  toCelsius,
-  getWindDirection,
-  toKph,
-  parseTime,
-  getMiles,
   dayOfWeek,
-  mmToInches
+  formatDate,
+  generateAlertKey,
+  getMiles,
+  getMoonPhase,
+  getWindDirection,
+  mmToInches,
+  parseTime,
+  processAlerts,
+  toCelsius,
+  toKph
 };

@@ -1,8 +1,8 @@
 "use client";
 
-import { MAX_VISIBILITY_MILES } from "../config";
+import { MAX_VISIBILITY_MILES } from "../utils/config";
 import "../css/current-weather.css";
-import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
+import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../utils/weatherUtils";
 import {
   CurrentWeatherData,
   CurrentWeatherProps
