@@ -1,3 +1,18 @@
+import {
+  DIRECTION_SEGMENTS,
+  FAHRENHEIT_BASE,
+  FAHRENHEIT_TO_CELSIUS,
+  HALF_PHASE,
+  KPH_CONVERSION_FACTOR,
+  MILES_CONVERSION_FACTOR,
+  MM_TO_INCHES,
+  POPULATION_THRESHOLD,
+  QUARTER_PHASE,
+  SLICE_END_INDEX,
+  THREE_QUARTER_PHASE,
+  WIND_DIRECTION_DIVISOR
+} from "./config";
+
 /**
  * Returns the moon phase based on the given phase value.
  * @param {number} phase - The phase value of the moon (between 0 and 1).
@@ -10,19 +25,19 @@
  * getMoonPhase(0); // "New Moon"
  */
 const getMoonPhase = (phase: number): string => {
-  if (phase > 0 && phase < 0.25) {
+  if (phase > 0 && phase < QUARTER_PHASE) {
     return "Waxing Crescent";
-  } else if (phase === 0.25) {
+  } else if (phase === QUARTER_PHASE) {
     return "First Quarter";
-  } else if (phase > 0.25 && phase < 0.5) {
+  } else if (phase > QUARTER_PHASE && phase < HALF_PHASE) {
     return "Waxing Gibbous";
-  } else if (phase === 0.5) {
+  } else if (phase === HALF_PHASE) {
     return "Full Moon";
-  } else if (phase > 0.5 && phase < 0.75) {
+  } else if (phase > HALF_PHASE && phase < THREE_QUARTER_PHASE) {
     return "Waning Gibbous";
-  } else if (phase === 0.75) {
+  } else if (phase === THREE_QUARTER_PHASE) {
     return "Last Quarter";
-  } else if (phase > 0.75 && phase < 1) {
+  } else if (phase > THREE_QUARTER_PHASE && phase < 1) {
     return "Waning Crescent";
   } else {
     return "New Moon";
@@ -38,7 +53,8 @@ const getMoonPhase = (phase: number): string => {
  * toCelsius(212); // 100
  * toCelsius(98.6); // 37
  */
-const toCelsius = (num: number): number => Math.floor((num - 32) * 0.5556);
+const toCelsius = (num: number): number =>
+  Math.floor((num - FAHRENHEIT_BASE) * FAHRENHEIT_TO_CELSIUS);
 
 /**
  * Returns the wind direction based on the given angle.
@@ -56,7 +72,24 @@ const toCelsius = (num: number): number => Math.floor((num - 32) * 0.5556);
  * getWindDirection(360); // "N"
  */
 const getWindDirection = (direction: number): string =>
-  [ "N", "N/NE", "N/E", "E/NE", "E", "E/SE", "SE", "S/SE", "S", "S/SW", "SW", "W/SW", "W", "W/NW", "NW", "N/NW" ][ Math.round(direction / 22.5) % 16 ];
+  [
+    "N",
+    "N/NE",
+    "N/E",
+    "E/NE",
+    "E",
+    "E/SE",
+    "SE",
+    "S/SE",
+    "S",
+    "S/SW",
+    "SW",
+    "W/SW",
+    "W",
+    "W/NW",
+    "NW",
+    "N/NW"
+  ][ Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS ];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.
@@ -68,7 +101,8 @@ const getWindDirection = (direction: number): string =>
  * toKph(45); // 72
  * toKph(100); // 160
  */
-const toKph = (speed: number): number => Math.floor(speed * 1.609344);
+const toKph = (speed: number): number =>
+  Math.floor(speed * KPH_CONVERSION_FACTOR);
 
 /**
  * Parses the given time value and returns a formatted date string based on the provided locale and timezone.
@@ -83,7 +117,9 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
   const dateTime = new Date(0);
   dateTime.setUTCSeconds(time);
 
-  return dateTime.toLocaleString(locale, { timeZone: timezone }).split(",")
+  return dateTime
+    .toLocaleString(locale, { timeZone: timezone })
+    .split(",")
     .pop() as string;
 };
 
@@ -96,7 +132,7 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
  * getMiles(8046.72); // 5
  * getMiles(32186.9); // 20
  */
-const getMiles = (meters: number): number => meters * 0.000621371192;
+const getMiles = (meters: number): number => meters * MILES_CONVERSION_FACTOR;
 
 /**
  * Returns the day of the week for a given item.
@@ -112,9 +148,9 @@ const getMiles = (meters: number): number => meters * 0.000621371192;
  * dayOfWeek({ dt: 1620518400 }); // "Sun"
  */
 const dayOfWeek = (item: { dt: number }): string =>
-  new Date(item.dt * 1000).toString()
+  new Date(item.dt * POPULATION_THRESHOLD).toString()
     .split(" ")
-    .slice(0, 3)
+    .slice(0, SLICE_END_INDEX)
     .join(" ")
     .trim();
 
@@ -128,6 +164,15 @@ const dayOfWeek = (item: { dt: number }): string =>
  * mmToInches(76.2); // 3
  * mmToInches(101.6); // 4
  */
-const mmToInches = (data: number): number => data / 25.4;
+const mmToInches = (data: number): number => data / MM_TO_INCHES;
 
-export { getMoonPhase, toCelsius, getWindDirection, toKph, parseTime, getMiles, dayOfWeek, mmToInches };
+export {
+  getMoonPhase,
+  toCelsius,
+  getWindDirection,
+  toKph,
+  parseTime,
+  getMiles,
+  dayOfWeek,
+  mmToInches
+};

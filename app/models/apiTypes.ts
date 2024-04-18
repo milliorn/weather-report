@@ -33,7 +33,8 @@ type GeoApiOptionsType = {
   };
 }
 
-type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>; // Add 'any' if additional data type is not specified
+// Add 'any' if additional data type is not specified
+type LoadOptionsResponse = Response<SearchData, GroupBase<SearchData>, any>;
 
 export type {
   CityOptions,
