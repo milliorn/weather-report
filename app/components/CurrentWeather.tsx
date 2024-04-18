@@ -2,83 +2,112 @@
 
 import { MAX_VISIBILITY_MILES } from "../config";
 import "../css/current-weather.css";
-
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
-import { CurrentWeatherProps } from "../models/componentProps";
+import {
+  CurrentWeatherData,
+  CurrentWeatherProps
+} from "../models/componentProps";
 import Bottom from "./Bottom";
 import Forecast from "./Forecast";
 import Middle from "./Middle";
 import Top from "./Top";
 
 /**
- * Renders the current weather information.
+ * Parses the weather data to be used in the component.
  *
- * @component
- * @param {Object} data - The weather data object.
- * @returns {JSX.Element} The CurrentWeather component.
+ * @param data - The weather data to be parsed.
+ * @returns The parsed weather data.
+ */
+const parseWeatherData = (data: CurrentWeatherData) => ({
+  alert: data.alerts,
+  clouds: data.current.clouds,
+  dailyHigh: Math.floor(data.daily[0].temp.max),
+  dailyLow: Math.floor(data.daily[0].temp.min),
+  description: data.current.weather[0].description,
+  dewPoint: Math.floor(data.current.dew_point),
+  heatIndex: Math.floor(data.current.feels_like),
+  humidity: data.current.humidity,
+  moonPhase: getMoonPhase(data.daily[0].moon_phase),
+  temp: Math.floor(data.current.temp),
+  timezone: data.timezone,
+  uvi: data.current.uvi,
+  visibility: getVisibility(data.current.visibility),
+  windDirection: getWindDirection(data.current.wind_deg),
+  windGust: getWindGust(data.current.wind_gust),
+  windSpeed: Math.floor(data.current.wind_speed)
+});
+
+/**
+ * Parses the city name from a string that includes the city and state.
+ *
+ * @param city - The string containing the city and state.
+ * @returns The parsed city name.
+ */
+const parseCity = (city: string) => city.substring(0, city.indexOf(","));
+
+/**
+ * Calculates the visibility in miles based on the provided visibility in meters.
+ * @param visibility - The visibility in meters.
+ * @returns The visibility in miles, capped at the maximum visibility defined by MAX_VISIBILITY_MILES.
+ */
+const getVisibility = (visibility: number) => {
+  const visibilityMiles = getMiles(visibility);
+
+  return visibilityMiles > MAX_VISIBILITY_MILES
+    ? MAX_VISIBILITY_MILES
+    : visibilityMiles;
+};
+
+/**
+ * Returns the wind gust value, rounded down to the nearest integer.
+ * If the wind gust value is undefined or less than 0, it returns 0.
+ *
+ * @param windGust - The wind gust value.
+ * @returns The rounded down wind gust value.
+ */
+const getWindGust = (windGust?: number) =>
+  typeof windGust === "undefined" || windGust < 0 ? 0 : Math.floor(windGust);
+
+/**
+ * Renders the current weather component.
+ *
+ * @param {CurrentWeatherProps} props - The component props.
+ * @returns {JSX.Element} The rendered component.
  */
 const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
-  const alert = data.alerts;
-  // Parse city name and omit the rest.
-  const city = data.city.substring(0, data.city.indexOf(","));
-  const clouds = data.current.clouds;
-  const dailyHigh = Math.floor(data.daily[0].temp.max);
-  const dailyLow = Math.floor(data.daily[0].temp.min);
-  const description = data.current.weather[0].description;
-  const dewPoint = Math.floor(data.current.dew_point);
-  const heatIndex = Math.floor(data.current.feels_like);
-  const humidity = data.current.humidity;
-  const moonPhase = getMoonPhase(data.daily[0].moon_phase);
-  const temp = Math.floor(data.current.temp);
-  const uvi = data.current.uvi;
+  const {
+    alert,
+    clouds,
+    dailyHigh,
+    dailyLow,
+    description,
+    dewPoint,
+    heatIndex,
+    humidity,
+    moonPhase,
+    temp,
+    timezone,
+    uvi,
+    visibility,
+    windDirection,
+    windGust,
+    windSpeed
+  } = parseWeatherData(data);
 
-  const locale = "en-US";
-  const currentTime = parseTime(data.current.dt, locale, data.timezone);
-  const sunrise = parseTime(data.current.sunrise, locale, data.timezone);
-  const sunset = parseTime(data.current.sunset, locale, data.timezone);
-
-  /**
-   * 10km is the maximum reported distance which is why we cap miles at 6.0
-   * Represents the visibility of the current weather.
-   */
-  const visibilityMiles = getMiles(data.current.visibility);
-  const visibility =
-    visibilityMiles > MAX_VISIBILITY_MILES
-      ? MAX_VISIBILITY_MILES
-      : visibilityMiles;
-
-  /**
-   * undefined is check here because there might be a case where this goes unreported resulting in NaN.
-   * Because undefined can be overwritten or shadowed,
-   * reading undefined can give an unexpected value.
-   * (This is not the case for null, which is a keyword that always produces the same value.)
-   * To guard against this, you can avoid all uses of undefined.
-   * This ensures that undefined will always hold its original, expected value.
-   */
-  const windGust =
-    typeof data.current.wind_gust === "undefined" || data.current.wind_gust < 0
-      ? 0
-      : Math.floor(data.current.wind_gust);
-
-  const windDirection = getWindDirection(data.current.wind_deg);
-  const windSpeed = Math.floor(data.current.wind_speed);
-
-  /**
-   * Parse string to be readable
-   */
-  const timezone = data.timezone.replace(/[^a-zA-Z ]/g, ", ");
+  const city = parseCity(data.city);
+  const currentTime = parseTime(data.current.dt, "en-US", data.timezone);
+  const sunrise = parseTime(data.current.sunrise, "en-US", data.timezone);
+  const sunset = parseTime(data.current.sunset, "en-US", data.timezone);
 
   return (
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 backdrop-filter backdrop-blur-sm bg-opacity-50">
       <Top city={city} currentTime={currentTime} />
-
       <Middle
         dailyHigh={dailyHigh}
         dailyLow={dailyLow}
         description={description}
         temp={temp}
       />
-
       <Bottom
         alert={alert}
         clouds={clouds}
