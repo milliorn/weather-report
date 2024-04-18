@@ -1,5 +1,7 @@
 "use client";
 
+import { BuildPanelProps } from "../models/componentProps";
+import { WeatherItem } from "../models/weatherTypes";
 import { PERCENT_MULTIPLIER, RAIN_PRECISION } from "../utils/config";
 import {
   getMoonPhase,
@@ -8,71 +10,68 @@ import {
   toCelsius,
   toKph
 } from "../utils/weatherUtils";
-import { BuildPanelProps } from "../models/componentProps";
 
 /**
- * This builds the panel with weather information by mapping over the data and pushing its value into elements
- * @param {Object} value - The weather data object.
- * @returns {JSX.Element[]} An array of JSX elements representing the weather panel.
+ * Formats the weather data for a given item.
+ * @param item - The weather item to format.
+ * @param timezone - The timezone to use for formatting time-related data.
+ * @returns An array of objects containing the formatted weather data.
  */
-const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
-  const { timezone } = value;
-
-  const clouds = value.item.clouds + "%";
-  const description = value.item.weather[0].description;
-  const humidity = value.item.humidity + "%";
-  // Rain is given to us from 0-1, 1 meaning 100% chance of rain
-  const rain = `${value.item.pop * PERCENT_MULTIPLIER}%`;
-  const uvi = value.item.uvi;
-
-  const moon = getMoonPhase(value.item.moon_phase);
-  const sunrise = parseTime(value.item.sunrise, "en-US", timezone);
-  const sunset = parseTime(value.item.sunset, "en-US", timezone);
-
-  const dewPoint =
-    toCelsius(value.item.dew_point) + "°C | " + value.item.dew_point + "°F";
-
-  const precipitation =
-    value.item.rain! < 0 || typeof value.item.rain === "undefined"
-      ? "0.00"
-      : value.item.rain +
-        "mm | " +
-        mmToInches(value.item.rain).toFixed(RAIN_PRECISION) +
-        "in";
-
-  const windSpeed =
-    toKph(value.item.wind_speed) + " kph | " + value.item.wind_speed + " mph";
-
-  const windGust =
-    toKph(value.item.wind_gust) + " kph | " + value.item.wind_gust + " mph";
-
-  const collection = [
-    { id: "Forecast", result: description },
-    { id: "Dew Point", result: dewPoint },
-    { id: "Clouds", result: clouds },
-    { id: "Humidity", result: humidity },
-    { id: "Rain", result: rain },
-    { id: "Precipitation", result: precipitation },
-
-    { id: "UV Index", result: uvi },
-    { id: "Moon", result: moon },
-    { id: "Wind", result: windSpeed },
-    { id: "Gust", result: windGust },
-    { id: "Sunrise", result: sunrise },
-    { id: "Sunset", result: sunset }
+const formatWeatherData = (item: WeatherItem, timezone: string) => {
+  return [
+    { id: "Forecast", result: item.weather[0].description },
+    {
+      id: "Dew Point",
+      result: `${toCelsius(item.dew_point)}°C | ${item.dew_point}°F`
+    },
+    { id: "Clouds", result: `${item.clouds}%` },
+    { id: "Humidity", result: `${item.humidity}%` },
+    { id: "Rain", result: `${item.pop * PERCENT_MULTIPLIER}%` },
+    {
+      id: "Precipitation",
+      result:
+        item.rain !== undefined && item.rain >= 0
+          ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
+              RAIN_PRECISION
+            )}in`
+          : "0.00"
+    },
+    { id: "UV Index", result: item.uvi },
+    { id: "Moon", result: getMoonPhase(item.moon_phase) },
+    {
+      id: "Wind",
+      result: `${toKph(item.wind_speed)} kph | ${item.wind_speed} mph`
+    },
+    {
+      id: "Gust",
+      result: `${toKph(item.wind_gust)} kph | ${item.wind_gust} mph`
+    },
+    { id: "Sunrise", result: parseTime(item.sunrise, "en-US", timezone) },
+    { id: "Sunset", result: parseTime(item.sunset, "en-US", timezone) }
   ];
+};
 
-  return collection.map((e, i) => {
-    return (
-      <div
-        key={e + " " + i}
-        className="flex items-center justify-between h-8 capitalize"
-      >
-        <span className="text-neutral-100 drop-shadow-md">{e.id}</span>
-        <span className="drop-shadow-md">{e.result}</span>
-      </div>
-    );
-  });
+/**
+ * Renders a panel displaying daily weather information.
+ * @param item - The weather data for the day.
+ * @param timezone - The timezone to display the weather data in.
+ * @returns An array of JSX elements representing the daily weather panel.
+ */
+const DailyWeatherPanel = ({
+  item,
+  timezone
+}: BuildPanelProps): JSX.Element[] => {
+  const weatherData = formatWeatherData(item, timezone);
+
+  return weatherData.map((data, i) => (
+    <div
+      key={`${data.id}_${i}`}
+      className="flex items-center justify-between h-8 capitalize"
+    >
+      <span className="text-neutral-100 drop-shadow-md">{data.id}</span>
+      <span className="drop-shadow-md">{data.result}</span>
+    </div>
+  ));
 };
 
 export default DailyWeatherPanel;
