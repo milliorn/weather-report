@@ -1,5 +1,6 @@
 "use client";
 
+import { PERCENT_MULTIPLIER, RAIN_PRECISION } from "../config";
 import {
   getMoonPhase,
   mmToInches,
@@ -20,7 +21,8 @@ const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
   const clouds = value.item.clouds + "%";
   const description = value.item.weather[0].description;
   const humidity = value.item.humidity + "%";
-  const rain = value.item.pop * 100 + "%"; // Rain is given to us from 0-1, 1 meaning 100%
+  // Rain is given to us from 0-1, 1 meaning 100% chance of rain
+  const rain = `${value.item.pop * PERCENT_MULTIPLIER}%`;
   const uvi = value.item.uvi;
 
   const moon = getMoonPhase(value.item.moon_phase);
@@ -35,7 +37,7 @@ const DailyWeatherPanel = (value: BuildPanelProps): JSX.Element[] => {
       ? "0.00"
       : value.item.rain +
         "mm | " +
-        mmToInches(value.item.rain).toFixed(2) +
+        mmToInches(value.item.rain).toFixed(RAIN_PRECISION) +
         "in";
 
   const windSpeed =
