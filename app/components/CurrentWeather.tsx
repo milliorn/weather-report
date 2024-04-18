@@ -1,5 +1,6 @@
 "use client";
 
+import { MAX_VISIBILITY_MILES } from "../config";
 import "../css/current-weather.css";
 
 import { getMiles, getMoonPhase, getWindDirection, parseTime } from "../helper";
@@ -18,12 +19,13 @@ import Top from "./Top";
  */
 const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const alert = data.alerts;
-  const city = data.city.substring(0, data.city.indexOf(",")); // Parse city name and omit the rest.
+  // Parse city name and omit the rest.
+  const city = data.city.substring(0, data.city.indexOf(","));
   const clouds = data.current.clouds;
   const dailyHigh = Math.floor(data.daily[0].temp.max);
   const dailyLow = Math.floor(data.daily[0].temp.min);
   const description = data.current.weather[0].description;
-  const dew_point = Math.floor(data.current.dew_point);
+  const dewPoint = Math.floor(data.current.dew_point);
   const heatIndex = Math.floor(data.current.feels_like);
   const humidity = data.current.humidity;
   const moonPhase = getMoonPhase(data.daily[0].moon_phase);
@@ -40,7 +42,10 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
    * Represents the visibility of the current weather.
    */
   const visibilityMiles = getMiles(data.current.visibility);
-  const visibility = visibilityMiles > 6.0 ? 6.0 : visibilityMiles;
+  const visibility =
+    visibilityMiles > MAX_VISIBILITY_MILES
+      ? MAX_VISIBILITY_MILES
+      : visibilityMiles;
 
   /**
    * undefined is check here because there might be a case where this goes unreported resulting in NaN.
@@ -50,7 +55,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
    * To guard against this, you can avoid all uses of undefined.
    * This ensures that undefined will always hold its original, expected value.
    */
-  const wind_gust =
+  const windGust =
     typeof data.current.wind_gust === "undefined" || data.current.wind_gust < 0
       ? 0
       : Math.floor(data.current.wind_gust);
@@ -77,7 +82,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
       <Bottom
         alert={alert}
         clouds={clouds}
-        dew_point={dew_point}
+        dew_point={dewPoint}
         heatIndex={heatIndex}
         humidity={humidity}
         lat={data.lat}
@@ -90,7 +95,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
         visibility={visibility}
         windDirection={windDirection}
         windSpeed={windSpeed}
-        wind_gust={wind_gust}
+        wind_gust={windGust}
       />
       <Forecast data={data} timezone={data.timezone} />
     </div>

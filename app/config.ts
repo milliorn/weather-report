@@ -9,6 +9,7 @@ const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 const HALF_PHASE = 0.5;
 const IMAGE_URL = `url("https://source.unsplash.com/random/?weather")`;
 const KPH_CONVERSION_FACTOR = 1.609344;
+const MAX_VISIBILITY_MILES = 6.0;
 const MILES_CONVERSION_FACTOR = 0.000621371192;
 const MILLISECONDS_PER_SECOND = 1000;
 const MM_TO_INCHES = 25.4;
@@ -38,6 +39,7 @@ export {
   HALF_PHASE,
   IMAGE_URL,
   KPH_CONVERSION_FACTOR,
+  MAX_VISIBILITY_MILES,
   MILES_CONVERSION_FACTOR,
   MILLISECONDS_PER_SECOND,
   MM_TO_INCHES,

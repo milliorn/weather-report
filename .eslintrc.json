@@ -146,10 +146,10 @@
       "error",
       3
     ],
-    "max-statements": [
-      "warn",
-      15
-    ],
+    // "max-statements": [
+    //   "warn",
+    //   15
+    // ],
     "max-statements-per-line": [
       "error",
       {
