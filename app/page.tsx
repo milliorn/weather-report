@@ -20,7 +20,8 @@ export default function Home() {
   const handleOnSearchChange = (searchData: SearchData | null) => {
     if (searchData === null) {
       setCurrentWeather(null);
-      return; // Return early if there is no search data
+      // Return early if there is no search data
+      return;
     }
 
     const [latitude, longitude] = searchData.value.split(" ");
@@ -43,7 +44,8 @@ export default function Home() {
       })
       .catch((error) => {
         console.warn("Failed to fetch weather data:", error);
-        setCurrentWeather(null); // Optionally reset weather data on error
+        // Optionally reset weather data on error
+        setCurrentWeather(null);
       });
   };
 
