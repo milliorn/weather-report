@@ -30,6 +30,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
   const {
     alert,
     clouds,
+    // eslint-disable-next-line camelcase
     dew_point,
     heatIndex,
     humidity,
@@ -43,6 +44,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
     visibility,
     windDirection,
     windSpeed,
+    // eslint-disable-next-line camelcase
     wind_gust
   } = props;
 
@@ -58,11 +60,13 @@ const Bottom = (props: BottomProps): JSX.Element => {
     },
     {
       id: "Dew Point",
+      // eslint-disable-next-line camelcase
       result: toCelsius(dew_point) + "°C | " + dew_point + "°F"
     },
     { id: "Humidity", result: humidity + "%" },
     { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
     { id: "Direction", result: windDirection },
+    // eslint-disable-next-line camelcase
     { id: "Gust", result: toKph(wind_gust) + " kph | " + wind_gust + " mph" },
     { id: "Sunrise", result: sunrise },
     { id: "Sunset", result: sunset },
