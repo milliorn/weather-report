@@ -6,6 +6,7 @@ import {
   FAHRENHEIT_TO_CELSIUS,
   HALF_PHASE,
   KPH_CONVERSION_FACTOR,
+  MAX_VISIBILITY_MILES,
   MILES_CONVERSION_FACTOR,
   MILLISECONDS_PER_SECOND,
   MM_TO_INCHES,
@@ -17,6 +18,7 @@ import {
   THREE_QUARTER_PHASE,
   WIND_DIRECTION_DIVISOR
 } from "./config";
+import { CurrentWeatherData } from "../models/componentProps";
 
 /**
  * Returns the moon phase based on the given phase value.
@@ -94,7 +96,7 @@ const getWindDirection = (direction: number): string =>
     "W/NW",
     "NW",
     "N/NW"
-  ][Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS];
+  ][ Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS ];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.
@@ -220,7 +222,7 @@ const formatDate = (timestamp: number) => {
  */
 const formatWeatherData = (item: WeatherItem, timezone: string) => {
   return [
-    { id: "Forecast", result: item.weather[0].description },
+    { id: "Forecast", result: item.weather[ 0 ].description },
     {
       id: "Dew Point",
       result: `${toCelsius(item.dew_point)}°C | ${item.dew_point}°F`
@@ -233,8 +235,8 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
       result:
         item.rain !== undefined && item.rain >= 0
           ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
-              RAIN_PRECISION
-            )}in`
+            RAIN_PRECISION
+          )}in`
           : "0.00"
     },
     { id: "UV Index", result: item.uvi },
@@ -252,6 +254,62 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
   ];
 };
 
+/**
+ * Parses the weather data to be used in the component.
+ *
+ * @param data - The weather data to be parsed.
+ * @returns The parsed weather data.
+ */
+const parseWeatherData = (data: CurrentWeatherData) => ({
+  alert: data.alerts,
+  clouds: data.current.clouds,
+  dailyHigh: Math.floor(data.daily[ 0 ].temp.max),
+  dailyLow: Math.floor(data.daily[ 0 ].temp.min),
+  description: data.current.weather[ 0 ].description,
+  dewPoint: Math.floor(data.current.dew_point),
+  heatIndex: Math.floor(data.current.feels_like),
+  humidity: data.current.humidity,
+  moonPhase: getMoonPhase(data.daily[ 0 ].moon_phase),
+  temp: Math.floor(data.current.temp),
+  timezone: data.timezone,
+  uvi: data.current.uvi,
+  visibility: getVisibility(data.current.visibility),
+  windDirection: getWindDirection(data.current.wind_deg),
+  windGust: getWindGust(data.current.wind_gust),
+  windSpeed: Math.floor(data.current.wind_speed)
+});
+
+/**
+ * Parses the city name from a string that includes the city and state.
+ *
+ * @param city - The string containing the city and state.
+ * @returns The parsed city name.
+ */
+const parseCity = (city: string) => city.substring(0, city.indexOf(","));
+
+/**
+ * Calculates the visibility in miles based on the provided visibility in meters.
+ * @param visibility - The visibility in meters.
+ * @returns The visibility in miles, capped at the maximum visibility defined by MAX_VISIBILITY_MILES.
+ */
+const getVisibility = (visibility: number) => {
+  const visibilityMiles = getMiles(visibility);
+
+  return visibilityMiles > MAX_VISIBILITY_MILES
+    ? MAX_VISIBILITY_MILES
+    : visibilityMiles;
+};
+
+/**
+ * Returns the wind gust value, rounded down to the nearest integer.
+ * If the wind gust value is undefined or less than 0, it returns 0.
+ *
+ * @param windGust - The wind gust value.
+ * @returns The rounded down wind gust value.
+ */
+const getWindGust = (windGust?: number) =>
+  typeof windGust === "undefined" || windGust < 0 ? 0 : Math.floor(windGust);
+
 export {
   dayOfWeek,
   formatDate,
@@ -259,9 +317,13 @@ export {
   generateAlertKey,
   getMiles,
   getMoonPhase,
+  getVisibility,
   getWindDirection,
+  getWindGust,
   mmToInches,
+  parseCity,
   parseTime,
+  parseWeatherData,
   processAlerts,
   toCelsius,
   toKph
