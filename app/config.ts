@@ -1,6 +1,6 @@
 "use client";
 
-import { GeoApiOptionsType } from "../models/apiTypes";
+import { GeoApiOptionsType } from "./models/apiTypes";
 
 const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
