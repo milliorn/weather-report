@@ -1,7 +1,7 @@
 "use client";
 
 import { BuildPanelProps } from "../models/componentProps";
-import { formatWeatherData } from "../utils/weatherUtils";
+import { formatWeatherData } from "../utils/MiscUtils";
 
 /**
  * Renders a panel displaying daily weather information.

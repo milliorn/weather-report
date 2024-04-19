@@ -2,7 +2,7 @@
 
 import "../css/current-weather.css";
 import { CurrentWeatherProps } from "../models/componentProps";
-import { parseCity, parseTime, parseWeatherData } from "../utils/weatherUtils";
+import { parseCity, parseTime, parseWeatherData } from "../utils/MiscUtils";
 import Bottom from "./Bottom";
 import Forecast from "./Forecast";
 import Middle from "./Middle";

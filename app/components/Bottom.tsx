@@ -2,7 +2,8 @@
 
 import { BottomProps } from "../models/componentProps";
 import { WeatherDetail } from "../models/weatherTypes";
-import { toCelsius, toKph } from "../utils/weatherUtils";
+import { toCelsius } from "../utils/MiscUtils";
+import { toKph } from "../utils/windUtils";
 import Warnings from "./Warnings";
 
 /**
