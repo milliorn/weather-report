@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
-import { GEO_API_OPTIONS, GEO_API_URL } from "../config";
 import {
   FetchResponseData,
   LoadOptionsResponse,
@@ -22,24 +21,17 @@ import { SearchProps } from "../models/componentProps";
 const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<SearchData | null>(null);
 
-  const loadOptions: LoadOptions<
-    SearchData,
-    GroupBase<SearchData>,
-    string
-  > = async (inputValue: string): Promise<LoadOptionsResponse> => {
+  const loadOptions = async (
+    inputValue: string
+  ): Promise<LoadOptionsResponse> => {
     try {
-      const response = await fetch(
-        `${GEO_API_URL}/cities?minPopulation=1000&sort=-population&namePrefix=${inputValue}`,
-        GEO_API_OPTIONS
-      );
-      const responseData: FetchResponseData = await response.json();
-
+      const response = await fetch(`/api/searchCities?query=${inputValue}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      const responseData = await response.json();
       return {
-        options: responseData.data.map((city) => ({
+        options: responseData.data.map((city: { latitude: any; longitude: any; name: any; country: any; }) => ({
           value: `${city.latitude} ${city.longitude}`,
           label: `${city.name}, ${city.country}`
         }))
