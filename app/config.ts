@@ -5,7 +5,6 @@ import { GeoApiOptionsType } from "./models/apiTypes";
 const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
 const FAHRENHEIT_TO_CELSIUS = 0.5556;
-const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 const HALF_PHASE = 0.5;
 const IMAGE_URL = `url("https://source.unsplash.com/random/?weather")`;
 const KPH_CONVERSION_FACTOR = 1.609344;
@@ -22,20 +21,10 @@ const THREE_QUARTER_PHASE = 0.75;
 const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 const WIND_DIRECTION_DIVISOR = 22.5;
 
-const GEO_API_OPTIONS: GeoApiOptionsType = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_KEY || "",
-    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
-  }
-};
-
 export {
   DIRECTION_SEGMENTS,
   FAHRENHEIT_BASE,
   FAHRENHEIT_TO_CELSIUS,
-  GEO_API_OPTIONS,
-  GEO_API_URL,
   HALF_PHASE,
   IMAGE_URL,
   KPH_CONVERSION_FACTOR,
