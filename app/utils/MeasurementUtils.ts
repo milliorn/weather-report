@@ -1,4 +1,4 @@
-import { MILES_CONVERSION_FACTOR, MM_TO_INCHES } from "../config";
+import { MILES_CONVERSION_FACTOR, MM_TO_INCHES } from "../../config";
 
 /**
  * Converts meters to miles.

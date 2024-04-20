@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { GroupBase, SingleValue } from "react-select";
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
-import { GEO_API_OPTIONS, GEO_API_URL } from "../config";
+import { GEO_API_OPTIONS, GEO_API_URL } from "../../config";
 import {
   FetchResponseData,
   LoadOptionsResponse,

@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { MILLISECONDS_PER_SECOND } from "../config";
+import { MILLISECONDS_PER_SECOND } from "../../config";
 
 /**
  * Parses the given time value and returns a formatted date string based on the provided locale and timezone.

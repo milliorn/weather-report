@@ -2,7 +2,7 @@ import {
   DIRECTION_SEGMENTS,
   KPH_CONVERSION_FACTOR,
   WIND_DIRECTION_DIVISOR
-} from "../config";
+} from "../../config";
 
 /**
  * Returns the wind direction based on the given angle.
