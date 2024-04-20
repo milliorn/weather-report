@@ -1,14 +1,12 @@
 "use client";
 
-import { GeoApiOptionsType } from "./app/models/apiTypes";
+import { GeoApiOptionsType } from "./models/apiTypes";
 
 const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
 const FAHRENHEIT_TO_CELSIUS = 0.5556;
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 const HALF_PHASE = 0.5;
-const HTTP_INTERNAL_SERVER_ERROR = 500;
-const HTTP_OK = 200;
 const IMAGE_URL = `url("https://source.unsplash.com/random/?weather")`;
 const KPH_CONVERSION_FACTOR = 1.609344;
 const MAX_VISIBILITY_MILES = 6.0;
@@ -39,8 +37,6 @@ export {
   GEO_API_OPTIONS,
   GEO_API_URL,
   HALF_PHASE,
-  HTTP_INTERNAL_SERVER_ERROR,
-  HTTP_OK,
   IMAGE_URL,
   KPH_CONVERSION_FACTOR,
   MAX_VISIBILITY_MILES,

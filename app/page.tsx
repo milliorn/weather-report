@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
-import { IMAGE_URL, WEATHER_API_URL } from "../config";
+import { IMAGE_URL, WEATHER_API_URL } from "./config";
 import { SearchData } from "./models/apiTypes";
 import { CurrentWeatherData } from "./models/componentProps";
 
@@ -26,9 +26,7 @@ export default function Home() {
 
     const [latitude, longitude] = searchData.value.split(" ");
 
-    fetch(
-      `${WEATHER_API_URL}/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=imperial`
-    )
+    fetch(`/api/weather?lat=${latitude}&lon=${longitude}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

@@ -9,7 +9,7 @@ import {
   RAIN_PRECISION,
   SLICE_END_INDEX,
   THREE_QUARTER_PHASE
-} from "../../config";
+} from "../config";
 import { CurrentWeatherData } from "../models/componentProps";
 import { WeatherItem } from "../models/weatherTypes";
 import { getMiles, mmToInches } from "./MeasurementUtils";
