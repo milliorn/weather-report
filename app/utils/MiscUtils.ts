@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FAHRENHEIT_BASE,
   FAHRENHEIT_TO_CELSIUS,
@@ -14,7 +16,7 @@ import { CurrentWeatherData } from "../models/componentProps";
 import { WeatherItem } from "../models/weatherTypes";
 import { getMiles, mmToInches } from "./MeasurementUtils";
 import { parseTime } from "./TimeUtils";
-import { getWindDirection, getWindGust, toKph } from "./windUtils";
+import { getWindDirection, getWindGust, toKph } from "./WindUtils";
 
 /**
  * Returns the moon phase based on the given phase value.

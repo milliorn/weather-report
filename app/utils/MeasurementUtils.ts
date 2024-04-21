@@ -1,3 +1,5 @@
+"use client";
+
 import { MILES_CONVERSION_FACTOR, MM_TO_INCHES } from "../config";
 
 /**

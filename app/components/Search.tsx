@@ -1,13 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { GroupBase, SingleValue } from "react-select";
-import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
-import {
-  FetchResponseData,
-  LoadOptionsResponse,
-  SearchData
-} from "../models/apiTypes";
+import { SingleValue } from "react-select";
+import { AsyncPaginate } from "react-select-async-paginate";
+import { LoadOptionsResponse, SearchData } from "../models/apiTypes";
 import { SearchProps } from "../models/componentProps";
 
 /**
@@ -21,6 +17,11 @@ import { SearchProps } from "../models/componentProps";
 const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<SearchData | null>(null);
 
+  /**
+   * Loads options for the search input based on the provided input value.
+   * @param inputValue - The input value to search for.
+   * @returns A promise that resolves to a LoadOptionsResponse object containing the options.
+   */
   const loadOptions = async (
     inputValue: string
   ): Promise<LoadOptionsResponse> => {
@@ -31,10 +32,17 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
       }
       const responseData = await response.json();
       return {
-        options: responseData.data.map((city: { latitude: any; longitude: any; name: any; country: any; }) => ({
-          value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name}, ${city.country}`
-        }))
+        options: responseData.data.map(
+          (city: {
+            latitude: any;
+            longitude: any;
+            name: any;
+            country: any;
+          }) => ({
+            value: `${city.latitude} ${city.longitude}`,
+            label: `${city.name}, ${city.country}`
+          })
+        )
       };
     } catch (error) {
       console.error("Failed to load options:", error);
@@ -42,6 +50,11 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
     }
   };
 
+  /**
+   * Handles the change event of the search input.
+   *
+   * @param {SingleValue<SearchData>} newValue - The new value of the search input.
+   */
   const handleOnChange = (newValue: SingleValue<SearchData>) => {
     setSearch(newValue);
     if (newValue) {

@@ -1,4 +1,3 @@
-// Importing necessary utilities and config
 import { NextApiRequest, NextApiResponse } from "next";
 import { GEO_API_URL, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "./constants";
 
@@ -17,8 +16,20 @@ type FetchOptions = {
   };
 }
 
-// Simplified fetch function
-async function fetchCityData(apiUrl: string, options: FetchOptions): Promise<any> {
+type CityData = {
+  apiUrl: string;
+  options: FetchOptions;
+}
+
+/**
+ * Fetches city data from the specified API endpoint.
+ * @param cityData - The city data object containing the API URL and options.
+ * @returns A promise that resolves to the fetched city data.
+ * @throws An error if the HTTP response is not successful.
+ */
+async function fetchCityData(cityData: CityData): Promise<any> {
+  const { apiUrl, options } = cityData;
+
   const response = await fetch(apiUrl, options);
   const data = await response.json();
 
@@ -28,12 +39,23 @@ async function fetchCityData(apiUrl: string, options: FetchOptions): Promise<any
   return data;
 }
 
+/**
+ * Handles errors that occur while loading city data.
+ * @param res - The NextApiResponse object.
+ * @param error - The error that occurred.
+ */
 function handleError(res: NextApiResponse, error: Error): void {
   console.error("Failed to load city data:", error);
   res.status(HTTP_INTERNAL_SERVER_ERROR).json({ error: "Failed to fetch data" });
 }
 
-// API handler
+/**
+ * Handles the API request for searching cities.
+ *
+ * @param req - The NextApiRequest object representing the incoming request.
+ * @param res - The NextApiResponse object representing the outgoing response.
+ * @returns A Promise that resolves to void.
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   const { query } = req.query as { query: string };
 
@@ -46,7 +68,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const data = await fetchCityData(apiUrl, { method: "GET", headers });
+    // Corrected call to pass a single object
+    const data = await fetchCityData({ apiUrl, options: { method: "GET", headers } });
     res.status(HTTP_OK).json(data);
   } catch (error: any) {
     handleError(res, error);

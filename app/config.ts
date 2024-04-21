@@ -1,7 +1,5 @@
 "use client";
 
-import { GeoApiOptionsType } from "./models/apiTypes";
-
 const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
 const FAHRENHEIT_TO_CELSIUS = 0.5556;
