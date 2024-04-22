@@ -42,18 +42,26 @@ export default function Home() {
       })
       .catch((error) => {
         console.warn("Failed to fetch weather data:", error);
-        // Optionally reset weather data on error
         setCurrentWeather(null);
       });
   };
 
   return (
     <div
-      className="min-h-screen mx-auto my-0 bg-cover text-black"
+      className="min-h-screen mx-auto my-0 bg-cover text-black bg-black bg-opacity-50 rounded-lg shadow-xl"
       style={{ backgroundImage: IMAGE_URL }}
     >
       <Search onSearchChange={handleOnSearchChange} />
-      {currentWeather && <CurrentWeather data={currentWeather} />}
+      {currentWeather ? (
+        <div className=" pt-4 text-white bg-black bg-opacity-50 rounded-lg shadow-xl min-h-screen">
+          <CurrentWeather data={currentWeather} />
+        </div>
+      ) : (
+        <div className="text-center p-10 text-white bg-black bg-opacity-50 rounded-lg shadow-xl min-h-screen">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold drop-shadow-lg">Weather Report</h1>
+          <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-4 drop-shadow-md">Enter a city in the field above to see the weather in that area.</p>
+        </div>
+      )}
     </div>
   );
 }
