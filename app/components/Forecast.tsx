@@ -29,7 +29,7 @@ const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
             <AccordionItemHeading>
               <AccordionItemButton>
                 <div className="py-1">
-                  <div className="flex items-center h-16 px-1 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white drop-shadow-md rounded-xl hover:border-black hover:font-bold">
+                  <div className="flex items-center h-16 px-1 sm:px-4 py-5 m-1 text-sm bg-transparent border-t border-b border-l border-r border-white drop-shadow-md rounded-xl hover:border-black hover:font-bold">
                     <span className="flex-auto ml-2 font-semibold day sm:text-lg xl:text-xl 2xl:text-2xl">
                       {dayOfWeek(item)}
                     </span>
