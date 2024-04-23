@@ -78,8 +78,11 @@ const Bottom = (props: BottomProps): JSX.Element => {
       result: toKph(visibility) + " km | " + Math.floor(visibility) + " mi"
     },
     { id: "Moon", result: moonPhase },
-    { id: "Time Zone", result: timezone },
-    { id: "Latitude", result: lat },
+    {
+      id: "Time Zone",
+       // Replace underscores with spaces and slashes with pipes.
+      result: timezone.replace(/_/g, " ").replace(/\//g, " | ")
+    }, { id: "Latitude", result: lat },
     { id: "Longitude", result: lon }
   ];
 
