@@ -5,6 +5,7 @@ import { CurrentWeatherProps } from "../models/componentProps";
 import { parseCity, parseTime, parseWeatherData } from "../utils/MiscUtils";
 import Bottom from "./Bottom";
 import Forecast from "./Forecast";
+import HourlyWeather from "./HourlyWeather";
 import Middle from "./Middle";
 import Top from "./Top";
 
@@ -69,6 +70,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
         windSpeed={windSpeed}
         wind_gust={windGust}
       />
+      <HourlyWeather hourly={data.hourly} />
       <Forecast data={data} timezone={data.timezone} />
     </div>
   );

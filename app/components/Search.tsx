@@ -68,7 +68,7 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
         /* fix for Warning: Prop `id` did not match. Server: "react-select-6-live-region" Client: "react-select-2-live-region"
       https://github.com/JedWatson/react-select/issues/5459#issuecomment-1312245530
       */
-        debounceTimeout={600}
+        debounceTimeout={500}
         id="searchbar"
         instanceId={"searchbar"}
         loadOptions={loadOptions}
