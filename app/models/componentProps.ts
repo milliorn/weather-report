@@ -88,23 +88,28 @@ type CurrentWeatherData = {
 };
 
 type HourlyWeatherItem = {
-  dt: number;
-  temp: number;
-  feels_like: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
   clouds: number;
+  dew_point: number;
+  dt: number;
+  feels_like: number;
+  humidity: number;
+  pressure: number;
+  pop: number;
+  temp: number;
   visibility: number;
-  wind_speed: number;
   wind_deg: number;
+  wind_speed: number;
   weather: {
     id: number;
     main: string;
     description: string;
     icon: string;
   }[];
-  pop: number;
+  uvi: number;
+};
+
+type HourlyWeatherProps = {
+  hourly: HourlyWeatherItem[];
 };
 
 export type {
@@ -113,6 +118,7 @@ export type {
   CurrentWeatherData,
   CurrentWeatherProps,
   ForecastProps,
+  HourlyWeatherProps,
   MiddleProps,
   SearchProps,
   TopProps,

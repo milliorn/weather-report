@@ -44,7 +44,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/components/HourlyWeather.jsx"  ],
+, "app/components/HourlyWeather.tsx"  ],
   "exclude": [
     "node_modules"
   ] // Exclude node_modules from the compilation process

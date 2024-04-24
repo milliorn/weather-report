@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { NUM_HOURS, PERCENT_MULTIPLIER, TIMESTAMP_MULTIPLIER } from "../config";
+import { HourlyWeatherProps } from "../models/componentProps";
 import { toCelsius } from "../utils/MiscUtils";
 import { toKph } from "../utils/WindUtils";
 
-const HourlyWeather = ({ hourly }) => {
+const HourlyWeather = ({ hourly }: HourlyWeatherProps) => {
   // console.log(hourly);
 
   return (
