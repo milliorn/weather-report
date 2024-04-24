@@ -22,7 +22,10 @@ import DailyWeatherPanel from "./DailyWeatherPanel";
  */
 const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
   return (
-    <div className="mt-4">
+    <div className="my-8">
+      <h2 className="text-center my-8 sm:text-lg md:text-xl lg:text-2xl">
+        7-Day Forecast
+      </h2>
       <Accordion allowZeroExpanded>
         {data.daily.map((item, idx) => (
           <AccordionItem key={`${idx}_${item}`}>
