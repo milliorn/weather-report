@@ -80,9 +80,10 @@ const Bottom = (props: BottomProps): JSX.Element => {
     { id: "Moon", result: moonPhase },
     {
       id: "Time Zone",
-       // Replace underscores with spaces and slashes with pipes.
+      // Replace underscores with spaces and slashes with pipes.
       result: timezone.replace(/_/g, " ").replace(/\//g, " | ")
-    }, { id: "Latitude", result: lat },
+    },
+    { id: "Latitude", result: lat },
     { id: "Longitude", result: lon }
   ];
 

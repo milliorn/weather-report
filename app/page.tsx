@@ -58,8 +58,12 @@ export default function Home() {
         </div>
       ) : (
         <div className="text-center p-10 text-white bg-black bg-opacity-50 shadow-xl min-h-screen">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold drop-shadow-lg">Weather Report</h1>
-          <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-8 drop-shadow-md">Enter a city in the field above to see the weather in that area.</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold drop-shadow-lg">
+            Weather Report
+          </h1>
+          <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-8 drop-shadow-md">
+            Enter a city in the field above to see the weather in that area.
+          </p>
         </div>
       )}
     </div>

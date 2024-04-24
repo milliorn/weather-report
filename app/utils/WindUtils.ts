@@ -65,4 +65,3 @@ const getWindGust = (windGust?: number) =>
   typeof windGust === "undefined" || windGust < 0 ? 0 : Math.floor(windGust);
 
 export { getWindDirection, getWindGust, toKph };
-

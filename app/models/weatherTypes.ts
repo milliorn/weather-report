@@ -18,7 +18,7 @@ type WeatherItem = {
   sunrise: number;
   sunset: number;
   uvi: number;
-  weather: [ { description: string } ];
+  weather: [{ description: string }];
   wind_gust: number;
   wind_speed: number;
   temp: {
