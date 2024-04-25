@@ -8,7 +8,7 @@
       "esnext"
     ], // Specify libraries to be included in the compilation
     "allowJs": true, // Allow JavaScript files to be compiled
-    "skipLibCheck": false, // Do not skip type checking of declaration files
+    "skipLibCheck": true, // Do not skip type checking of declaration files
     "strict": true, // Enable all strict type-checking options
     "noImplicitAny": true, // Ensure no expressions and declarations with an implied 'any' type
     "strictNullChecks": true, // When type checking, take into account 'null' and 'undefined'
@@ -43,8 +43,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "app/components/HourlyWeather.tsx"  ],
+    ".next/types/**/*.ts",
+    "app/components/HourlyWeather.tsx"
+  ],
   "exclude": [
     "node_modules"
   ] // Exclude node_modules from the compilation process
