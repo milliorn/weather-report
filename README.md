@@ -15,7 +15,7 @@ The project is built using [React](https://github.com/facebook/create-react-app)
 
 ## Live Demo
 
-To see the Current Weather application in action, visit the [live demo](https://milliorn.github.io/Current-Weather).
+To see the Current Weather application in action, visit the [live demo](https://current-weather-one.vercel.app/).
 
 ## Technologies Used
 
