@@ -110,6 +110,7 @@ type HourlyWeatherItem = {
 
 type HourlyWeatherProps = {
   hourly: HourlyWeatherItem[];
+  timezone: string;
 };
 
 export type {
