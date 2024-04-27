@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
 import { IMAGE_URL } from "./config";
@@ -17,7 +17,7 @@ export default function Home() {
    *
    * @param searchData - The selected search data containing the latitude and longitude.
    */
-  const handleOnSearchChange = (searchData: SearchData | null) => {
+  const handleOnSearchChange = useCallback((searchData: SearchData | null) => {
     if (searchData === null) {
       setCurrentWeather(null);
       // Return early if there is no search data
@@ -44,7 +44,7 @@ export default function Home() {
         console.warn("Failed to fetch weather data:", error);
         setCurrentWeather(null);
       });
-  };
+  }, []);
 
   return (
     <div
