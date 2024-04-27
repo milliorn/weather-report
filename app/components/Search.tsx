@@ -5,7 +5,8 @@ import { SingleValue } from "react-select";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { MIN_VALUE_LENGTH } from "../config";
 import { LoadOptionsResponse, SearchData } from "../models/apiTypes";
-import { SearchProps } from "../models/componentProps";
+import { MapCityToOptionType, SearchProps } from "../models/componentProps";
+import { fetchCities } from "../utils/MiscUtils";
 
 /**
  * Search component for searching cities.
@@ -26,34 +27,35 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const loadOptions = async (
     inputValue: string
   ): Promise<LoadOptionsResponse> => {
-    if (inputValue.length < MIN_VALUE_LENGTH) {
+    const inputTrimmed = inputValue.trim();
+
+    if (inputTrimmed.length < MIN_VALUE_LENGTH) {
       return { options: [] };
     }
 
     try {
-      const response = await fetch(`/api/searchCities?query=${inputValue}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const responseData = await response.json();
+      const responseData = await fetchCities(inputTrimmed);
       return {
-        options: responseData.data.map(
-          (city: {
-            latitude: any;
-            longitude: any;
-            name: any;
-            country: any;
-          }) => ({
-            value: `${city.latitude} ${city.longitude}`,
-            label: `${city.name}, ${city.country}`
-          })
-        )
+        options: responseData.data.map(mapCityToOption)
       };
     } catch (error) {
       console.error("Failed to load options:", error);
       return { options: [] };
     }
   };
+
+  /**
+   * Maps a city object to an option object for a select input.
+   *
+   * @param city - The city object to be mapped.
+   * @returns An object with `value` and `label` properties.
+   */
+  const mapCityToOption = (
+    city: MapCityToOptionType
+  ): { value: string; label: string } => ({
+    value: `${city.latitude} ${city.longitude}`,
+    label: `${city.name}, ${city.country}`
+  });
 
   /**
    * Handles the change event of the search input.

@@ -113,6 +113,13 @@ type HourlyWeatherProps = {
   timezone: string;
 };
 
+type MapCityToOptionType = {
+  country: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+};
+
 export type {
   BottomProps,
   BuildPanelProps,
@@ -120,6 +127,7 @@ export type {
   CurrentWeatherProps,
   ForecastProps,
   HourlyWeatherProps,
+  MapCityToOptionType,
   MiddleProps,
   SearchProps,
   TopProps,
