@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SingleValue } from "react-select";
 import { AsyncPaginate } from "react-select-async-paginate";
+import { MIN_VALUE_LENGTH } from "../config";
 import { LoadOptionsResponse, SearchData } from "../models/apiTypes";
 import { SearchProps } from "../models/componentProps";
 
@@ -25,6 +26,10 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const loadOptions = async (
     inputValue: string
   ): Promise<LoadOptionsResponse> => {
+    if (inputValue.length < MIN_VALUE_LENGTH) {
+      return { options: [] };
+    }
+
     try {
       const response = await fetch(`/api/searchCities?query=${inputValue}`);
       if (!response.ok) {
@@ -68,7 +73,7 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
         /* fix for Warning: Prop `id` did not match. Server: "react-select-6-live-region" Client: "react-select-2-live-region"
       https://github.com/JedWatson/react-select/issues/5459#issuecomment-1312245530
       */
-        debounceTimeout={500}
+        debounceTimeout={300}
         id="searchbar"
         instanceId={"searchbar"}
         loadOptions={loadOptions}
