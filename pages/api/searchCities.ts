@@ -56,9 +56,11 @@ function handleError(res: NextApiResponse, error: Error): void {
  * @param res - The NextApiResponse object representing the outgoing response.
  * @returns A Promise that resolves to void.
  */
+// eslint-disable-next-line max-statements
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   const { query } = req.query as { query: string };
 
+  // Construct the API URL with the limit parameter
   const apiUrl = `${GEO_API_URL}/cities?minPopulation=1000&sort=-population&namePrefix=${query}`;
 
   if (!API_KEY) {
@@ -68,10 +70,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Corrected call to pass a single object
     const data = await fetchCityData({ apiUrl, options: { method: "GET", headers } });
     res.status(HTTP_OK).json(data);
   } catch (error: any) {
     handleError(res, error);
   }
 }
+

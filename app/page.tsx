@@ -48,16 +48,16 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen mx-auto my-0 bg-cover text-black bg-black bg-opacity-50 shadow-xl overflow-x-hidden"
+      className="min-h-screen mx-auto my-0 bg-cover text-black bg-black shadow-xl overflow-x-hidden"
       style={{ backgroundImage: IMAGE_URL }}
     >
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather ? (
-        <div className="pt-4 text-white bg-black bg-opacity-50 shadow-xl min-h-screen">
+        <div className="pt-4 text-white bg-black bg-opacity-60 shadow-xl min-h-screen">
           <CurrentWeather data={currentWeather} />
         </div>
       ) : (
-        <div className="text-center p-10 text-white bg-black bg-opacity-50 shadow-xl min-h-screen">
+        <div className="text-center p-10 text-white bg-black bg-opacity-60 shadow-xl min-h-screen">
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold drop-shadow-lg">
             Weather Report
           </h1>
