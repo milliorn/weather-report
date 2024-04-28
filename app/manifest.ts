@@ -8,8 +8,8 @@ const manifest = (): MetadataRoute.Manifest => {
     description: "A weather report app built with Next.js and TypeScript. 🌦️",
     start_url: "/",
     display: "standalone",
-    background_color: "#fff",
-    theme_color: "#fff",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
     icons: [
       {
         src: "./favicon.ico",
