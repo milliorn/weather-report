@@ -1,4 +1,4 @@
-# Current Weather App
+# Weather-report App
 
 [![pages-build-deployment](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/pages/pages-build-deployment)
 [![CodeQL](https://github.com/milliorn/Current-Weather/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/milliorn/Current-Weather/actions/workflows/github-code-scanning/codeql)
