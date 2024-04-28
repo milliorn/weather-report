@@ -168,8 +168,23 @@ const getVisibility = (visibility: number) => {
     : visibilityMiles;
 };
 
+/**
+ * Fetches cities based on the provided input.
+ * @param inputTrimmed - The trimmed input string used for searching cities.
+ * @returns A promise that resolves to the JSON response containing the cities.
+ * @throws An error if the HTTP request fails.
+ */
+const fetchCities = async (inputTrimmed: string) => {
+  const response = await fetch(`/api/searchCities?query=${inputTrimmed}`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
+};
+
 export {
   dayOfWeek,
+  fetchCities,
   formatWeatherData,
   getMiles,
   getMoonPhase,

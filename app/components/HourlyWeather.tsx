@@ -4,8 +4,8 @@ import { HourlyWeatherProps } from "../models/componentProps";
 import { toCelsius } from "../utils/MiscUtils";
 import { toKph } from "../utils/WindUtils";
 
-const HourlyWeather = ({ hourly }: HourlyWeatherProps) => {
-  // console.log(hourly);
+const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
+  //  console.log(hourly);
 
   return (
     <div className="hourly-weather-container">
@@ -13,8 +13,8 @@ const HourlyWeather = ({ hourly }: HourlyWeatherProps) => {
         24-Hour Forecast
       </h2>
       <div
-        className="flex overflow-x-auto gap-4 p-2"
-        style={{ scrollbarWidth: "thin" }}
+        className="flex overflow-x-auto gap-4 pb-4"
+        style={{ scrollbarWidth: "auto" }}
       >
         {hourly.slice(0, NUM_HOURS).map((hour, index) => (
           <div
@@ -25,7 +25,8 @@ const HourlyWeather = ({ hourly }: HourlyWeatherProps) => {
               {new Date(hour.dt * TIMESTAMP_MULTIPLIER).toLocaleTimeString([], {
                 hour: "numeric",
                 minute: "2-digit",
-                hour12: true
+                hour12: true,
+                timeZone: timezone
               })}
             </p>
             <Image

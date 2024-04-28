@@ -110,6 +110,14 @@ type HourlyWeatherItem = {
 
 type HourlyWeatherProps = {
   hourly: HourlyWeatherItem[];
+  timezone: string;
+};
+
+type MapCityToOptionType = {
+  country: string;
+  latitude: number;
+  longitude: number;
+  name: string;
 };
 
 export type {
@@ -119,6 +127,7 @@ export type {
   CurrentWeatherProps,
   ForecastProps,
   HourlyWeatherProps,
+  MapCityToOptionType,
   MiddleProps,
   SearchProps,
   TopProps,

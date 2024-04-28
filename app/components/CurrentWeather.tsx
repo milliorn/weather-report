@@ -70,7 +70,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
         windSpeed={windSpeed}
         wind_gust={windGust}
       />
-      <HourlyWeather hourly={data.hourly} />
+      <HourlyWeather hourly={data.hourly} timezone={timezone} />
       <Forecast data={data} timezone={data.timezone} />
     </div>
   );

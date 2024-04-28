@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { SingleValue } from "react-select";
 import { AsyncPaginate } from "react-select-async-paginate";
+import { MIN_VALUE_LENGTH } from "../config";
 import { LoadOptionsResponse, SearchData } from "../models/apiTypes";
-import { SearchProps } from "../models/componentProps";
+import { MapCityToOptionType, SearchProps } from "../models/componentProps";
+import { fetchCities } from "../utils/MiscUtils";
 
 /**
  * Search component for searching cities.
@@ -18,49 +20,60 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<SearchData | null>(null);
 
   /**
+   * Maps a city object to an option object for a select input.
+   *
+   * @param city - The city object to be mapped.
+   * @returns An object with `value` and `label` properties.
+   */
+  const mapCityToOption = useCallback(
+    (city: MapCityToOptionType): { value: string; label: string } => ({
+      value: `${city.latitude} ${city.longitude}`,
+      label: `${city.name}, ${city.country}`
+    }),
+    []
+  );
+
+  /**
    * Loads options for the search input based on the provided input value.
    * @param inputValue - The input value to search for.
    * @returns A promise that resolves to a LoadOptionsResponse object containing the options.
    */
-  const loadOptions = async (
-    inputValue: string
-  ): Promise<LoadOptionsResponse> => {
-    try {
-      const response = await fetch(`/api/searchCities?query=${inputValue}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const responseData = await response.json();
-      return {
-        options: responseData.data.map(
-          (city: {
-            latitude: any;
-            longitude: any;
-            name: any;
-            country: any;
-          }) => ({
-            value: `${city.latitude} ${city.longitude}`,
-            label: `${city.name}, ${city.country}`
-          })
-        )
-      };
-    } catch (error) {
-      console.error("Failed to load options:", error);
-      return { options: [] };
-    }
-  };
+  const loadOptions = useMemo(
+    () =>
+      async (inputValue: string): Promise<LoadOptionsResponse> => {
+        const inputTrimmed = inputValue.trim();
+
+        if (inputTrimmed.length < MIN_VALUE_LENGTH) {
+          return { options: [] };
+        }
+
+        try {
+          const responseData = await fetchCities(inputTrimmed);
+          return {
+            options: responseData.data.map(mapCityToOption)
+          };
+        } catch (error) {
+          console.error("Failed to load options:", error);
+          return { options: [] };
+        }
+      },
+    [mapCityToOption]
+  );
 
   /**
    * Handles the change event of the search input.
    *
    * @param {SingleValue<SearchData>} newValue - The new value of the search input.
    */
-  const handleOnChange = (newValue: SingleValue<SearchData>) => {
-    setSearch(newValue);
-    if (newValue) {
-      onSearchChange(newValue);
-    }
-  };
+  const handleOnChange = useCallback(
+    (newValue: SingleValue<SearchData>) => {
+      setSearch(newValue);
+      if (newValue) {
+        onSearchChange(newValue);
+      }
+    },
+    [onSearchChange]
+  );
 
   return (
     <label>
@@ -68,7 +81,7 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
         /* fix for Warning: Prop `id` did not match. Server: "react-select-6-live-region" Client: "react-select-2-live-region"
       https://github.com/JedWatson/react-select/issues/5459#issuecomment-1312245530
       */
-        debounceTimeout={500}
+        debounceTimeout={300}
         id="searchbar"
         instanceId={"searchbar"}
         loadOptions={loadOptions}
