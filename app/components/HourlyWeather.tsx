@@ -13,8 +13,8 @@ const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
         24-Hour Forecast
       </h2>
       <div
-        className="flex overflow-x-auto gap-4 p-2"
-        style={{ scrollbarWidth: "thin" }}
+        className="flex overflow-x-auto gap-4 pb-4"
+        style={{ scrollbarWidth: "auto" }}
       >
         {hourly.slice(0, NUM_HOURS).map((hour, index) => (
           <div
