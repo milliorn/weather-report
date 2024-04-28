@@ -20,7 +20,24 @@ export const metadata: Metadata = {
   description:
     "A weather report application built with Next.js and Tailwind CSS.",
   generator: "Next.js",
-  keywords: ["weather", "report", "next.js", "tailwind", "css"],
+  keywords: [
+    "Next.js weather app",
+    "climate",
+    "live weather",
+    "local weather",
+    "meteorology",
+    "rain forecast",
+    "responsive weather app",
+    "storm tracking",
+    "tailwind css",
+    "temperature",
+    "weather API",
+    "weather conditions",
+    "weather forecast",
+    "weather report",
+    "weather updates",
+    "weather"
+  ],
   title: "Weather Report",
   formatDetection: {
     email: false,
