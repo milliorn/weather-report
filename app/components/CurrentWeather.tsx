@@ -61,8 +61,10 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
         lat={data.lat}
         lon={data.lon}
         moonPhase={moonPhase}
+        pressure={data.current.pressure}
         sunrise={sunrise}
         sunset={sunset}
+        temp={temp}
         timezone={timezone}
         uvi={uvi}
         visibility={visibility}

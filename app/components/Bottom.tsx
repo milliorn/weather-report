@@ -2,6 +2,7 @@
 
 import { BottomProps } from "../models/componentProps";
 import { WeatherDetail } from "../models/weatherTypes";
+import { calculateWetBulbTemperature } from "../utils/MeasurementUtils";
 import { toCelsius } from "../utils/MiscUtils";
 import { toKph } from "../utils/WindUtils";
 import Warnings from "./Warnings";
@@ -15,6 +16,7 @@ import Warnings from "./Warnings";
  * @param {number} props.humidity - The humidity percentage.
  * @param {number} props.lat - The latitude.
  * @param {number} props.lon - The longitude.
+ * @param {number} props.temp - The temperature.
  * @param {number} props.uvi - The UV index.
  * @param {number} props.visibility - The visibility distance.
  * @param {number} props.windSpeed - The wind speed.
@@ -38,8 +40,10 @@ const Bottom = (props: BottomProps): JSX.Element => {
     lat,
     lon,
     moonPhase,
+    pressure,
     sunrise,
     sunset,
+    temp,
     timezone,
     uvi,
     visibility,
@@ -48,6 +52,8 @@ const Bottom = (props: BottomProps): JSX.Element => {
     // eslint-disable-next-line camelcase
     wind_gust
   } = props;
+
+  const wetBulbTemperature = Math.floor(toCelsius(calculateWetBulbTemperature(temp, humidity, pressure))) + "°C | " + Math.floor(calculateWetBulbTemperature(heatIndex, humidity, pressure)) + "°F";
 
   /**
    * Data array containing weather information.
@@ -64,6 +70,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
       // eslint-disable-next-line camelcase
       result: toCelsius(dew_point) + "°C | " + dew_point + "°F"
     },
+    { id: "Wet Bulb", result: wetBulbTemperature },
     { id: "Humidity", result: humidity + "%" },
     { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
     { id: "Direction", result: windDirection },
