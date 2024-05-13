@@ -16,19 +16,19 @@ const getMiles = (meters: number): number => meters * MILES_CONVERSION_FACTOR;
  */
 const mmToInches = (data: number): number => data / MM_TO_INCHES;
 
-function wetBulbTemperatureCelsius(T: number, RH: number, P: number): number {
-  let result = (T * Math.atan(RH_MULTIPLY_CONSTANT * Math.sqrt(RH + RH_ADDITION_CONSTANT))) +
-    Math.atan(T + RH) -
-    Math.atan(RH - ES_CONSTANT) +
-    ((RH_CONVERSION_FACTOR * Math.pow(RH, RH_EXPONENT) * Math.atan(RH_CONSTANT_A * RH)) - RH_SUBTRACTION_CONSTANT);
+const wetBulbTemperatureCelsius = (temperature: number, relativeHumidity: number): number => {
+  let result = (temperature * Math.atan(RH_MULTIPLY_CONSTANT * Math.sqrt(relativeHumidity + RH_ADDITION_CONSTANT))) +
+    Math.atan(temperature + relativeHumidity) -
+    Math.atan(relativeHumidity - ES_CONSTANT) +
+    ((RH_CONVERSION_FACTOR * Math.pow(relativeHumidity, RH_EXPONENT) * Math.atan(RH_CONSTANT_A * relativeHumidity)) - RH_SUBTRACTION_CONSTANT);
 
   return result;
-}
+};
 
-function calculateWetBulbTemperature(temperature: number, relativeHumidity: number, pressure: number): number {
+const calculateWetBulbTemperature = (temperature: number, relativeHumidity: number, pressure: number): number => {
   let celsius = (temperature - FREEZING_POINT_F) * CELSIUS_CONVERSION_FACTOR;
-  let wetBulbCelsius = wetBulbTemperatureCelsius(celsius, relativeHumidity, pressure);
+  let wetBulbCelsius = wetBulbTemperatureCelsius(celsius, relativeHumidity);
   return (wetBulbCelsius * FAHRENHEIT_CONVERSION_FACTOR) + FREEZING_POINT_F;
-}
+};
 
 export { getMiles, mmToInches, calculateWetBulbTemperature };
