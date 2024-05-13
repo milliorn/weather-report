@@ -53,7 +53,13 @@ const Bottom = (props: BottomProps): JSX.Element => {
     wind_gust
   } = props;
 
-  const wetBulbTemperature = Math.floor(toCelsius(calculateWetBulbTemperature(temp, humidity, pressure))) + "°C | " + Math.floor(calculateWetBulbTemperature(heatIndex, humidity, pressure)) + "°F";
+  const wetBulbTemperature =
+    Math.floor(
+      toCelsius(calculateWetBulbTemperature(temp, humidity, pressure))
+    ) +
+    "°C | " +
+    Math.floor(calculateWetBulbTemperature(heatIndex, humidity, pressure)) +
+    "°F";
 
   /**
    * Data array containing weather information.
