@@ -58,7 +58,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
       toCelsius(calculateWetBulbTemperature(temp, humidity, pressure))
     ) +
     "°C | " +
-    Math.floor(calculateWetBulbTemperature(heatIndex, humidity, pressure)) +
+    Math.floor(calculateWetBulbTemperature(temp, humidity, pressure)) +
     "°F";
 
   /**
@@ -71,12 +71,12 @@ const Bottom = (props: BottomProps): JSX.Element => {
       id: "Feels like",
       result: toCelsius(heatIndex) + "°C | " + heatIndex + "°F"
     },
+    { id: "Wet Bulb", result: wetBulbTemperature },
     {
       id: "Dew Point",
       // eslint-disable-next-line camelcase
       result: toCelsius(dew_point) + "°C | " + dew_point + "°F"
     },
-    { id: "Wet Bulb", result: wetBulbTemperature },
     { id: "Humidity", result: humidity + "%" },
     { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
     { id: "Direction", result: windDirection },
