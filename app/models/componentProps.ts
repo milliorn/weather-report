@@ -12,8 +12,10 @@ type BottomProps = {
   lat: number;
   lon: number;
   moonPhase: string;
+  pressure: number;
   sunrise: string;
   sunset: string;
+  temp: number;
   timezone: string;
   uvi: number;
   visibility: number;
@@ -70,6 +72,7 @@ type CurrentWeatherData = {
     dt: number;
     feels_like: number;
     humidity: number;
+    pressure: any;
     sunrise: number;
     sunset: number;
     temp: number;
