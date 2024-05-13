@@ -42,6 +42,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
 
   // eslint-disable-next-line no-console
   console.log(data);
+  console.log(data.current.temp);
 
   return (
     <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 backdrop-filter bg-opacity-50">
