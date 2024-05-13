@@ -1,6 +1,6 @@
 "use client";
 
-import { CELSIUS_CONVERSION_FACTOR, ES_CONSTANT, FAHRENHEIT_CONVERSION_FACTOR, FREEZING_POINT_F, MILES_CONVERSION_FACTOR, MM_TO_INCHES, PERCENTAGE, PRESSURE_CONVERSION_FACTOR, RH_ADDITION_CONSTANT, RH_CONSTANT_A, RH_CONVERSION_FACTOR, RH_EXPONENT, RH_MULTIPLY_CONSTANT, RH_SUBTRACTION_CONSTANT, SATURATION_CONSTANT_A, SATURATION_CONSTANT_B, SATURATION_CONSTANT_C } from "../config";
+import { CELSIUS_CONVERSION_FACTOR, ES_CONSTANT, FAHRENHEIT_CONVERSION_FACTOR, FREEZING_POINT_F, MILES_CONVERSION_FACTOR, MM_TO_INCHES, RH_ADDITION_CONSTANT, RH_CONSTANT_A, RH_CONVERSION_FACTOR, RH_EXPONENT, RH_MULTIPLY_CONSTANT, RH_SUBTRACTION_CONSTANT, SATURATION_CONSTANT_A, SATURATION_CONSTANT_B, SATURATION_CONSTANT_C } from "../config";
 
 /**
  * Converts meters to miles.
@@ -16,6 +16,12 @@ const getMiles = (meters: number): number => meters * MILES_CONVERSION_FACTOR;
  */
 const mmToInches = (data: number): number => data / MM_TO_INCHES;
 
+/**
+ * Calculates the wet bulb temperature in Celsius.
+ * @param temperature - The temperature in Celsius.
+ * @param relativeHumidity - The relative humidity.
+ * @returns The wet bulb temperature in Celsius.
+ */
 const wetBulbTemperatureCelsius = (temperature: number, relativeHumidity: number): number => {
   let result = (temperature * Math.atan(RH_MULTIPLY_CONSTANT * Math.sqrt(relativeHumidity + RH_ADDITION_CONSTANT))) +
     Math.atan(temperature + relativeHumidity) -
@@ -25,6 +31,13 @@ const wetBulbTemperatureCelsius = (temperature: number, relativeHumidity: number
   return result;
 };
 
+/**
+ * Calculates the wet bulb temperature in Fahrenheit.
+ * @param temperature - The temperature in Fahrenheit.
+ * @param relativeHumidity - The relative humidity as a percentage.
+ * @param pressure - The atmospheric pressure in hPa.
+ * @returns The wet bulb temperature in Fahrenheit.
+ */
 const calculateWetBulbTemperature = (temperature: number, relativeHumidity: number, pressure: number): number => {
   let celsius = (temperature - FREEZING_POINT_F) * CELSIUS_CONVERSION_FACTOR;
   let wetBulbCelsius = wetBulbTemperatureCelsius(celsius, relativeHumidity);
