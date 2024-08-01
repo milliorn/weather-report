@@ -16,7 +16,7 @@
     "react": "^18",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18",
-    "react-select-async-paginate": "^0.7.4"
+    "react-select-async-paginate": "^0.7.5"
   },
   "devDependencies": {
     "@types/node": "^22.0.2",
