@@ -4,7 +4,7 @@ const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
 const FAHRENHEIT_TO_CELSIUS = 0.5556;
 const HALF_PHASE = 0.5;
-const IMAGE_URL = `url("https://source.unsplash.com/random/?weather")`;
+const IMAGE_URL = `url("https://picsum.photos/300/?blur=1")`;
 const KPH_CONVERSION_FACTOR = 1.609344;
 const MAX_VISIBILITY_MILES = 6.0;
 const MILES_CONVERSION_FACTOR = 0.000621371192;
