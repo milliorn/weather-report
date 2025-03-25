@@ -4,7 +4,7 @@ const DIRECTION_SEGMENTS = 16;
 const FAHRENHEIT_BASE = 32;
 const FAHRENHEIT_TO_CELSIUS = 0.5556;
 const HALF_PHASE = 0.5;
-const IMAGE_URL = `url("https://source.unsplash.com/random/?weather")`;
+const IMAGE_URL = `url("https://picsum.photos/2560/1440.webp/?blur=1")`;
 const KPH_CONVERSION_FACTOR = 1.609344;
 const MAX_VISIBILITY_MILES = 6.0;
 const MILES_CONVERSION_FACTOR = 0.000621371192;
@@ -20,7 +20,7 @@ const RAIN_PRECISION = 2;
 const SLICE_END_INDEX = 3;
 const THREE_QUARTER_PHASE = 0.75;
 const TIMESTAMP_MULTIPLIER = 1000;
-const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
+const WEATHER_API_URL = "https://api.openweathermap.org/data/3.0";
 const WIND_DIRECTION_DIVISOR = 22.5;
 
 /* wet bulb temperature constants */

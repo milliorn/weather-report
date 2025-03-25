@@ -5,7 +5,7 @@
 
 This repository contains a web application that displays the current weather information for a given location. Users can search for a city or town and retrieve the current weather conditions, including temperature, humidity, wind speed, and weather description.
 
-The project is built using [React](https://github.com/facebook/create-react-app), [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app), and utilizes the [OpenWeather](https://openweathermap.org/) API to fetch the weather data. It provides a user-friendly interface that dynamically updates the weather information based on the user's input from [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities/). Random images provided by [Unsplash](https://unsplash.com/)
+The project is built using [React](https://github.com/facebook/create-react-app), [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app), and utilizes the [OpenWeather](https://openweathermap.org/) API to fetch the weather data. It provides a user-friendly interface that dynamically updates the weather information based on the user's input from [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities/). Random images provided by [Lorem Picsum](https://picsum.photos/)
 
 ## Features
 
