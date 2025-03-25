@@ -12,7 +12,7 @@ export const viewport: Viewport = {
  * Represents the metadata for a weather report application.
  */
 export const metadata: Metadata = {
-  authors: [{ name: "Scott Milliorn", url: "https://milliorn.xyz/" }],
+  authors: [{ name: "Scott Milliorn", url: "https://github.com/milliorn" }],
   creator: "Scott Milliorn",
   publisher: "Scott Milliorn",
   description:
