@@ -20,7 +20,7 @@ const RAIN_PRECISION = 2;
 const SLICE_END_INDEX = 3;
 const THREE_QUARTER_PHASE = 0.75;
 const TIMESTAMP_MULTIPLIER = 1000;
-const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
+const WEATHER_API_URL = "https://api.openweathermap.org/data/3.0";
 const WIND_DIRECTION_DIVISOR = 22.5;
 
 /* wet bulb temperature constants */
