@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  DIRECTION_SEGMENTS,
-  KPH_CONVERSION_FACTOR,
-  WIND_DIRECTION_DIVISOR
-} from "../config";
+import { Conversion, WeatherParsing } from "../config";
 
 /**
  * Returns the wind direction based on the given angle.
@@ -39,7 +35,7 @@ const getWindDirection = (direction: number): string =>
     "W/NW",
     "NW",
     "N/NW"
-  ][Math.round(direction / WIND_DIRECTION_DIVISOR) % DIRECTION_SEGMENTS];
+  ][Math.round(direction / WeatherParsing.WIND_DIRECTION_DIVISOR) % WeatherParsing.DIRECTION_SEGMENTS];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.
@@ -52,7 +48,7 @@ const getWindDirection = (direction: number): string =>
  * toKph(100); // 160
  */
 const toKph = (speed: number): number =>
-  Math.floor(speed * KPH_CONVERSION_FACTOR);
+  Math.floor(speed * Conversion.KPH_CONVERSION_FACTOR);
 
 /**
  * Returns the wind gust value, rounded down to the nearest integer.

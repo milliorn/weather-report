@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "./constants";
-import { WEATHER_API_URL } from "@/app/config";
+import { API } from "@/app/config";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function handler(
   const { lat, lon } = req.query;
 
   const apiKey = process.env.WEATHER_API_KEY;
-  const url = `${WEATHER_API_URL}/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  const url = `${API.WEATHER_API_URL}/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
 
   try {
     const response = await fetch(url);

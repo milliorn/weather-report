@@ -3,10 +3,10 @@
 import { useCallback, useMemo, useState } from "react";
 import { SingleValue } from "react-select";
 import { AsyncPaginate } from "react-select-async-paginate";
-import { MIN_VALUE_LENGTH } from "../config";
 import { LoadOptionsResponse, SearchData } from "../models/apiTypes";
 import { MapCityToOptionType, SearchProps } from "../models/componentProps";
 import { fetchCities } from "../utils/MiscUtils";
+import { Display } from "../config";
 
 /**
  * Search component for searching cities.
@@ -43,7 +43,7 @@ const Search = ({ onSearchChange }: SearchProps): JSX.Element => {
       async (inputValue: string): Promise<LoadOptionsResponse> => {
         const inputTrimmed = inputValue.trim();
 
-        if (inputTrimmed.length < MIN_VALUE_LENGTH) {
+        if (inputTrimmed.length < Display.MIN_VALUE_LENGTH) {
           return { options: [] };
         }
 

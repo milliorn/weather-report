@@ -1,7 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
-import { MILLISECONDS_PER_SECOND } from "../config";
+import { Time } from "../config";
 
 /**
  * Parses the given time value and returns a formatted date string based on the provided locale and timezone.
@@ -28,7 +28,8 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
  * @returns The formatted string representation of the timestamp.
  */
 const formatDate = (timestamp: number) => {
-  return format(new Date(timestamp * MILLISECONDS_PER_SECOND), "p 'on' PPP");
+  return format(new Date(timestamp * Time.MILLISECONDS_PER_SECOND), "p 'on' PPP");
 };
 
 export { formatDate, parseTime };
+

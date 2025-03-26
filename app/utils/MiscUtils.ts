@@ -1,17 +1,6 @@
 "use client";
 
-import {
-  FAHRENHEIT_BASE,
-  FAHRENHEIT_TO_CELSIUS,
-  HALF_PHASE,
-  MAX_VISIBILITY_MILES,
-  PERCENT_MULTIPLIER,
-  POPULATION_THRESHOLD,
-  QUARTER_PHASE,
-  RAIN_PRECISION,
-  SLICE_END_INDEX,
-  THREE_QUARTER_PHASE
-} from "../config";
+import { Conversion, Display, MoonPhases, Percent, Thresholds, WeatherParsing } from "../config";
 import { CurrentWeatherData } from "../models/componentProps";
 import { WeatherItem } from "../models/weatherTypes";
 import { getMiles, mmToInches } from "./MeasurementUtils";
@@ -30,19 +19,19 @@ import { getWindDirection, getWindGust, toKph } from "./WindUtils";
  * getMoonPhase(0); // "New Moon"
  */
 const getMoonPhase = (phase: number): string => {
-  if (phase > 0 && phase < QUARTER_PHASE) {
+  if (phase > 0 && phase < MoonPhases.QUARTER_PHASE) {
     return "Waxing Crescent";
-  } else if (phase === QUARTER_PHASE) {
+  } else if (phase === MoonPhases.QUARTER_PHASE) {
     return "First Quarter";
-  } else if (phase > QUARTER_PHASE && phase < HALF_PHASE) {
+  } else if (phase > MoonPhases.QUARTER_PHASE && phase < MoonPhases.HALF_PHASE) {
     return "Waxing Gibbous";
-  } else if (phase === HALF_PHASE) {
+  } else if (phase === MoonPhases.HALF_PHASE) {
     return "Full Moon";
-  } else if (phase > HALF_PHASE && phase < THREE_QUARTER_PHASE) {
+  } else if (phase > MoonPhases.HALF_PHASE && phase < MoonPhases.THREE_QUARTER_PHASE) {
     return "Waning Gibbous";
-  } else if (phase === THREE_QUARTER_PHASE) {
+  } else if (phase === MoonPhases.THREE_QUARTER_PHASE) {
     return "Last Quarter";
-  } else if (phase > THREE_QUARTER_PHASE && phase < 1) {
+  } else if (phase > MoonPhases.THREE_QUARTER_PHASE && phase < 1) {
     return "Waning Crescent";
   } else {
     return "New Moon";
@@ -59,7 +48,7 @@ const getMoonPhase = (phase: number): string => {
  * toCelsius(98.6); // 37
  */
 const toCelsius = (num: number): number =>
-  Math.floor((num - FAHRENHEIT_BASE) * FAHRENHEIT_TO_CELSIUS);
+  Math.floor((num - Conversion.FAHRENHEIT_BASE) * Conversion.FAHRENHEIT_TO_CELSIUS);
 
 /**
  * Returns the day of the week for a given item.
@@ -75,10 +64,10 @@ const toCelsius = (num: number): number =>
  * dayOfWeek({ dt: 1620518400 }); // "Sun"
  */
 const dayOfWeek = (item: { dt: number }): string =>
-  new Date(item.dt * POPULATION_THRESHOLD)
+  new Date(item.dt * Thresholds.POPULATION_THRESHOLD)
     .toString()
     .split(" ")
-    .slice(0, SLICE_END_INDEX)
+    .slice(0, Display.SLICE_END_INDEX)
     .join(" ")
     .trim();
 
@@ -97,14 +86,14 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
     },
     { id: "Clouds", result: `${item.clouds}%` },
     { id: "Humidity", result: `${item.humidity}%` },
-    { id: "Rain", result: `${item.pop * PERCENT_MULTIPLIER}%` },
+    { id: "Rain", result: `${item.pop * Percent.PERCENT_MULTIPLIER}%` },
     {
       id: "Precipitation",
       result:
         item.rain !== undefined && item.rain >= 0
           ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
-              RAIN_PRECISION
-            )}in`
+            Thresholds.RAIN_PRECISION
+          )}in`
           : "0.00"
     },
     { id: "UV Index", result: item.uvi },
@@ -163,8 +152,8 @@ const parseCity = (city: string) => city.substring(0, city.indexOf(","));
 const getVisibility = (visibility: number) => {
   const visibilityMiles = getMiles(visibility);
 
-  return visibilityMiles > MAX_VISIBILITY_MILES
-    ? MAX_VISIBILITY_MILES
+  return visibilityMiles > WeatherParsing.MAX_VISIBILITY_MILES
+    ? WeatherParsing.MAX_VISIBILITY_MILES
     : visibilityMiles;
 };
 
