@@ -1,6 +1,13 @@
 "use client";
 
-import { Conversion, Display, MoonPhases, Percent, Thresholds, WeatherParsing } from "../config";
+import {
+  Conversion,
+  Display,
+  MoonPhases,
+  Percent,
+  Thresholds,
+  WeatherParsing
+} from "../config";
 import { CurrentWeatherData } from "../models/componentProps";
 import { WeatherItem } from "../models/weatherTypes";
 import { getMiles, mmToInches } from "./MeasurementUtils";
@@ -23,11 +30,17 @@ const getMoonPhase = (phase: number): string => {
     return "Waxing Crescent";
   } else if (phase === MoonPhases.QUARTER_PHASE) {
     return "First Quarter";
-  } else if (phase > MoonPhases.QUARTER_PHASE && phase < MoonPhases.HALF_PHASE) {
+  } else if (
+    phase > MoonPhases.QUARTER_PHASE &&
+    phase < MoonPhases.HALF_PHASE
+  ) {
     return "Waxing Gibbous";
   } else if (phase === MoonPhases.HALF_PHASE) {
     return "Full Moon";
-  } else if (phase > MoonPhases.HALF_PHASE && phase < MoonPhases.THREE_QUARTER_PHASE) {
+  } else if (
+    phase > MoonPhases.HALF_PHASE &&
+    phase < MoonPhases.THREE_QUARTER_PHASE
+  ) {
     return "Waning Gibbous";
   } else if (phase === MoonPhases.THREE_QUARTER_PHASE) {
     return "Last Quarter";
@@ -48,7 +61,9 @@ const getMoonPhase = (phase: number): string => {
  * toCelsius(98.6); // 37
  */
 const toCelsius = (num: number): number =>
-  Math.floor((num - Conversion.FAHRENHEIT_BASE) * Conversion.FAHRENHEIT_TO_CELSIUS);
+  Math.floor(
+    (num - Conversion.FAHRENHEIT_BASE) * Conversion.FAHRENHEIT_TO_CELSIUS
+  );
 
 /**
  * Returns the day of the week for a given item.
@@ -92,8 +107,8 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
       result:
         item.rain !== undefined && item.rain >= 0
           ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
-            Thresholds.RAIN_PRECISION
-          )}in`
+              Thresholds.RAIN_PRECISION
+            )}in`
           : "0.00"
     },
     { id: "UV Index", result: item.uvi },

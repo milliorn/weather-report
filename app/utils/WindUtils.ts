@@ -35,7 +35,10 @@ const getWindDirection = (direction: number): string =>
     "W/NW",
     "NW",
     "N/NW"
-  ][Math.round(direction / WeatherParsing.WIND_DIRECTION_DIVISOR) % WeatherParsing.DIRECTION_SEGMENTS];
+  ][
+    Math.round(direction / WeatherParsing.WIND_DIRECTION_DIVISOR) %
+      WeatherParsing.DIRECTION_SEGMENTS
+  ];
 
 /**
  * Converts speed from miles per hour to kilometers per hour.

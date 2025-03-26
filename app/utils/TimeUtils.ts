@@ -28,8 +28,10 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
  * @returns The formatted string representation of the timestamp.
  */
 const formatDate = (timestamp: number) => {
-  return format(new Date(timestamp * Time.MILLISECONDS_PER_SECOND), "p 'on' PPP");
+  return format(
+    new Date(timestamp * Time.MILLISECONDS_PER_SECOND),
+    "p 'on' PPP"
+  );
 };
 
 export { formatDate, parseTime };
-

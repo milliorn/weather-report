@@ -7,7 +7,8 @@ import { Conversion, WetBulb } from "../config";
  * @param meters - The distance in meters.
  * @returns The distance in miles.
  */
-const getMiles = (meters: number): number => meters * Conversion.MILES_CONVERSION_FACTOR;
+const getMiles = (meters: number): number =>
+  meters * Conversion.MILES_CONVERSION_FACTOR;
 
 /**
  * Converts millimeters to inches.
@@ -30,7 +31,8 @@ const wetBulbTemperatureCelsius = (
   const firstTerm =
     temperature *
     Math.atan(
-      WetBulb.RH_MULTIPLY_CONSTANT * Math.sqrt(relativeHumidity + WetBulb.RH_ADDITION_CONSTANT)
+      WetBulb.RH_MULTIPLY_CONSTANT *
+        Math.sqrt(relativeHumidity + WetBulb.RH_ADDITION_CONSTANT)
     );
 
   // Second term is straightforward atan addition
@@ -47,7 +49,10 @@ const wetBulbTemperatureCelsius = (
 
   // Result combines all terms with appropriate additions and subtractions
   let result =
-    firstTerm + secondTerm - thirdTerm + (fourthTerm - WetBulb.RH_SUBTRACTION_CONSTANT);
+    firstTerm +
+    secondTerm -
+    thirdTerm +
+    (fourthTerm - WetBulb.RH_SUBTRACTION_CONSTANT);
 
   return result;
 };
@@ -66,7 +71,8 @@ const calculateWetBulbTemperature = (
 ): number => {
   // Convert input temperature from Fahrenheit to Celsius
   const temperatureCelsius =
-    (temperature - WetBulb.FREEZING_POINT_F) * Conversion.CELSIUS_CONVERSION_FACTOR;
+    (temperature - WetBulb.FREEZING_POINT_F) *
+    Conversion.CELSIUS_CONVERSION_FACTOR;
 
   // Calculate wet bulb temperature in Celsius
   const wetBulbTemperatureC = wetBulbTemperatureCelsius(
