@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 "use client";
 
 import { BottomProps } from "../models/componentProps";
@@ -33,7 +34,6 @@ const Bottom = (props: BottomProps): JSX.Element => {
   const {
     alert,
     clouds,
-    // eslint-disable-next-line camelcase
     dew_point,
     heatIndex,
     humidity,
@@ -49,10 +49,10 @@ const Bottom = (props: BottomProps): JSX.Element => {
     visibility,
     windDirection,
     windSpeed,
-    // eslint-disable-next-line camelcase
     wind_gust
   } = props;
 
+  // Calculate wet bulb temperature (both Celsius and Fahrenheit)
   const wetBulbTemperature =
     Math.floor(
       toCelsius(calculateWetBulbTemperature(temp, humidity, pressure))
@@ -63,8 +63,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
 
   /**
    * Data array containing weather information.
-   *
-   * @type {WeatherDetail[]}
+   * Each object represents a detail to display.
    */
   const data: WeatherDetail[] = [
     {
@@ -74,14 +73,16 @@ const Bottom = (props: BottomProps): JSX.Element => {
     { id: "Wet Bulb", result: wetBulbTemperature },
     {
       id: "Dew Point",
-      // eslint-disable-next-line camelcase
       result: toCelsius(dew_point) + "°C | " + dew_point + "°F"
     },
     { id: "Humidity", result: humidity + "%" },
     { id: "Wind", result: toKph(windSpeed) + " kph | " + windSpeed + " mph" },
     { id: "Direction", result: windDirection },
-    // eslint-disable-next-line camelcase
-    { id: "Gust", result: toKph(wind_gust) + " kph | " + wind_gust + " mph" },
+    {
+      id: "Gust",
+      // Displaying wind gust converted to kph as well as mph
+      result: toKph(wind_gust) + " kph | " + wind_gust + " mph"
+    },
     { id: "Sunrise", result: sunrise },
     { id: "Sunset", result: sunset },
     { id: "UV Index", result: uvi },
@@ -93,7 +94,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
     { id: "Moon", result: moonPhase },
     {
       id: "Time Zone",
-      // Replace underscores with spaces and slashes with pipes.
+      // Replace underscores with spaces and slashes with pipes for readability
       result: timezone.replace(/_/g, " ").replace(/\//g, " | ")
     },
     { id: "Latitude", result: lat },
@@ -106,7 +107,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
         {data.map((e, i) => {
           return (
             <div
-              key={i}
+              key={`${i}-${e.id}`}
               className="flex justify-between text-sm drop-shadow-md section-row"
             >
               <span className="text-left capitalize text-neutral-100 section-name sm:text-lg md:text-xl 2xl:text-2xl drop-shadow-md">
@@ -121,6 +122,7 @@ const Bottom = (props: BottomProps): JSX.Element => {
             </div>
           );
         })}
+        {/* Render Warnings component with the provided alert prop */}
         <Warnings alert={alert} />
       </div>
     </div>
