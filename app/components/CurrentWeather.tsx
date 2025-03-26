@@ -1,6 +1,5 @@
 "use client";
 
-import "../css/current-weather.css";
 import { CurrentWeatherProps } from "../models/componentProps";
 import { parseCity, parseTime, parseWeatherData } from "../utils/MiscUtils";
 import Bottom from "./Bottom";
@@ -40,12 +39,11 @@ const CurrentWeather = ({ data }: CurrentWeatherProps): JSX.Element => {
   const sunrise = parseTime(data.current.sunrise, "en-US", data.timezone);
   const sunset = parseTime(data.current.sunset, "en-US", data.timezone);
 
-  // eslint-disable-next-line no-console
   // console.log(data);
   // console.log(data.current.temp);
 
   return (
-    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md weather sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 backdrop-filter bg-opacity-50">
+    <div className="w-auto h-full text-white backdrop-contrast-100 drop-shadow-md mt-4 mx-auto px-4 pb-4 sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 backdrop-filter bg-opacity-50">
       <Top city={city} currentTime={currentTime} />
       <Middle
         dailyHigh={dailyHigh}
