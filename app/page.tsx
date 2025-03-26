@@ -3,9 +3,9 @@
 import { useCallback, useState } from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import Search from "./components/Search";
-import { IMAGE_URL } from "./config";
 import { SearchData } from "./models/apiTypes";
 import { CurrentWeatherData } from "./models/componentProps";
+import { Display } from "./config";
 
 export default function Home() {
   const [currentWeather, setCurrentWeather] =
@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <div
       className="min-h-screen mx-auto my-0 bg-cover text-black bg-black shadow-xl overflow-x-hidden"
-      style={{ backgroundImage: IMAGE_URL }}
+      style={{ backgroundImage: Display.IMAGE_URL }}
     >
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather ? (

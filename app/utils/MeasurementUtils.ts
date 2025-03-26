@@ -1,33 +1,21 @@
 "use client";
 
-import {
-  CELSIUS_CONVERSION_FACTOR,
-  ES_CONSTANT,
-  FAHRENHEIT_CONVERSION_FACTOR,
-  FREEZING_POINT_F,
-  MILES_CONVERSION_FACTOR,
-  MM_TO_INCHES,
-  RH_ADDITION_CONSTANT,
-  RH_CONSTANT_A,
-  RH_CONVERSION_FACTOR,
-  RH_EXPONENT,
-  RH_MULTIPLY_CONSTANT,
-  RH_SUBTRACTION_CONSTANT
-} from "../config";
+import { Conversion, WetBulb } from "../config";
 
 /**
  * Converts meters to miles.
  * @param meters - The distance in meters.
  * @returns The distance in miles.
  */
-const getMiles = (meters: number): number => meters * MILES_CONVERSION_FACTOR;
+const getMiles = (meters: number): number =>
+  meters * Conversion.MILES_CONVERSION_FACTOR;
 
 /**
  * Converts millimeters to inches.
  * @param data - The value in millimeters to be converted.
  * @returns The converted value in inches.
  */
-const mmToInches = (data: number): number => data / MM_TO_INCHES;
+const mmToInches = (data: number): number => data / Conversion.MM_TO_INCHES;
 
 /**
  * Calculates the wet bulb temperature in Celsius.
@@ -43,24 +31,28 @@ const wetBulbTemperatureCelsius = (
   const firstTerm =
     temperature *
     Math.atan(
-      RH_MULTIPLY_CONSTANT * Math.sqrt(relativeHumidity + RH_ADDITION_CONSTANT)
+      WetBulb.RH_MULTIPLY_CONSTANT *
+        Math.sqrt(relativeHumidity + WetBulb.RH_ADDITION_CONSTANT)
     );
 
   // Second term is straightforward atan addition
   const secondTerm = Math.atan(temperature + relativeHumidity);
 
   // Third term subtracts the atan of the constant adjusted humidity
-  const thirdTerm = Math.atan(relativeHumidity - ES_CONSTANT);
+  const thirdTerm = Math.atan(relativeHumidity - WetBulb.ES_CONSTANT);
 
   // Fourth term combines several operations and needs careful grouping
   const fourthTerm =
-    RH_CONVERSION_FACTOR *
-    Math.pow(relativeHumidity, RH_EXPONENT) *
-    Math.atan(RH_CONSTANT_A * relativeHumidity);
+    WetBulb.RH_CONVERSION_FACTOR *
+    Math.pow(relativeHumidity, WetBulb.RH_EXPONENT) *
+    Math.atan(WetBulb.RH_CONSTANT * relativeHumidity);
 
   // Result combines all terms with appropriate additions and subtractions
   let result =
-    firstTerm + secondTerm - thirdTerm + (fourthTerm - RH_SUBTRACTION_CONSTANT);
+    firstTerm +
+    secondTerm -
+    thirdTerm +
+    (fourthTerm - WetBulb.RH_SUBTRACTION_CONSTANT);
 
   return result;
 };
@@ -79,7 +71,8 @@ const calculateWetBulbTemperature = (
 ): number => {
   // Convert input temperature from Fahrenheit to Celsius
   const temperatureCelsius =
-    (temperature - FREEZING_POINT_F) * CELSIUS_CONVERSION_FACTOR;
+    (temperature - WetBulb.FREEZING_POINT_F) *
+    Conversion.CELSIUS_CONVERSION_FACTOR;
 
   // Calculate wet bulb temperature in Celsius
   const wetBulbTemperatureC = wetBulbTemperatureCelsius(
@@ -89,10 +82,10 @@ const calculateWetBulbTemperature = (
 
   // Convert wet bulb temperature back to Fahrenheit
   const conversionToFahrenheit =
-    wetBulbTemperatureC * FAHRENHEIT_CONVERSION_FACTOR;
+    wetBulbTemperatureC * Conversion.FAHRENHEIT_CONVERSION_FACTOR;
 
   // Add freezing point to get final result
-  const wetBulbTemperatureF = conversionToFahrenheit + FREEZING_POINT_F;
+  const wetBulbTemperatureF = conversionToFahrenheit + WetBulb.FREEZING_POINT_F;
 
   return wetBulbTemperatureF;
 };

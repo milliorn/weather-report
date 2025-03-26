@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { NUM_HOURS, PERCENT_MULTIPLIER, TIMESTAMP_MULTIPLIER } from "../config";
+import { Percent, Time } from "../config";
 import { HourlyWeatherProps } from "../models/componentProps";
 import { toCelsius } from "../utils/MiscUtils";
 import { toKph } from "../utils/WindUtils";
@@ -16,18 +16,21 @@ const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
         className="flex overflow-x-auto gap-4 pb-4"
         style={{ scrollbarWidth: "auto" }}
       >
-        {hourly.slice(0, NUM_HOURS).map((hour, index) => (
+        {hourly.slice(0, Time.NUM_HOURS).map((hour, index) => (
           <div
             key={index}
             className="hourly-weather-card min-w-max bg-transparent shadow-md p-4 rounded-lg border border-gray-200"
           >
             <p className="hour">
-              {new Date(hour.dt * TIMESTAMP_MULTIPLIER).toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-                timeZone: timezone
-              })}
+              {new Date(hour.dt * Time.TIMESTAMP_MULTIPLIER).toLocaleTimeString(
+                [],
+                {
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                  timeZone: timezone
+                }
+              )}
             </p>
             <Image
               alt={hour.weather[0].description}
@@ -42,7 +45,7 @@ const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
               {hour.weather[0].description}
             </p>
             <p className="chance-of-rain">
-              Rain: {hour.pop * PERCENT_MULTIPLIER}%
+              Rain: {hour.pop * Percent.PERCENT_MULTIPLIER}%
             </p>
             <p className="humidity">Humidity: {hour.humidity}%</p>
             <p className="wind">
