@@ -21,6 +21,7 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
 
   // Use the constant from config instead of the literal 1000
   const dateTime = new Date(time * Time.MILLISECONDS_PER_SECOND);
+
   if (isNaN(dateTime.getTime())) {
     console.warn("parseTime: Date conversion failed", time);
     return "Invalid time";
