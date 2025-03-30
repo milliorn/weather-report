@@ -28,7 +28,9 @@ const parseTime = (time: number, locale: string, timezone: string): string => {
   }
 
   // Format the date and return the time portion
-  const parts = dateTime.toLocaleString(locale, { timeZone: timezone }).split(",");
+  const parts = dateTime
+    .toLocaleString(locale, { timeZone: timezone })
+    .split(",");
   return parts.length > 1 ? parts.pop()!.trim() : parts[0];
 };
 

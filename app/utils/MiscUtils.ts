@@ -109,8 +109,8 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
       result:
         item.rain !== undefined && item.rain >= 0
           ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
-            Thresholds.RAIN_PRECISION
-          )}in`
+              Thresholds.RAIN_PRECISION
+            )}in`
           : "0.00"
     },
     { id: "UV Index", result: item.uvi },
@@ -136,21 +136,23 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
  */
 const parseWeatherData = (data: CurrentWeatherData) => {
   const dailyItem =
-    data.daily && data.daily.length > 0 ? data.daily[0] : {
-      temp: { max: 0, min: 0 },
-      moon_phase: 0,
-      clouds: 0,
-      dew_point: 0,
-      humidity: 0,
-      pop: 0,
-      uvi: 0,
-      wind_speed: 0,
-      weather: [{ description: "N/A" }],
-      sunrise: 0,
-      sunset: 0,
-      wind_gust: 0,
-      dt: 0
-    };
+    data.daily && data.daily.length > 0
+      ? data.daily[0]
+      : {
+          temp: { max: 0, min: 0 },
+          moon_phase: 0,
+          clouds: 0,
+          dew_point: 0,
+          humidity: 0,
+          pop: 0,
+          uvi: 0,
+          wind_speed: 0,
+          weather: [{ description: "N/A" }],
+          sunrise: 0,
+          sunset: 0,
+          wind_gust: 0,
+          dt: 0
+        };
 
   return {
     alert: data.alerts,
