@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 
 import {
@@ -107,8 +108,8 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
       result:
         item.rain !== undefined && item.rain >= 0
           ? `${item.rain}mm | ${mmToInches(item.rain).toFixed(
-              Thresholds.RAIN_PRECISION
-            )}in`
+            Thresholds.RAIN_PRECISION
+          )}in`
           : "0.00"
     },
     { id: "UV Index", result: item.uvi },
@@ -157,7 +158,11 @@ const parseWeatherData = (data: CurrentWeatherData) => ({
  * @param city - The string containing the city and state.
  * @returns The parsed city name.
  */
-const parseCity = (city: string) => city.substring(0, city.indexOf(","));
+const parseCity = (city: string): string => {
+  const commaIndex = city.indexOf(",");
+  // console.log(`name: ${city}`);
+  return commaIndex !== -1 ? city.substring(0, commaIndex) : city;
+};
 
 /**
  * Calculates the visibility in miles based on the provided visibility in meters.
