@@ -28,7 +28,7 @@ const Forecast = ({ data, timezone }: ForecastProps): JSX.Element => {
       </h2>
       <Accordion allowZeroExpanded>
         {data.daily.map((item, idx) => (
-          <AccordionItem key={`${idx}_${item}`}>
+          <AccordionItem key={`${idx}_${item.dt}`}>
             <AccordionItemHeading>
               <AccordionItemButton>
                 <div className="py-1">
