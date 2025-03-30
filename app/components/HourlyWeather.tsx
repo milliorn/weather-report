@@ -18,7 +18,7 @@ const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
       >
         {hourly.slice(0, Time.NUM_HOURS).map((hour, index) => (
           <div
-            key={index}
+            key={`${index}_${hour.dt}`}
             className="hourly-weather-card min-w-max bg-transparent shadow-md p-4 rounded-lg border border-gray-200"
           >
             <p className="hour">
