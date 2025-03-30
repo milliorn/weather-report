@@ -13,13 +13,25 @@ import { Time } from "../config";
  * parseTime(1620000000, "en-US", "America/New_York"); // "5/3/2021, 12:00:00 AM"
  */
 const parseTime = (time: number, locale: string, timezone: string): string => {
-  const dateTime = new Date(0);
-  dateTime.setUTCSeconds(time);
+  // Validate that time is a finite number.
+  if (!Number.isFinite(time)) {
+    console.warn("parseTime: Invalid timestamp received", time);
+    return "Invalid time";
+  }
 
-  return dateTime
+  // Use the constant from config instead of the literal 1000
+  const dateTime = new Date(time * Time.MILLISECONDS_PER_SECOND);
+
+  if (isNaN(dateTime.getTime())) {
+    console.warn("parseTime: Date conversion failed", time);
+    return "Invalid time";
+  }
+
+  // Format the date and return the time portion
+  const parts = dateTime
     .toLocaleString(locale, { timeZone: timezone })
-    .split(",")
-    .pop() as string;
+    .split(",");
+  return parts.length > 1 ? parts.pop()!.trim() : parts[0];
 };
 
 /**

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 "use client";
 
 import {
@@ -132,24 +134,45 @@ const formatWeatherData = (item: WeatherItem, timezone: string) => {
  * @param data - The weather data to be parsed.
  * @returns The parsed weather data.
  */
-const parseWeatherData = (data: CurrentWeatherData) => ({
-  alert: data.alerts,
-  clouds: data.current.clouds,
-  dailyHigh: Math.floor(data.daily[0].temp.max),
-  dailyLow: Math.floor(data.daily[0].temp.min),
-  description: data.current.weather[0].description,
-  dewPoint: Math.floor(data.current.dew_point),
-  heatIndex: Math.floor(data.current.feels_like),
-  humidity: data.current.humidity,
-  moonPhase: getMoonPhase(data.daily[0].moon_phase),
-  temp: Math.floor(data.current.temp),
-  timezone: data.timezone,
-  uvi: data.current.uvi,
-  visibility: getVisibility(data.current.visibility),
-  windDirection: getWindDirection(data.current.wind_deg),
-  windGust: getWindGust(data.current.wind_gust),
-  windSpeed: Math.floor(data.current.wind_speed)
-});
+const parseWeatherData = (data: CurrentWeatherData) => {
+  const dailyItem =
+    data.daily && data.daily.length > 0
+      ? data.daily[0]
+      : {
+          temp: { max: 0, min: 0 },
+          moon_phase: 0,
+          clouds: 0,
+          dew_point: 0,
+          humidity: 0,
+          pop: 0,
+          uvi: 0,
+          wind_speed: 0,
+          weather: [{ description: "N/A" }],
+          sunrise: 0,
+          sunset: 0,
+          wind_gust: 0,
+          dt: 0
+        };
+
+  return {
+    alert: data.alerts,
+    clouds: data.current.clouds,
+    dailyHigh: Math.floor(dailyItem.temp.max),
+    dailyLow: Math.floor(dailyItem.temp.min),
+    description: data.current.weather[0].description,
+    dewPoint: Math.floor(data.current.dew_point),
+    heatIndex: Math.floor(data.current.feels_like),
+    humidity: data.current.humidity,
+    moonPhase: getMoonPhase(dailyItem.moon_phase),
+    temp: Math.floor(data.current.temp),
+    timezone: data.timezone,
+    uvi: data.current.uvi,
+    visibility: getVisibility(data.current.visibility),
+    windDirection: getWindDirection(data.current.wind_deg),
+    windGust: getWindGust(data.current.wind_gust),
+    windSpeed: Math.floor(data.current.wind_speed)
+  };
+};
 
 /**
  * Parses the city name from a string that includes the city and state.
@@ -157,7 +180,11 @@ const parseWeatherData = (data: CurrentWeatherData) => ({
  * @param city - The string containing the city and state.
  * @returns The parsed city name.
  */
-const parseCity = (city: string) => city.substring(0, city.indexOf(","));
+const parseCity = (city: string): string => {
+  const commaIndex = city.indexOf(",");
+  // console.log(`name: ${city}`);
+  return commaIndex !== -1 ? city.substring(0, commaIndex) : city;
+};
 
 /**
  * Calculates the visibility in miles based on the provided visibility in meters.
