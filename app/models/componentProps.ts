@@ -129,6 +129,7 @@ export type {
   CurrentWeatherData,
   CurrentWeatherProps,
   ForecastProps,
+  HourlyWeatherItem,
   HourlyWeatherProps,
   MapCityToOptionType,
   MiddleProps,

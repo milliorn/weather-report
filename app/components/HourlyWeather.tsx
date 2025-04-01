@@ -1,59 +1,47 @@
-import Image from "next/image";
-import { Percent, Time } from "../config";
+"use client";
+
+// Importing necessary modules and types
+import { Time } from "../config";
 import { HourlyWeatherProps } from "../models/componentProps";
-import { toCelsius } from "../utils/MiscUtils";
-import { toKph } from "../utils/WindUtils";
+import HourlyWeatherCard from "./HourlyWeatherCard";
 
-const HourlyWeather = ({ hourly, timezone }: HourlyWeatherProps) => {
-  //  console.log(hourly);
-
+/**
+ * HourlyWeather Component
+ *
+ * This component renders a horizontally scrollable list of hourly weather forecast cards.
+ * It displays a heading ("24-Hour Forecast") and maps over the hourly forecast data,
+ * slicing it to show only the number of hours defined in Time.NUM_HOURS.
+ *
+ * @param {HourlyWeatherProps} props - The component props including:
+ *    - hourly: An array of hourly forecast data.
+ *    - timezone: The timezone string used for time formatting.
+ * @returns {JSX.Element} The rendered hourly weather forecast section.
+ */
+const HourlyWeather = ({
+  hourly,
+  timezone
+}: HourlyWeatherProps): JSX.Element => {
   return (
+    // Container for the hourly weather forecast
     <div className="hourly-weather-container">
+      {/* Heading for the forecast section */}
       <h2 className="text-center my-8 sm:text-lg md:text-xl lg:text-2xl">
         24-Hour Forecast
       </h2>
+      {/* Scrollable container for hourly forecast cards */}
       <div
         className="flex overflow-x-auto gap-4 pb-4"
         style={{ scrollbarWidth: "auto" }}
       >
+        {/* Map over the hourly data, limited to the number of hours defined in Time.NUM_HOURS */}
         {hourly.slice(0, Time.NUM_HOURS).map((hour, index) => (
-          <div
-            key={index}
-            className="hourly-weather-card min-w-max bg-transparent shadow-md p-4 rounded-lg border border-gray-200"
-          >
-            <p className="hour">
-              {new Date(hour.dt * Time.TIMESTAMP_MULTIPLIER).toLocaleTimeString(
-                [],
-                {
-                  hour: "numeric",
-                  minute: "2-digit",
-                  hour12: true,
-                  timeZone: timezone
-                }
-              )}
-            </p>
-            <Image
-              alt={hour.weather[0].description}
-              src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
-              width={48}
-              height={48}
-            />
-            <p>
-              {toCelsius(hour.temp)}°C | {Math.floor(hour.temp)}°F
-            </p>
-            <p className="description capitalize">
-              {hour.weather[0].description}
-            </p>
-            <p className="chance-of-rain">
-              Rain: {hour.pop * Percent.PERCENT_MULTIPLIER}%
-            </p>
-            <p className="humidity">Humidity: {hour.humidity}%</p>
-            <p className="wind">
-              Wind: {toKph(hour.wind_speed)} kph | {Math.floor(hour.wind_speed)}{" "}
-              mph
-            </p>
-            <p className="uvindex">UV Index: {hour.uvi}</p>
-          </div>
+          // Render an HourlyWeatherCard for each hour
+          // Use a combination of the index and hour.dt to ensure unique keys
+          <HourlyWeatherCard
+            key={`${index}_${hour.dt}`}
+            hour={hour}
+            timezone={timezone}
+          />
         ))}
       </div>
     </div>
