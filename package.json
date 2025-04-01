@@ -15,13 +15,13 @@
     "next": "14.2.26",
     "react": "^18",
     "react-accessible-accordion": "^5.0.0",
-    "react-dom": "^18",
+    "react-dom": "^19",
     "react-select-async-paginate": "^0.7.9"
   },
   "devDependencies": {
     "@types/node": "^22.13.0",
     "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^19",
     "eslint": "^8.43.0",
     "eslint-config-next": "14.2.26",
     "eslint-config-prettier": "^10.1.1",
