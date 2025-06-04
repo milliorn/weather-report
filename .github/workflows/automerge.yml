@@ -1,5 +1,4 @@
 name: Dependabot reviewer
-
 on: pull_request_target
 
 permissions:
@@ -11,24 +10,32 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          # Prevent the built-in GITHUB_TOKEN from being used for pushes
+          persist-credentials: false
+
+      - name: Set up Git author/committer
+        run: |
+          git config --global user.name "milliorn"
+          git config --global user.email "scottmilliorn@gmail.com"
+
       - name: Dependabot metadata
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v2.4.0
 
-      - name: Approve and auto-merge minor and patch updates
-        if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor' }}
-        run: |
-          gh pr review "$PR_URL" --approve -b "Auto-approved: This pull request includes a **patch** or **minor** update."
-          gh pr merge "$PR_URL" --squash --auto
+      - name: Squash-and-merge Dependabot PRs as you
+        run: gh pr merge --squash --auto "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
-      - name: Flag major updates for manual approval
-        if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-major' }}
-        run: |
-          gh pr comment "$PR_URL" --body "🚨 **Manual approval required:** This PR includes a **major update**. The repository owner must review and approve it."
-          gh pr edit "$PR_URL" --add-label "requires-manual-approval"
+      - name: Approve patch and minor updates
+        if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor' }}
+        run: gh pr review "$PR_URL" --approve -b "…"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      # (…) other steps remain the same, just replace GITHUB_TOKEN with your PAT
