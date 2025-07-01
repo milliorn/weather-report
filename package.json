@@ -14,7 +14,7 @@
     "date-fns": "^3.6.0",
     "next": "14.2.30",
     "react": "^18",
-    "react-accessible-accordion": "^5.0.0",
+    "react-accessible-accordion": "^5.0.1",
     "react-dom": "^18",
     "react-select-async-paginate": "^0.7.10"
   },
