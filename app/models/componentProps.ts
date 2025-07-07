@@ -72,7 +72,7 @@ type CurrentWeatherData = {
     dt: number;
     feels_like: number;
     humidity: number;
-    pressure: any;
+    pressure: number;
     sunrise: number;
     sunset: number;
     temp: number;
