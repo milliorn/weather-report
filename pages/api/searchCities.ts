@@ -34,8 +34,14 @@ async function fetchCityData(cityData: CityData): Promise<unknown> {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    let message = `HTTP error! status: ${response.status}`;
+
+    if (response.status === 429) {
+      message += " (Rate limit exceeded. Check your RapidAPI usage and plan limits.)";
+    }
+    throw new Error(message);
   }
+
   return data;
 }
 
