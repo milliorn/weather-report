@@ -49,7 +49,7 @@ const wetBulbTemperatureCelsius = (
   let count = 0;
   while (Math.abs(diff) > 0.01 && count < 100) {
     const es_twb = saturationVaporPressure(twb);
-    diff = (es_twb - gamma * (temperature - twb)) - e;
+    diff = es_twb - gamma * (temperature - twb) - e;
     twb = twb - diff / 10; // Convergence step
     count++;
   }
