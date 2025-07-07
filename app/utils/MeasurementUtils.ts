@@ -48,7 +48,7 @@ const wetBulbTemperatureCelsius = (
     Math.atan(WetBulb.RH_CONSTANT * relativeHumidity);
 
   // Result combines all terms with appropriate additions and subtractions
-  let result =
+  const result =
     firstTerm +
     secondTerm -
     thirdTerm +
