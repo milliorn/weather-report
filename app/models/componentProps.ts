@@ -4,7 +4,7 @@ import { SearchData } from "./apiTypes";
 import { Alert, WeatherItem } from "./weatherTypes";
 
 type BottomProps = {
-  alert: any[];
+  alert: Alert[];
   clouds: number;
   dew_point: number;
   heatIndex: number;
@@ -72,7 +72,7 @@ type CurrentWeatherData = {
     dt: number;
     feels_like: number;
     humidity: number;
-    pressure: any;
+    pressure: number;
     sunrise: number;
     sunset: number;
     temp: number;

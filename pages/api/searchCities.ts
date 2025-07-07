@@ -27,15 +27,21 @@ type CityData = {
  * @returns A promise that resolves to the fetched city data.
  * @throws An error if the HTTP response is not successful.
  */
-async function fetchCityData(cityData: CityData): Promise<any> {
+async function fetchCityData(cityData: CityData): Promise<unknown> {
   const { apiUrl, options } = cityData;
 
   const response = await fetch(apiUrl, options);
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    let message = `HTTP error! status: ${response.status}`;
+
+    if (response.status === 429) {
+      message += " (Rate limit exceeded. Check your RapidAPI usage and plan limits.)";
+    }
+    throw new Error(message);
   }
+
   return data;
 }
 
@@ -72,8 +78,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const data = await fetchCityData({ apiUrl, options: { method: "GET", headers } });
     res.status(HTTP_OK).json(data);
-  } catch (error: any) {
-    handleError(res, error);
+  } catch (error) {
+    if (error instanceof Error) {
+      handleError(res, error);
+    } else {
+      handleError(res, new Error("Unknown error"));
+    }
   }
 }
-
