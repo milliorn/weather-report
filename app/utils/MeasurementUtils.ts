@@ -18,43 +18,42 @@ const getMiles = (meters: number): number =>
 const mmToInches = (data: number): number => data / Conversion.MM_TO_INCHES;
 
 /**
- * Calculates the wet bulb temperature in Celsius.
+ * Returns the saturation vapor pressure in hPa at temperature t (Celsius)
+ */
+const saturationVaporPressure = (t: number): number => {
+  // Tetens formula, valid for 0 < t < 50 C
+  return 6.112 * Math.exp((17.62 * t) / (243.12 + t));
+};
+
+/**
+ * Calculates wet bulb temperature in Celsius using psychrometric formula (includes pressure).
  * @param temperature - The temperature in Celsius.
- * @param relativeHumidity - The relative humidity.
+ * @param relativeHumidity - The relative humidity in %.
+ * @param pressure - The atmospheric pressure in hPa.
  * @returns The wet bulb temperature in Celsius.
  */
 const wetBulbTemperatureCelsius = (
   temperature: number,
-  relativeHumidity: number
+  relativeHumidity: number,
+  pressure: number
 ): number => {
-  // First term calculation with atan of the square root term
-  const firstTerm =
-    temperature *
-    Math.atan(
-      WetBulb.RH_MULTIPLY_CONSTANT *
-        Math.sqrt(relativeHumidity + WetBulb.RH_ADDITION_CONSTANT)
-    );
+  // Calculate actual vapor pressure
+  const e = (relativeHumidity / 100) * saturationVaporPressure(temperature);
 
-  // Second term is straightforward atan addition
-  const secondTerm = Math.atan(temperature + relativeHumidity);
+  // Psychrometric constant (hPa/C)
+  const gamma = 0.00066 * pressure;
 
-  // Third term subtracts the atan of the constant adjusted humidity
-  const thirdTerm = Math.atan(relativeHumidity - WetBulb.ES_CONSTANT);
-
-  // Fourth term combines several operations and needs careful grouping
-  const fourthTerm =
-    WetBulb.RH_CONVERSION_FACTOR *
-    Math.pow(relativeHumidity, WetBulb.RH_EXPONENT) *
-    Math.atan(WetBulb.RH_CONSTANT * relativeHumidity);
-
-  // Result combines all terms with appropriate additions and subtractions
-  const result =
-    firstTerm +
-    secondTerm -
-    thirdTerm +
-    (fourthTerm - WetBulb.RH_SUBTRACTION_CONSTANT);
-
-  return result;
+  // Iterative search for wet bulb temperature
+  let twb = temperature; // initial guess: dry bulb temp
+  let diff = 1;
+  let count = 0;
+  while (Math.abs(diff) > 0.01 && count < 100) {
+    const es_twb = saturationVaporPressure(twb);
+    diff = (es_twb - gamma * (temperature - twb)) - e;
+    twb = twb - diff / 10; // Convergence step
+    count++;
+  }
+  return twb;
 };
 
 /**
@@ -74,10 +73,11 @@ const calculateWetBulbTemperature = (
     (temperature - WetBulb.FREEZING_POINT_F) *
     Conversion.CELSIUS_CONVERSION_FACTOR;
 
-  // Calculate wet bulb temperature in Celsius
+  // Calculate wet bulb temperature in Celsius (with pressure!)
   const wetBulbTemperatureC = wetBulbTemperatureCelsius(
     temperatureCelsius,
-    relativeHumidity
+    relativeHumidity,
+    pressure
   );
 
   // Convert wet bulb temperature back to Fahrenheit
