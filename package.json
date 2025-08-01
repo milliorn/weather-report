@@ -20,7 +20,7 @@
     "react-select-async-paginate": "^0.7.10"
   },
   "devDependencies": {
-    "@types/node": "^22.15.29",
+    "@types/node": "^24.1.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.57.1",
