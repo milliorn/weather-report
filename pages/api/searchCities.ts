@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { GEO_API_URL, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "./constants";
+import { GEO_API_URL, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "../../lib/constants";
 
 const API_KEY = process.env.X_RAPID_KEY || "";
 
