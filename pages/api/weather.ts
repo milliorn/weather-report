@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "./constants";
+import { HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "../../lib/constants";
 import { API } from "@/app/config";
 
 export default async function handler(
