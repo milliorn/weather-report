@@ -14,14 +14,14 @@
   "dependencies": {
     "date-fns": "^3.6.0",
     "next": "15.3.4",
-    "react": "^18",
+    "react": "^19",
     "react-accessible-accordion": "^5.0.1",
     "react-dom": "^18",
     "react-select-async-paginate": "^0.7.10"
   },
   "devDependencies": {
     "@types/node": "^22.15.29",
-    "@types/react": "^18",
+    "@types/react": "^19",
     "@types/react-dom": "^18",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.5.2",
