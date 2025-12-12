@@ -53,8 +53,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-- [OpenWeatherMap](https://openweathermap.org/api/one-call-3) for weather data  
-- [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities) for city suggestions  
-- [Lorem Picsum](https://picsum.photos/) for dynamic weather imagery  
+- [OpenWeatherMap](https://openweathermap.org/api/one-call-3) for weather data
+- [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities) for city suggestions
+- [Lorem Picsum](https://picsum.photos/) for dynamic weather imagery
 - Thanks to all open-source maintainers and contributors who made this project possible.
-
