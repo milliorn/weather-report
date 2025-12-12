@@ -1,5 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { GEO_API_URL, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from "../../lib/constants";
+import {
+  GEO_API_URL,
+  HTTP_INTERNAL_SERVER_ERROR,
+  HTTP_OK
+} from "../../lib/constants";
 
 const API_KEY = process.env.X_RAPID_KEY || "";
 
@@ -14,12 +18,12 @@ type FetchOptions = {
     "X-RapidAPI-Key": string;
     "X-RapidAPI-Host": string;
   };
-}
+};
 
 type CityData = {
   apiUrl: string;
   options: FetchOptions;
-}
+};
 
 /**
  * Fetches city data from the specified API endpoint.
@@ -37,7 +41,8 @@ async function fetchCityData(cityData: CityData): Promise<unknown> {
     let message = `HTTP error! status: ${response.status}`;
 
     if (response.status === 429) {
-      message += " (Rate limit exceeded. Check your RapidAPI usage and plan limits.)";
+      message +=
+        " (Rate limit exceeded. Check your RapidAPI usage and plan limits.)";
     }
     throw new Error(message);
   }
@@ -52,7 +57,9 @@ async function fetchCityData(cityData: CityData): Promise<unknown> {
  */
 function handleError(res: NextApiResponse, error: Error): void {
   console.error("Failed to load city data:", error);
-  res.status(HTTP_INTERNAL_SERVER_ERROR).json({ error: "Failed to fetch data" });
+  res
+    .status(HTTP_INTERNAL_SERVER_ERROR)
+    .json({ error: "Failed to fetch data" });
 }
 
 /**
@@ -63,7 +70,10 @@ function handleError(res: NextApiResponse, error: Error): void {
  * @returns A Promise that resolves to void.
  */
 // eslint-disable-next-line max-statements
-export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   const { query } = req.query as { query: string };
 
   // Construct the API URL with the limit parameter
@@ -71,12 +81,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!API_KEY) {
     console.error("Missing API Key for X-RapidAPI");
-    res.status(HTTP_INTERNAL_SERVER_ERROR).json({ error: "API Key is not configured." });
+    res
+      .status(HTTP_INTERNAL_SERVER_ERROR)
+      .json({ error: "API Key is not configured." });
     return;
   }
 
   try {
-    const data = await fetchCityData({ apiUrl, options: { method: "GET", headers } });
+    const data = await fetchCityData({
+      apiUrl,
+      options: { method: "GET", headers }
+    });
     res.status(HTTP_OK).json(data);
   } catch (error) {
     if (error instanceof Error) {
