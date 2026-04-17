@@ -1,0 +1,70 @@
+components:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/components/**
+
+styles:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/css/**
+          - "**/*.css"
+          - tailwind.config.ts
+          - postcss.config.mjs
+
+models:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/models/**
+
+utils:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/utils/**
+          - lib/**
+
+api:
+  - changed-files:
+      - any-glob-to-any-file:
+          - pages/api/**
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/config.ts
+          - tsconfig.json
+          - .eslintrc.json
+          - .prettierrc
+          - next.config.*
+          - postcss.config.mjs
+          - tailwind.config.ts
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+
+github_actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/**
+          - .github/labeler.yml
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - README.md
+          - "**/*.md"
+
+public-assets:
+  - changed-files:
+      - any-glob-to-any-file:
+          - public/**
+
+app-root:
+  - changed-files:
+      - any-glob-to-any-file:
+          - app/page.tsx
+          - app/layout.tsx
+          - app/manifest.ts
+          - app/global-error.tsx
