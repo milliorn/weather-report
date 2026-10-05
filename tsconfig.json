@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "es2020", // Set ECMAScript target version for JS features
     "module": "esnext", // Use latest module standards
-    "lib": ["dom", "dom.iterable", "esnext"], // Specify libraries to be included in the compilation
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // Specify libraries to be included in the compilation
     "allowJs": true, // Allow JavaScript files to be compiled
     "skipLibCheck": true, // Do not skip type checking of declaration files
     "strict": true, // Enable all strict type-checking options
@@ -15,10 +19,10 @@
     "alwaysStrict": true, // Parse all code in strict mode and emit "use strict" for each source file
     "noEmit": true, // Do not emit outputs (handy when using alongside Babel or when only type-checking is needed)
     "esModuleInterop": true, // Enables ES6 module compatibility with CommonJS modules
-    "moduleResolution": "node", // Choose the module resolution strategy: 'node' for Node.js, or 'classic'
+    "moduleResolution": "bundler", // Choose the module resolution strategy: 'node' for Node.js, or 'classic'
     "resolveJsonModule": true, // Allow importing .json files
     "isolatedModules": true, // Ensure each file can be safely transpiled without relying on other imports
-    "jsx": "preserve", // Preserves all JSX code for further compilation by Babel
+    "jsx": "react-jsx", // Preserves all JSX code for further compilation by Babel
     "incremental": true, // Enable incremental compilation by saving information about the project graph from the last compilation
     "plugins": [
       {
@@ -30,7 +34,9 @@
     ],
     "baseUrl": "./", // Set base directory to resolve non-relative module names
     "paths": {
-      "@/*": ["./*"] // Map paths for imports
+      "@/*": [
+        "./*"
+      ] // Map paths for imports
     }
   },
   "include": [
@@ -38,7 +44,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/HourlyWeather.tsx"
+    "app/components/HourlyWeather.tsx",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"] // Exclude node_modules from the compilation process
+  "exclude": [
+    "node_modules"
+  ] // Exclude node_modules from the compilation process
 }

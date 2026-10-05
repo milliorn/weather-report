@@ -8,7 +8,7 @@
     "dev-turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "format": "prettier --write 'app/**/*.{js,jsx,ts,tsx,json,css,md}'"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "@types/node": "^22.20.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.26",
     "next": "^16.3.8",
     "postcss": "^8",
