@@ -32,7 +32,7 @@ config:
       - any-glob-to-any-file:
           - app/config.ts
           - tsconfig.json
-          - .eslintrc.json
+          - eslint.config.*
           - .prettierrc
           - next.config.*
           - postcss.config.mjs
