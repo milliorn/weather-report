@@ -14,7 +14,7 @@ concurrency:
 jobs:
   merge-gatekeeper:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 5
     permissions:
       checks: read
       statuses: read
@@ -23,7 +23,4 @@ jobs:
         uses: upsidr/merge-gatekeeper@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # Keep the action's own timeout (default 600s) under the job's
-          # timeout-minutes, so it fails with a clear message instead of the
-          # runner killing the job first.
-          timeout: 300
+          timeout: 240 # under timeout-minutes so the action fails with a clear message
